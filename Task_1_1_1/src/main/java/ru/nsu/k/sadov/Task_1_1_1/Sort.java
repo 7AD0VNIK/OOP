@@ -70,33 +70,4 @@ public class Sort {
             heapify(arr, i, 0); // вызываем для уменьшенной кучи
         }
     }
-
-    /**
-     * вспомогательная функция для вывода массива в консоль.
-     *
-     * @param arr - массив для вывода
-     */
-    public static void print(int[] arr) {
-        System.out.print("[");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i]);
-            if (i < arr.length - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.print("]");
-    }
-
-    /**
-     * основная функция для тестирования алгоритма сортировки.
-     *
-     * @param args - аргументы командной строки
-     */
-    public static void main(String[] args) {
-        int[] arrr = {4, 5, 3, 5, 2, 1, -1};
-
-        heapSort(arrr);
-
-        print(arrr);
-    }
 }
