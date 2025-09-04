@@ -6,9 +6,10 @@ package ru.nsu.k.sadov.Task_1_1_1;
 public class Sort {
     /**
      * функция для поддержания свойства максимальной кучи в поддереве с корнем i
+     *
      * @param arr - массив, представляющий кучу
-     * @param n - размер кучи
-     * @param i - индекс корневого элемента поддерева
+     * @param n   - размер кучи
+     * @param i   - индекс корневого элемента поддерева
      */
 
     public static void heapify(int[] arr, int n, int i) {
@@ -32,10 +33,12 @@ public class Sort {
             heapify(arr, n, lrgst);
         }
     }
+
     /**
      * функция для построения максимальной кучи из произвольного массива
+     *
      * @param arr - массив для преобразования в кучу
-     * @param n - размер массива
+     * @param n   - размер массива
      */
 
     public static void buildHeap(int[] arr, int n) {
@@ -46,8 +49,10 @@ public class Sort {
             heapify(arr, n, i);
         }
     }
+
     /**
      * основная функция для выполнения пирамидальной сортировки
+     *
      * @param arr - массив для сортировки
      */
     public static void heapSort(int[] arr) {
@@ -65,8 +70,10 @@ public class Sort {
             heapify(arr, i, 0); // вызываем для уменьшенной кучи
         }
     }
+
     /**
      * вспомогательная функция для вывода массива в консоль
+     *
      * @param arr - массив для вывода
      */
     public static void print(int[] arr) {
@@ -79,8 +86,10 @@ public class Sort {
         }
         System.out.print("]");
     }
+
     /**
      * основная функция для тестирования алгоритма сортировки
+     *
      * @param args - аргументы командной строки
      */
 
