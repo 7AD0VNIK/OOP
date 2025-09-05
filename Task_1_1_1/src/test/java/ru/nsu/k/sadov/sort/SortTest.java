@@ -1,8 +1,8 @@
 package ru.nsu.k.sadov.sort;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+import org.junit.jupiter.api.Test;
 
 class SortTest {
 
@@ -77,10 +77,10 @@ class SortTest {
     @Test
     void testMinMaxValues() {
         int[] arr = {Integer.MAX_VALUE, Integer.MIN_VALUE, 0,
-                Integer.MAX_VALUE, Integer.MIN_VALUE};
+                     Integer.MAX_VALUE, Integer.MIN_VALUE};
         Sort.heapSort(arr);
         assertArrayEquals(new int[]{Integer.MIN_VALUE, Integer.MIN_VALUE, 0,
-                Integer.MAX_VALUE, Integer.MAX_VALUE}, arr);
+                                    Integer.MAX_VALUE, Integer.MAX_VALUE}, arr);
     }
 
     @Test
