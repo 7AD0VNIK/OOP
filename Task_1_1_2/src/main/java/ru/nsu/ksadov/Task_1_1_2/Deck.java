@@ -142,22 +142,4 @@ public class Deck {
 
         return total;
     }
-
-//    /**
-//     * Переносит все карты в другую колоду.
-//     *
-//     * @param target цель (куда переносим)
-//     */
-//    public void moveAllTo(Deck target) {
-//        target.deck.addAll(this.deck);
-//        this.deck.clear();
-//    }
-//    /**
-//     * Добавляет карту в колоду.
-//     *
-//     * @param card карта
-//     */
-//    public void put(Cards card) {
-//        deck.add(card);
-//    }
 }
