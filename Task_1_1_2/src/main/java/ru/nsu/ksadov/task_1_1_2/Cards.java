@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.Task_1_1_2;
+package ru.nsu.ksadov.task_1_1_2;
 
 /**
  * Класс, представляющий одну карту (масть + значение).

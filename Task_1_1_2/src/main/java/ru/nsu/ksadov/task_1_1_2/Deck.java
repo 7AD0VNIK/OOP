@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.Task_1_1_2;
+package ru.nsu.ksadov.task_1_1_2;
 
 
 import java.util.ArrayList;
@@ -36,7 +36,9 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(deck);
     }
-
+    /**
+     * Возвращает колоду карт в строковом формате.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Cards card : deck) {
@@ -130,6 +132,8 @@ public class Deck {
                 case ACE:
                     aces++;
                     total += 11;
+                    break;
+                default:
                     break;
             }
         }

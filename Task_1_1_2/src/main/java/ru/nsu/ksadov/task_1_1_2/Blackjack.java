@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.Task_1_1_2;
+package ru.nsu.ksadov.task_1_1_2;
 
 import java.util.Scanner;
 
@@ -40,8 +40,8 @@ public class Blackjack {
 
             // ход игрока
             while (true) {
-                System.out.println("Your cards: " + playerDeck +
-                        " > " + playerDeck.getTotalValue());
+                System.out.println("Your cards: " + playerDeck
+                        + " > " + playerDeck.getTotalValue());
                 System.out.println("Dealer's cards: " + dealerDeck.peek(0) + ", [hidden]");
                 System.out.println("Your move (1 - hit, 0 - stand):");
 

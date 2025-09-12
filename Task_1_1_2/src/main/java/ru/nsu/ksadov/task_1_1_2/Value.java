@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.Task_1_1_2;
+package ru.nsu.ksadov.task_1_1_2;
 
 /**
  * Значение карты (от двойки до туза).

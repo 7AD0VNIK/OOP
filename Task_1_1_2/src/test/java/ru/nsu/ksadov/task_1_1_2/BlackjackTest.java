@@ -1,7 +1,9 @@
-package ru.nsu.ksadov.Task_1_1_2;
+package ru.nsu.ksadov.task_1_1_2;
+
+import java.io.ByteArrayInputStream;
 
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayInputStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BlackjackSimpleTest {
