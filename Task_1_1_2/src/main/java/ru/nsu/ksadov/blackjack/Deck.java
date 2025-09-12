@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.task_1_1_2;
+package ru.nsu.ksadov.blackjack;
 
 
 import java.util.ArrayList;
@@ -36,6 +36,7 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(deck);
     }
+
     /**
      * Возвращает колоду карт в строковом формате.
      */

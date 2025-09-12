@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.task_1_1_2;
+package ru.nsu.ksadov.blackjack;
 
 import org.junit.jupiter.api.Test;
 
