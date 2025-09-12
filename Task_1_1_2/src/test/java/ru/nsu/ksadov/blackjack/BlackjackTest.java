@@ -1,6 +1,5 @@
 package ru.nsu.ksadov.blackjack;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -43,6 +42,6 @@ class BlackjackSimpleTest {
         }
 
         String result = output.toString();
-        Assertions.assertTrue(result.contains("Bust!") || result.contains("Dealer won")); // Изменено здесь
+        Assertions.assertTrue(result.contains("Bust!") || result.contains("Dealer won"));
     }
 }
