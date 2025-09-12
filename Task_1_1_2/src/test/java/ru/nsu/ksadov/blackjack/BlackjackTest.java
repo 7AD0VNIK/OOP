@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
-class BlackjackSimpleTest {
+class BlackjackTest {
 
     @Test
     void testGameInitialization() {
