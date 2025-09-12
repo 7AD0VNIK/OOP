@@ -1,9 +1,10 @@
 package ru.nsu.ksadov.blackjack;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CardsTest {
+import org.junit.jupiter.api.Test;
+
+class CardTest {
 
     @Test
     void testToString() {
