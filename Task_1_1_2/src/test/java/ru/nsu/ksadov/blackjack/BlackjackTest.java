@@ -6,7 +6,6 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 
 class BlackjackTest {
