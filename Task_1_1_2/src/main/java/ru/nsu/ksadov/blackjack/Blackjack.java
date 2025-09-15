@@ -64,7 +64,7 @@ public class Blackjack {
         System.out.println("\nRound " + round);
         System.out.println("Dealer dealt the cards");
 
-        playDeck.shuffle();
+        //playDeck.shuffle();
 
         Hand playerHand = new Hand();
         Hand dealerHand = new Hand();
