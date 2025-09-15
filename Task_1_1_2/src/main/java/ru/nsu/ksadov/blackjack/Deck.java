@@ -1,8 +1,7 @@
 package ru.nsu.ksadov.blackjack;
 
-
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,43 +9,7 @@ import java.util.List;
  */
 public class Deck {
 
-    private final List<Cards> deck;
-
-    /**
-     * Создает пустую колоду.
-     */
-    public Deck() {
-        deck = new ArrayList<>();
-    }
-
-    /**
-     * Заполняет колоду стандартным набором карт.
-     */
-    public void fill() {
-        for (Suit suit : Suit.values()) {
-            for (Value value : Value.values()) {
-                deck.add(new Cards(suit, value));
-            }
-        }
-    }
-
-    /**
-     * Перемешивает колоду.
-     */
-    public void shuffle() {
-        Collections.shuffle(deck);
-    }
-
-    /**
-     * Возвращает колоду карт в строковом формате.
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Cards card : deck) {
-            sb.append("\n").append("  ").append(card);
-        }
-        return sb.toString();
-    }
+    private final List<Cards> cards = new LinkedList<>();
 
     /**
      * Удаляет карту из колоды по индексу.
@@ -54,7 +17,7 @@ public class Deck {
      * @param index индекс карты
      */
     public void discard(int index) {
-        deck.remove(index);
+        cards.remove(index);
     }
 
     /**
@@ -64,87 +27,65 @@ public class Deck {
      * @return карта
      */
     public Cards peek(int index) {
-        return deck.get(index);
-    }
-
-
-    /**
-     * Возвращает количество карт в колоде.
-     *
-     * @return размер колоды
-     */
-    public int size() {
-        return deck.size();
+        return cards.get(index);
     }
 
     /**
-     * Берет карту из другой колоды.
-     *
-     * @param other другая колода
+     * Заполняет колоду стандартными 52 картами.
      */
-    public void drawFrom(Deck other) {
-        if (!other.deck.isEmpty()) {
-            deck.add(other.peek(0));
-            other.discard(0);
-        }
-    }
-
-    /**
-     * Считает сумму очков в колоде (для игры).
-     *
-     * @return сумма очков
-     */
-    public int getTotalValue() {
-        int total = 0;
-        int aces = 0;
-
-        for (Cards card : deck) {
-            switch (card.getValue()) {
-                case TWO:
-                    total += 2;
-                    break;
-                case THREE:
-                    total += 3;
-                    break;
-                case FOUR:
-                    total += 4;
-                    break;
-                case FIVE:
-                    total += 5;
-                    break;
-                case SIX:
-                    total += 6;
-                    break;
-                case SEVEN:
-                    total += 7;
-                    break;
-                case EIGHT:
-                    total += 8;
-                    break;
-                case NINE:
-                    total += 9;
-                    break;
-                case TEN:
-                case JACK:
-                case QUEEN:
-                case KING:
-                    total += 10;
-                    break;
-                case ACE:
-                    aces++;
-                    total += 11;
-                    break;
-                default:
-                    break;
+    public void fill() {
+        cards.clear();
+        for (Suit suit : Suit.values()) {
+            for (Value value : Value.values()) {
+                cards.add(new Cards(suit, value));
             }
         }
+    }
 
-        // корректируем туз(ы), если перебор.
-        while (total > 21 && aces > 0) {
-            total -= 10;
-            aces--;
+    /**
+     * Перемешивает колоду.
+     */
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
+    /**
+     * Вытягивает карту из колоды.
+     *
+     * @return карта сверху колоды
+     */
+    public Cards draw() {
+        if (cards.isEmpty()) {
+            throw new IllegalStateException("Колода пуста!");
         }
+        return cards.remove(cards.size() - 1);
+    }
 
-        return total;
+    /**
+     * Добавляет карту в колоду (для тестов или ручной настройки).
+     *
+     * @param card карта, которая добавляется в колоду
+     */
+    public void addCard(Cards card) {
+        cards.add(card);
+    }
+
+    /**
+     * Возвращает размер колоды.
+     *
+     * @return количество оставшихся карт
+     */
+    public int size() {
+        return cards.size();
+    }
+
+    /**
+     * Создает и возвращает стандартную колоду игральных карт, заполненную и перемешанную.
+     */
+    public static Deck defaultDeck() {
+        Deck deck = new Deck();
+        deck.fill();
+        deck.shuffle();
+        return deck;
     }
 }

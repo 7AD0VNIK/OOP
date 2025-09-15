@@ -3,6 +3,7 @@ package ru.nsu.ksadov.blackjack;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -61,10 +62,8 @@ class DeckTest {
     @Test
     void testDrawFromEmptyDeck() {
         Deck emptyDeck = new Deck();
-        Deck targetDeck = new Deck();
 
-        targetDeck.drawFrom(emptyDeck);
-        assertEquals(0, targetDeck.size()); // Не должно добавить карт
+        assertThrows(IllegalStateException.class, emptyDeck::draw);
     }
 
     @Test

@@ -7,53 +7,73 @@ public enum Value {
     /**
      * Двойка (2).
      */
-    TWO,
+    TWO(2),
     /**
      * Тройка (3).
      */
-    THREE,
+    THREE(3),
     /**
      * Четверка (4).
      */
-    FOUR,
+    FOUR(4),
     /**
      * Пятёрка (5).
      */
-    FIVE,
+    FIVE(5),
     /**
      * Шестёрка (6).
      */
-    SIX,
+    SIX(6),
     /**
      * Семёрка (7).
      */
-    SEVEN,
+    SEVEN(7),
     /**
      * Восьмёрка (8).
      */
-    EIGHT,
+    EIGHT(8),
     /**
      * Девятка (9).
      */
-    NINE,
+    NINE(9),
     /**
      * Десятка (10).
      */
-    TEN,
+    TEN(10),
     /**
      * Валет (J).
      */
-    JACK,
+    JACK(10),
     /**
      * Дама (Q).
      */
-    QUEEN,
+    QUEEN(10),
     /**
      * Король (K).
      */
-    KING,
+    KING(10),
     /**
      * Туз (A).
      */
-    ACE
+    ACE(11);
+
+    private final int points;
+
+    /**
+     * Конструктор значения карты.
+     *
+     * @param points числовое количество очков для карты
+     */
+    Value(int points) {
+        this.points = points;
+    }
+
+    /**
+     * Возвращает количество очков, которое приносит карта данного значения.
+     *
+     * @return очки карты
+     */
+    public int getPoints() {
+        return points;
+    }
 }
