@@ -56,7 +56,7 @@ class BlackjackTest {
 
         String result = runGame(input, () -> deck);
 
-        Assertions.assertTrue(result.contains("Bust!"));
+        Assertions.assertTrue(result.contains("Bust! You have: "));
         Assertions.assertTrue(result.contains("Dealer won the round!"));
     }
 
