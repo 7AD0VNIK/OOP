@@ -1,11 +1,11 @@
 package ru.nsu.ksadov.blackjack;
 
-import org.junit.jupiter.api.Assertions;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.Test;
 
