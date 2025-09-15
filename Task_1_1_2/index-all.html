@@ -55,6 +55,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Туз (A).</div>
 </dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Deck.html#addCard(ru.nsu.ksadov.blackjack.Cards)" class="member-name-link">addCard(Cards)</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
+<dd>
+<div class="block">Добавляет карту в колоду (для тестов или ручной настройки).</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html#addCard(ru.nsu.ksadov.blackjack.Cards)" class="member-name-link">addCard(Cards)</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Hand.html" title="class in ru.nsu.ksadov.blackjack">Hand</a></dt>
+<dd>
+<div class="block">Добавляет карту в руку.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
@@ -63,6 +71,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Главный класс игры "Блэкджек".</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Blackjack.html#%3Cinit%3E()" class="member-name-link">Blackjack()</a> - Constructor for class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Blackjack.html" title="class in ru.nsu.ksadov.blackjack">Blackjack</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Blackjack.html#%3Cinit%3E(java.util.Scanner)" class="member-name-link">Blackjack(Scanner)</a> - Constructor for class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Blackjack.html" title="class in ru.nsu.ksadov.blackjack">Blackjack</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
@@ -87,8 +97,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Класс, представляющий колоду карт.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Deck.html#%3Cinit%3E()" class="member-name-link">Deck()</a> - Constructor for class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Deck.html#defaultDeck()" class="member-name-link">defaultDeck()</a> - Static method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
 <dd>
-<div class="block">Создает пустую колоду.</div>
+<div class="block">Создает и возвращает стандартную колоду игральных карт, заполненную и перемешанную.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Suit.html#DIAMONDS" class="member-name-link">DIAMONDS</a> - Enum constant in enum class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Suit.html" title="enum class in ru.nsu.ksadov.blackjack">Suit</a></dt>
 <dd>
@@ -98,9 +110,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Удаляет карту из колоды по индексу.</div>
 </dd>
-<dt><a href="ru/nsu/ksadov/blackjack/Deck.html#drawFrom(ru.nsu.ksadov.blackjack.Deck)" class="member-name-link">drawFrom(Deck)</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
+<dt><a href="ru/nsu/ksadov/blackjack/Deck.html#draw()" class="member-name-link">draw()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
 <dd>
-<div class="block">Берет карту из другой колоды.</div>
+<div class="block">Вытягивает карту из колоды.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
@@ -114,7 +126,7 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/ksadov/blackjack/Deck.html#fill()" class="member-name-link">fill()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
 <dd>
-<div class="block">Заполняет колоду стандартным набором карт.</div>
+<div class="block">Заполняет колоду стандартными 52 картами.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Value.html#FIVE" class="member-name-link">FIVE</a> - Enum constant in enum class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Value.html" title="enum class in ru.nsu.ksadov.blackjack">Value</a></dt>
 <dd>
@@ -127,9 +139,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="ru/nsu/ksadov/blackjack/Deck.html#getTotalValue()" class="member-name-link">getTotalValue()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
+<dt><a href="ru/nsu/ksadov/blackjack/Value.html#getPoints()" class="member-name-link">getPoints()</a> - Method in enum class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Value.html" title="enum class in ru.nsu.ksadov.blackjack">Value</a></dt>
 <dd>
-<div class="block">Считает сумму очков в колоде (для игры).</div>
+<div class="block">Возвращает количество очков, которое приносит карта данного значения.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html#getTotalValue()" class="member-name-link">getTotalValue()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Hand.html" title="class in ru.nsu.ksadov.blackjack">Hand</a></dt>
+<dd>
+<div class="block">Считает сумму очков в руке.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Cards.html#getValue()" class="member-name-link">getValue()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Cards.html" title="class in ru.nsu.ksadov.blackjack">Cards</a></dt>
 <dd>
@@ -138,6 +154,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html" class="type-name-link" title="class in ru.nsu.ksadov.blackjack">Hand</a> - Class in <a href="ru/nsu/ksadov/blackjack/package-summary.html">ru.nsu.ksadov.blackjack</a></dt>
+<dd>
+<div class="block">Класс, представляющий руку игрока или дилера.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html#%3Cinit%3E()" class="member-name-link">Hand()</a> - Constructor for class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Hand.html" title="class in ru.nsu.ksadov.blackjack">Hand</a></dt>
+<dd>
+<div class="block">Создает пустую руку.</div>
+</dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Suit.html#HEARTS" class="member-name-link">HEARTS</a> - Enum constant in enum class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Suit.html" title="enum class in ru.nsu.ksadov.blackjack">Suit</a></dt>
 <dd>
 <div class="block">Червы.</div>
@@ -177,6 +201,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Возвращает карту по индексу.</div>
 </dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html#peek(int)" class="member-name-link">peek(int)</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Hand.html" title="class in ru.nsu.ksadov.blackjack">Hand</a></dt>
+<dd>
+<div class="block">Возвращает карту по индексу.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:Q">Q</h2>
 <dl class="index">
@@ -206,11 +234,19 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Deck.html#size()" class="member-name-link">size()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
 <dd>
-<div class="block">Возвращает количество карт в колоде.</div>
+<div class="block">Возвращает размер колоды.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html#size()" class="member-name-link">size()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Hand.html" title="class in ru.nsu.ksadov.blackjack">Hand</a></dt>
+<dd>
+<div class="block">Возвращает количество карт в руке.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Suit.html#SPADES" class="member-name-link">SPADES</a> - Enum constant in enum class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Suit.html" title="enum class in ru.nsu.ksadov.blackjack">Suit</a></dt>
 <dd>
 <div class="block">Пики.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/blackjack/Blackjack.html#start(java.util.function.Supplier)" class="member-name-link">start(Supplier&lt;Deck&gt;)</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Blackjack.html" title="class in ru.nsu.ksadov.blackjack">Blackjack</a></dt>
+<dd>
+<div class="block">Запуск игрового цикла.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Suit.html" class="type-name-link" title="enum class in ru.nsu.ksadov.blackjack">Suit</a> - Enum Class in <a href="ru/nsu/ksadov/blackjack/package-summary.html">ru.nsu.ksadov.blackjack</a></dt>
 <dd>
@@ -231,9 +267,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Возвращает строковое представление карты.</div>
 </dd>
-<dt><a href="ru/nsu/ksadov/blackjack/Deck.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Deck.html" title="class in ru.nsu.ksadov.blackjack">Deck</a></dt>
+<dt><a href="ru/nsu/ksadov/blackjack/Hand.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Hand.html" title="class in ru.nsu.ksadov.blackjack">Hand</a></dt>
 <dd>
-<div class="block">Возвращает колоду карт в строковом формате.</div>
+<div class="block">Возвращает список карт в строковом формате.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/blackjack/Value.html#TWO" class="member-name-link">TWO</a> - Enum constant in enum class ru.nsu.ksadov.blackjack.<a href="ru/nsu/ksadov/blackjack/Value.html" title="enum class in ru.nsu.ksadov.blackjack">Value</a></dt>
 <dd>
