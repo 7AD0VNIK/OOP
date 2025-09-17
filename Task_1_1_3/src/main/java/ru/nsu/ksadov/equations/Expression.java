@@ -35,7 +35,7 @@ public abstract class Expression {
         String[] parts = assignments.split(";");
         for (String part : parts) {
             part = part.trim();
-            if (part.isEmpty()){
+            if (part.isEmpty()) {
                 continue;
             }
             String[] kv = part.split("=");

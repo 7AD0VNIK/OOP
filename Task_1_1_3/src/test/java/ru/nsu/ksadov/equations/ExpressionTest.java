@@ -1,9 +1,11 @@
 package ru.nsu.ksadov.equations;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ExpressionTest {
+import org.junit.jupiter.api.Test;
+
+class ExpressionTest {
     @Test
     void testEvaluateWithAssignments() {
         Expression e = new Add(new Variable("x"), new Variable("y"));

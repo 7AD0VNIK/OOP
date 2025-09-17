@@ -1,9 +1,10 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-public class BinaryOperationsTest {
+class BinaryOperationsTest {
     @Test
     void testToStringAdd() {
         Expression e = new Add(new Number(1), new Number(2));

@@ -1,9 +1,10 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-public class MulTest {
+class MulTest {
     @Test
     void testEvaluate() {
         Expression e = new Mul(new Number(2), new Number(5));

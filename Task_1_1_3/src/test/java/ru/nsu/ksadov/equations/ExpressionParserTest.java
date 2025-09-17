@@ -1,9 +1,10 @@
 package ru.nsu.ksadov.equations;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExpressionParserTest {
+import org.junit.jupiter.api.Test;
+
+class ExpressionParserTest {
     @Test
     void testParseNumber() {
         Expression e = ExpressionParser.parse("42");

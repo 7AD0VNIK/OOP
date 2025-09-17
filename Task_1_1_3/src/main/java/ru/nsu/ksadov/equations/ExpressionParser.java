@@ -19,11 +19,9 @@ public class ExpressionParser {
             char c = s.charAt(i);
             if (c == '(') {
                 depth++;
-            }
-            else if (c == ')') {
+            } else if (c == ')') {
                 depth--;
-            }
-            else if (depth == 0 && (c == '+' || c == '-' || c == '*' || c == '/')) {
+            } else if (depth == 0 && (c == '+' || c == '-' || c == '*' || c == '/')) {
                 String leftStr = s.substring(0, i).trim();
                 String rightStr = s.substring(i + 1).trim();
                 Expression left = parse(leftStr);
@@ -50,8 +48,7 @@ public class ExpressionParser {
         for (char c : s.toCharArray()) {
             if (c == '(') {
                 depth++;
-            }
-            else if (c == ')') {
+            } else if (c == ')') {
                 depth--;
             }
             if (depth < 0) {

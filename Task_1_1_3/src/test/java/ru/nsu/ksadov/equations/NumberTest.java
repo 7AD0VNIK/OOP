@@ -1,9 +1,10 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-public class NumberTest {
+class NumberTest {
     @Test
     void testEvaluate() {
         Number n = new Number(5);

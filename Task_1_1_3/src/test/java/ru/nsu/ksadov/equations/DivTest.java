@@ -2,9 +2,10 @@ package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
-public class DivTest {
+class DivTest {
     @Test
     void testEvaluate() {
         Expression e = new Div(new Number(10), new Number(2));

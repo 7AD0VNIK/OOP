@@ -1,9 +1,10 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-public class SubTest {
+class SubTest {
     @Test
     void testEvaluate() {
         Expression e = new Sub(new Number(10), new Number(3));
