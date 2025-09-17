@@ -17,8 +17,8 @@ public class ExpressionParser {
         int depth = 0;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c == '(') depth++;
-            else if (c == ')') depth--;
+            if (c == '(') {depth++;}
+            else if (c == ')') {depth--;}
             else if (depth == 0 && (c == '+' || c == '-' || c == '*' || c == '/')) {
                 String leftStr = s.substring(0, i).trim();
                 String rightStr = s.substring(i + 1).trim();
@@ -29,6 +29,7 @@ public class ExpressionParser {
                     case '-': return new Sub(left, right);
                     case '*': return new Mul(left, right);
                     case '/': return new Div(left, right);
+                    default: break;
                 }
             }
         }
@@ -43,9 +44,9 @@ public class ExpressionParser {
     private static boolean isBalanced(String s) {
         int depth = 0;
         for (char c : s.toCharArray()) {
-            if (c == '(') depth++;
-            else if (c == ')') depth--;
-            if (depth < 0) return false;
+            if (c == '(') {depth++;}
+            else if (c == ')') {depth--;}
+            if (depth < 0) {return false;}
         }
         return depth == 0;
     }

@@ -1,7 +1,7 @@
 package ru.nsu.ksadov.equations;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Абстрактный класс для математического выражения.
@@ -15,6 +15,13 @@ public abstract class Expression {
      * @return результат вычисления
      */
     public abstract double evaluate(Map<String, Double> variables);
+
+    /**
+     * Вычисляет значение выражения без переменных (константный случай).
+     */
+    public double evaluate() {
+        return evaluate(Map.of());
+    }
 
     /**
      * Находит производную выражения по указанной переменной.
@@ -32,13 +39,6 @@ public abstract class Expression {
     public abstract String toString();
 
     /**
-     * Вычисляет значение выражения без переменных (константный случай).
-     */
-    public double evaluate() {
-        return evaluate(Map.of());
-    }
-
-    /**
      * Вычисляет значение выражения по строке присваивания переменных.
      * Пример: "x=10; y=5"
      *
@@ -50,7 +50,7 @@ public abstract class Expression {
         String[] parts = assignments.split(";");
         for (String part : parts) {
             part = part.trim();
-            if (part.isEmpty()) continue;
+            if (part.isEmpty()){continue;}
             String[] kv = part.split("=");
             if (kv.length != 2) {
                 throw new IllegalArgumentException("Invalid assignment: " + part);
