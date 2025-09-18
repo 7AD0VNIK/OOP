@@ -46,8 +46,10 @@ class ExpressionParserTest {
 
     @Test
     void testParseInvalidVariableName() {
-        assertThrows(IllegalArgumentException.class, () -> ExpressionParser.parse("2x")); // начинается с цифры
-        assertThrows(IllegalArgumentException.class, () -> ExpressionParser.parse("var!")); // содержит спецсимвол
+        assertThrows(IllegalArgumentException.class,
+                () -> ExpressionParser.parse("2x"));
+        assertThrows(IllegalArgumentException.class,
+                () -> ExpressionParser.parse("var!"));
     }
 
     @Test

@@ -16,7 +16,7 @@ public class ExpressionParser {
 
         s = s.trim();
 
-        if (!isBalanced(s)){
+        if (!isBalanced(s)) {
             throw new IllegalArgumentException("Unbalanced parentheses in expression: " + s);
         }
 
