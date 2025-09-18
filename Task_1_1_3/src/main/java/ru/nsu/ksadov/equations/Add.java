@@ -3,7 +3,7 @@ package ru.nsu.ksadov.equations;
 /**
  * Операция сложения (f + g).
  */
-public class Add extends BinaryOperations {
+public class Add extends BinaryOperation {
     public Add(Expression left, Expression right) {
         super(left, right);
     }

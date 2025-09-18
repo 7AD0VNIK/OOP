@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-class BinaryOperationsTest {
+class BinaryOperationTest {
     @Test
     void testToStringAdd() {
         Expression e = new Add(new Number(1), new Number(2));

@@ -3,7 +3,7 @@ package ru.nsu.ksadov.equations;
 /**
  * Операция деления (f / g).
  */
-public class Div extends BinaryOperations {
+public class Div extends BinaryOperation {
     public Div(Expression left, Expression right) {
         super(left, right);
     }

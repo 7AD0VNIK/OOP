@@ -3,7 +3,7 @@ package ru.nsu.ksadov.equations;
 /**
  * Операция умножения (f * g).
  */
-public class Mul extends BinaryOperations {
+public class Mul extends BinaryOperation {
     public Mul(Expression left, Expression right) {
         super(left, right);
     }

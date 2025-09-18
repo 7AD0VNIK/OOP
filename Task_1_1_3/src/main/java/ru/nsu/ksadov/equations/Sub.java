@@ -3,7 +3,7 @@ package ru.nsu.ksadov.equations;
 /**
  * Операция вычитания (f - g).
  */
-public class Sub extends BinaryOperations {
+public class Sub extends BinaryOperation {
     public Sub(Expression left, Expression right) {
         super(left, right);
     }

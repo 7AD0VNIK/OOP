@@ -5,11 +5,11 @@ import java.util.Map;
 /**
  * Абстрактный класс для бинарных операций (с двумя аргументами).
  */
-public abstract class BinaryOperations extends Expression {
+public abstract class BinaryOperation extends Expression {
     protected final Expression left;
     protected final Expression right;
 
-    public BinaryOperations(Expression left, Expression right) {
+    public BinaryOperation(Expression left, Expression right) {
         this.left = left;
         this.right = right;
     }
