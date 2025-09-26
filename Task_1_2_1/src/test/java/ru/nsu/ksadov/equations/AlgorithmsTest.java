@@ -2,10 +2,9 @@ package ru.nsu.ksadov.equations;
 
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 
-public class AlgorithmsTest {
+class AlgorithmsTest {
 
     @Test
     public void testEmptyGraph() {
@@ -13,10 +12,10 @@ public class AlgorithmsTest {
         g.addVertex(0);
         g.addVertex(1);
 
-        List<Integer> orderDFS = Algorithms.topologicalSortDFS(g);
+        List<Integer> orderDfs = Algorithms.topologicalSortDFS(g);
         List<Integer> orderKahn = Algorithms.topologicalSortKahn(g);
 
-        Assertions.assertEquals(2, orderDFS.size());
+        Assertions.assertEquals(2, orderDfs.size());
         Assertions.assertEquals(2, orderKahn.size());
     }
 
@@ -35,7 +34,7 @@ public class AlgorithmsTest {
     }
 
     @Test
-    public void testCycleDetectionDFS() {
+    public void testCycleDetectionDfs() {
         Graph g = new AdjList();
         g.addEdge(0, 1);
         g.addEdge(1, 2);
