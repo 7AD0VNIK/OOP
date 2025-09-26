@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -72,5 +75,31 @@ class AdjListTest {
         Graph g = new AdjList();
         assertTrue(g.getVertices().isEmpty());
         assertTrue(g.neighbors(1).isEmpty());
+    }
+
+    @Test
+    void testNoDuplicateEdges() {
+        Graph g = new AdjList();
+        g.addEdge(1, 2);
+        g.addEdge(1, 2);
+        assertEquals(1, g.neighbors(1).size());
+    }
+
+    @Test
+    void testGetVertices() {
+        Graph g = new AdjList();
+        g.addVertex(1);
+        g.addVertex(2);
+        assertEquals(2, g.getVertices().size());
+    }
+
+    @Test
+    void testReadFromFile() throws IOException {
+        Graph g = new AdjList();
+        Path tempFile = Files.createTempFile("test", ".txt");
+        Files.write(tempFile, List.of("2 1", "1 2"));
+        g.readFromFile(tempFile);
+        assertTrue(g.neighbors(1).contains(2));
+        Files.delete(tempFile);
     }
 }
