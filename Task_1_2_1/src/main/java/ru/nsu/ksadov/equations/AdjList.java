@@ -34,13 +34,17 @@ public class AdjList implements Graph {
     public void addEdge(int v1, int v2) {
         addVertex(v1);
         addVertex(v2);
-        if (!adj.get(v1).contains(v2)) adj.get(v1).add(v2);
+        if (!adj.get(v1).contains(v2)) {
+            adj.get(v1).add(v2);
+        }
     }
 
     @Override
     public void removeEdge(int v1, int v2) {
         List<Integer> list = adj.get(v1);
-        if (list != null) list.remove((Integer) v2);
+        if (list != null) {
+            list.remove((Integer) v2);
+        }
     }
 
     @Override
@@ -66,7 +70,6 @@ public class AdjList implements Graph {
         }
     }
 
-
     @Override
     public String toString() {
         return adj.toString();
@@ -74,7 +77,9 @@ public class AdjList implements Graph {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Graph)) return false;
+        if (!(obj instanceof Graph)) {
+            return false;
+        }
         return GraphUtils.areEqual(this, (Graph) obj);
     }
 

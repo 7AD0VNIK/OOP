@@ -41,4 +41,36 @@ class AdjListTest {
         assertTrue(nbrs.contains(2));
         assertTrue(nbrs.contains(3));
     }
+
+    @Test
+    void testEquals() {
+        Graph g1 = new AdjList();
+        Graph g2 = new AdjList();
+        Graph g3 = new AdjList();
+
+        g1.addEdge(1, 2);
+        g2.addEdge(1, 2);
+        g3.addEdge(1, 3);
+
+        assertTrue(g1.equals(g2));
+        assertFalse(g1.equals(g3));
+    }
+
+    @Test
+    void testHashCodeConsistency() {
+        Graph g1 = new AdjList();
+        Graph g2 = new AdjList();
+
+        g1.addEdge(1, 2);
+        g2.addEdge(1, 2);
+
+        assertEquals(g1.hashCode(), g2.hashCode());
+    }
+
+    @Test
+    void testEmptyGraph() {
+        Graph g = new AdjList();
+        assertTrue(g.getVertices().isEmpty());
+        assertTrue(g.neighbors(1).isEmpty());
+    }
 }
