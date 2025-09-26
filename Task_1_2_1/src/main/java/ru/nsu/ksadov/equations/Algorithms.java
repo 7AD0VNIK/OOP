@@ -1,14 +1,14 @@
 package ru.nsu.ksadov.equations;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * Класс с алгоритмами работы над графами.
@@ -17,9 +17,10 @@ public class Algorithms {
 
     /**
      * Топологическая сортировка с помощью DFS.
+     *
      * @return порядок вершин
      */
-    public static List<Integer> topologicalSortDFS(Graph g) {
+    public static List<Integer> topologicalSortDfs(Graph g) {
         Set<Integer> visited = new HashSet<>();
         Set<Integer> onStack = new HashSet<>();
         LinkedList<Integer> order = new LinkedList<>();

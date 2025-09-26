@@ -12,7 +12,7 @@ class AlgorithmsTest {
         g.addVertex(0);
         g.addVertex(1);
 
-        List<Integer> orderDfs = Algorithms.topologicalSortDFS(g);
+        List<Integer> orderDfs = Algorithms.topologicalSortDfs(g);
         List<Integer> orderKahn = Algorithms.topologicalSortKahn(g);
 
         Assertions.assertEquals(2, orderDfs.size());
@@ -26,7 +26,7 @@ class AlgorithmsTest {
         g.addEdge(1, 2);
         g.addEdge(2, 3);
 
-        List<Integer> dfsOrder = Algorithms.topologicalSortDFS(g);
+        List<Integer> dfsOrder = Algorithms.topologicalSortDfs(g);
         List<Integer> kahnOrder = Algorithms.topologicalSortKahn(g);
 
         Assertions.assertEquals(List.of(0, 1, 2, 3), dfsOrder);
@@ -41,7 +41,7 @@ class AlgorithmsTest {
         g.addEdge(2, 0);
 
         Assertions.assertThrows(IllegalStateException.class, () -> {
-            Algorithms.topologicalSortDFS(g);
+            Algorithms.topologicalSortDfs(g);
         });
     }
 

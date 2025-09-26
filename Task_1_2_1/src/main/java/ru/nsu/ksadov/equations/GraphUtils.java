@@ -1,9 +1,9 @@
 package ru.nsu.ksadov.equations;
 
-import java.util.Set;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Утилиты для работы с графами.
