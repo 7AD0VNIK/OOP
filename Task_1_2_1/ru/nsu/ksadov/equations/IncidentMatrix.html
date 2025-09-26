@@ -113,7 +113,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Gra
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addEdge(int,int)" class="member-name-link">addEdge</a><wbr>(int&nbsp;v1,
  int&nbsp;v2)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Добавляет ориентированное ребро (from → to).</div>
+<div class="block">Добавляет ориентированное ребро.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex(int)" class="member-name-link">addVertex</a><wbr>(int&nbsp;v)</code></div>
@@ -143,15 +143,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Gra
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.nio.file.Path)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Загружает граф из файла фиксированного формата:
- первая строка: n m (вершины и рёбера)
- далее m строк: from to</div>
+<div class="block">Загружает граф из файла фиксированного формата.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeEdge(int,int)" class="member-name-link">removeEdge</a><wbr>(int&nbsp;v1,
  int&nbsp;v2)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Удаляет ориентированное ребро (from → to).</div>
+<div class="block">Удаляет ориентированное ребро.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(int)" class="member-name-link">removeVertex</a><wbr>(int&nbsp;v)</code></div>
@@ -224,7 +222,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Gra
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(int&nbsp;v1,
  int&nbsp;v2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addEdge(int,int)">Graph</a></code></span></div>
-<div class="block">Добавляет ориентированное ребро (from → to).</div>
+<div class="block">Добавляет ориентированное ребро.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#addEdge(int,int)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Graph</a></code></dd>
@@ -237,7 +235,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Gra
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(int&nbsp;v1,
  int&nbsp;v2)</span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeEdge(int,int)">Graph</a></code></span></div>
-<div class="block">Удаляет ориентированное ребро (from → to).</div>
+<div class="block">Удаляет ориентированное ребро.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#removeEdge(int,int)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Graph</a></code></dd>
@@ -274,9 +272,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Gra
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;path)</span>
                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
 <div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#readFromFile(java.nio.file.Path)">Graph</a></code></span></div>
-<div class="block">Загружает граф из файла фиксированного формата:
- первая строка: n m (вершины и рёбера)
- далее m строк: from to</div>
+<div class="block">Загружает граф из файла фиксированного формата.
+ Первая строка: n m (вершины и рёбера)
+ Далее m строк: from to</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#readFromFile(java.nio.file.Path)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.ksadov.equations">Graph</a></code></dd>
