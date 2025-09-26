@@ -14,24 +14,32 @@ import java.util.Set;
  */
 public class AddjMatrix implements Graph {
     private final List<Integer> vertices = new ArrayList<>();
-    private final List<List<Integer>> matrix = new ArrayList<>(); // matrix.get(i).get(j) == 1 если i->j
+    private final List<List<Integer>> matrix = new ArrayList<>();
 
     @Override
     public void addVertex(int v) {
-        if (vertices.contains(v)) return;
+        if (vertices.contains(v)){
+            return;
+        }
         vertices.add(v);
-        for (List<Integer> row : matrix) row.add(0);
+        for (List<Integer> row : matrix){
+            row.add(0);
+        }
         List<Integer> newRow = new ArrayList<>(Collections.nCopies(vertices.size(), 0));
         matrix.add(newRow);
     }
 
     @Override
-    public void removeVertex(int v) {
+    public void removeVertex(int v){
         int idx = vertices.indexOf(v);
-        if (idx == -1) return;
+        if (idx == -1) {
+            return;
+        }
         vertices.remove(idx);
         matrix.remove(idx);
-        for (List<Integer> row : matrix) row.remove(idx);
+        for (List<Integer> row : matrix){
+            row.remove(idx);
+        }
     }
 
     @Override
@@ -47,17 +55,23 @@ public class AddjMatrix implements Graph {
     public void removeEdge(int v1, int v2) {
         int i = vertices.indexOf(v1);
         int j = vertices.indexOf(v2);
-        if (i == -1 || j == -1) return;
+        if (i == -1 || j == -1){
+            return;
+        }
         matrix.get(i).set(j, 0);
     }
 
     @Override
     public List<Integer> neighbors(int v) {
         int i = vertices.indexOf(v);
-        if (i == -1) return Collections.emptyList();
+        if (i == -1){
+            return Collections.emptyList();
+        }
         List<Integer> res = new ArrayList<>();
         for (int j = 0; j < vertices.size(); j++) {
-            if (matrix.get(i).get(j) == 1) res.add(vertices.get(j));
+            if (matrix.get(i).get(j) == 1){
+                res.add(vertices.get(j));
+            }
         }
         return res;
     }
@@ -91,7 +105,9 @@ public class AddjMatrix implements Graph {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Graph)) return false;
+        if (!(obj instanceof Graph)){
+            return false;
+        }
         return GraphUtils.areEqual(this, (Graph) obj);
     }
 
