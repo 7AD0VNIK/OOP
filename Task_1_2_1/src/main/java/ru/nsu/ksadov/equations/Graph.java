@@ -27,12 +27,12 @@ public interface Graph {
     void removeVertex(int v);
 
     /**
-     * Добавляет ориентированное ребро (from → to).
+     * Добавляет ориентированное ребро.
      */
     void addEdge(int from, int to);
 
     /**
-     * Удаляет ориентированное ребро (from → to).
+     * Удаляет ориентированное ребро.
      */
     void removeEdge(int from, int to);
 
@@ -47,9 +47,9 @@ public interface Graph {
     Set<Integer> getVertices();
 
     /**
-     * Загружает граф из файла фиксированного формата:
-     * первая строка: n m (вершины и рёбера)
-     * далее m строк: from to
+     * Загружает граф из файла фиксированного формата.
+     * Первая строка: n m (вершины и рёбера)
+     * Далее m строк: from to
      *
      * @param path путь к файлу
      * @throws IOException при ошибке чтения

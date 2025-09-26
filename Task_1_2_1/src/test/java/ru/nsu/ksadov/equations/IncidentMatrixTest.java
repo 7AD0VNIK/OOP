@@ -39,4 +39,39 @@ class IncidentMatrixTest {
         List<Integer> nbrs = g.neighbors(0);
         assertEquals(2, nbrs.size());
     }
+
+    @Test
+    void testToString() {
+        Graph g = new IncidentMatrix();
+        g.addEdge(1, 2);
+        g.addEdge(1, 3);
+
+        String result = g.toString();
+        assertTrue(result.contains("1") || result.contains("2") || result.contains("3"));
+    }
+
+    @Test
+    void testEquals() {
+        Graph g1 = new IncidentMatrix();
+        Graph g2 = new IncidentMatrix();
+        Graph g3 = new IncidentMatrix();
+
+        g1.addEdge(1, 2);
+        g2.addEdge(1, 2);
+        g3.addEdge(1, 3);
+
+        assertTrue(g1.equals(g2));
+        assertFalse(g1.equals(g3));
+    }
+
+    @Test
+    void testHashCodeConsistency() {
+        Graph g1 = new IncidentMatrix();
+        Graph g2 = new IncidentMatrix();
+
+        g1.addEdge(1, 2);
+        g2.addEdge(1, 2);
+
+        assertEquals(g1.hashCode(), g2.hashCode());
+    }
 }

@@ -49,12 +49,10 @@ public class IncidentMatrix implements Graph {
             int vertex = vertices.get(i);
             if (vertex == v1) {
                 nw[newCols - 1] = 1;
-            }
-            else {
+            } else {
                 if (vertex == v2) {
                     nw[newCols - 1] = -1;
-                }
-                else {
+                } else {
                     nw[newCols - 1] = 0;
                 }
             }
@@ -90,7 +88,9 @@ public class IncidentMatrix implements Graph {
     @Override
     public List<Integer> neighbors(int v) {
         int idx = vertices.indexOf(v);
-        if (idx == -1) return Collections.emptyList();
+        if (idx == -1) {
+            return Collections.emptyList();
+        }
         int[] row = matrix.get(idx);
         List<Integer> res = new ArrayList<>();
         for (int j = 0; j < row.length; j++) {
