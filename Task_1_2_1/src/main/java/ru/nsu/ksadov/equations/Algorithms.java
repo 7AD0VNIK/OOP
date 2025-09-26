@@ -40,7 +40,9 @@ public class Algorithms {
         if (onStack.contains(v)) {
             throw new IllegalStateException("Цикл обнаружен");
         }
-        if (visited.contains(v)) return;
+        if (visited.contains(v)) {
+            return;
+        }
 
         onStack.add(v);
         for (int u : g.neighbors(v)) {
@@ -67,7 +69,9 @@ public class Algorithms {
 
         Queue<Integer> q = new ArrayDeque<>();
         for (var e : indegree.entrySet()) {
-            if (e.getValue() == 0) q.add(e.getKey());
+            if (e.getValue() == 0) {
+                q.add(e.getKey());
+            }
         }
 
         List<Integer> order = new ArrayList<>();
@@ -76,7 +80,9 @@ public class Algorithms {
             order.add(v);
             for (int u : g.neighbors(v)) {
                 indegree.put(u, indegree.get(u) - 1);
-                if (indegree.get(u) == 0) q.add(u);
+                if (indegree.get(u) == 0) {
+                    q.add(u);
+                }
             }
         }
 

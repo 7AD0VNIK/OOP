@@ -18,11 +18,11 @@ public class AddjMatrix implements Graph {
 
     @Override
     public void addVertex(int v) {
-        if (vertices.contains(v)){
+        if (vertices.contains(v)) {
             return;
         }
         vertices.add(v);
-        for (List<Integer> row : matrix){
+        for (List<Integer> row : matrix) {
             row.add(0);
         }
         List<Integer> newRow = new ArrayList<>(Collections.nCopies(vertices.size(), 0));
@@ -30,14 +30,14 @@ public class AddjMatrix implements Graph {
     }
 
     @Override
-    public void removeVertex(int v){
+    public void removeVertex(int v) {
         int idx = vertices.indexOf(v);
         if (idx == -1) {
             return;
         }
         vertices.remove(idx);
         matrix.remove(idx);
-        for (List<Integer> row : matrix){
+        for (List<Integer> row : matrix) {
             row.remove(idx);
         }
     }
@@ -55,7 +55,7 @@ public class AddjMatrix implements Graph {
     public void removeEdge(int v1, int v2) {
         int i = vertices.indexOf(v1);
         int j = vertices.indexOf(v2);
-        if (i == -1 || j == -1){
+        if (i == -1 || j == -1) {
             return;
         }
         matrix.get(i).set(j, 0);
@@ -64,12 +64,12 @@ public class AddjMatrix implements Graph {
     @Override
     public List<Integer> neighbors(int v) {
         int i = vertices.indexOf(v);
-        if (i == -1){
+        if (i == -1) {
             return Collections.emptyList();
         }
         List<Integer> res = new ArrayList<>();
         for (int j = 0; j < vertices.size(); j++) {
-            if (matrix.get(i).get(j) == 1){
+            if (matrix.get(i).get(j) == 1) {
                 res.add(vertices.get(j));
             }
         }
@@ -105,7 +105,7 @@ public class AddjMatrix implements Graph {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Graph)){
+        if (!(obj instanceof Graph)) {
             return false;
         }
         return GraphUtils.areEqual(this, (Graph) obj);
