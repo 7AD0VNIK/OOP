@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
 
 /**
 * Представление графа в виде матрицы инцидентности.
@@ -20,7 +20,9 @@ public class IncidentMatrix implements Graph {
 
     @Override
     public void addVertex(int v) {
-        if (vertices.contains(v)) return;
+        if (vertices.contains(v)) {
+            return;
+        }
         vertices.add(v);
         matrix.add(new int[edges.size()]);
     }
@@ -28,7 +30,9 @@ public class IncidentMatrix implements Graph {
     @Override
     public void removeVertex(int v) {
         int idx = vertices.indexOf(v);
-        if (idx == -1) return;
+        if (idx == -1) {
+            return;
+        }
         vertices.remove(idx);
         matrix.remove(idx);
     }
@@ -43,9 +47,17 @@ public class IncidentMatrix implements Graph {
             int[] old = matrix.get(i);
             int[] nw = Arrays.copyOf(old, newCols);
             int vertex = vertices.get(i);
-            if (vertex == v1) nw[newCols - 1] = 1;
-            else if (vertex == v2) nw[newCols - 1] = -1;
-            else nw[newCols - 1] = 0;
+            if (vertex == v1) {
+                nw[newCols - 1] = 1;
+            }
+            else {
+                if (vertex == v2) {
+                    nw[newCols - 1] = -1;
+                }
+                else {
+                    nw[newCols - 1] = 0;
+                }
+            }
             matrix.set(i, nw);
         }
     }
@@ -55,15 +67,22 @@ public class IncidentMatrix implements Graph {
         int idx = -1;
         for (int i = 0; i < edges.size(); i++) {
             if (edges.get(i)[0] == v1 && edges.get(i)[1] == v2) {
-                idx = i; break;
+                idx = i;
+                break;
             }
         }
-        if (idx == -1) return;
+        if (idx == -1) {
+            return;
+        }
         edges.remove(idx);
         for (int i = 0; i < matrix.size(); i++) {
             int[] old = matrix.get(i);
             int[] nw = new int[old.length - 1];
-            for (int j = 0, k = 0; j < old.length; j++) if (j != idx) nw[k++] = old[j];
+            for (int j = 0, k = 0; j < old.length; j++) {
+                if (j != idx) {
+                    nw[k++] = old[j];
+                }
+            }
             matrix.set(i, nw);
         }
     }
@@ -103,13 +122,17 @@ public class IncidentMatrix implements Graph {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int[] row : matrix) sb.append(Arrays.toString(row)).append("\n");
+        for (int[] row : matrix) {
+            sb.append(Arrays.toString(row)).append("\n");
+        }
         return sb.toString();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Graph)) return false;
+        if (!(obj instanceof Graph)) {
+            return false;
+        }
         return GraphUtils.areEqual(this, (Graph) obj);
     }
 
