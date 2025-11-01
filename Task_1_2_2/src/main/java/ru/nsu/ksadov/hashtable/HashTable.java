@@ -178,7 +178,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     @SuppressWarnings("unchecked")
     private void rehash(int newCapacity) {
-        Entry<K, V>[] oldTable = table;
+        final Entry<K, V>[] oldTable = table;
 
         table = (Entry<K, V>[]) new Entry[newCapacity];
         capacity = newCapacity;
@@ -289,7 +289,6 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     /**
      * Возвращает строковое представление таблицы в виде списка пар ключ=значение.
      * Формат вывода: <pre>{@code {key1=value1, key2=value2, ...}}</pre>
-     * @return строковое представление таблицы
      */
     @Override
     public String toString() {
