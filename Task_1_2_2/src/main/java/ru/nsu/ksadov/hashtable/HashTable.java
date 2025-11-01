@@ -178,12 +178,13 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     @SuppressWarnings("unchecked")
     private void rehash(int newCapacity) {
+        Entry<K, V>[] oldTable = table;
+
         table = (Entry<K, V>[]) new Entry[newCapacity];
         capacity = newCapacity;
         size = 0;
         modCount++;
 
-        Entry<K, V>[] oldTable = table;
         for (Entry<K, V> entry : oldTable) {
             while (entry != null) {
                 put(entry.key, entry.value);
@@ -191,6 +192,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
             }
         }
     }
+
 
     /**
      * Возвращает итератор для обхода всех элементов таблицы.
