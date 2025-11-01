@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.HashhTable;
+package ru.nsu.ksadov.hashtable;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -35,10 +35,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         private Entry<K, V> next;
 
         /**
-         * Контейнер со следующими полями.
-         * @param key ключ
-         * @param value значение
-         * @param next следующий элемент
+         * Контейнер с полями.
          */
         public Entry(K key, V value, Entry<K, V> next) {
             this.key = key;
@@ -181,12 +178,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
 
     @SuppressWarnings("unchecked")
     private void rehash(int newCapacity) {
-        Entry<K, V>[] oldTable = table;
         table = (Entry<K, V>[]) new Entry[newCapacity];
         capacity = newCapacity;
         size = 0;
         modCount++;
 
+        Entry<K, V>[] oldTable = table;
         for (Entry<K, V> entry : oldTable) {
             while (entry != null) {
                 put(entry.key, entry.value);
@@ -226,7 +223,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         /**
         * Проверяет, есть ли в таблице следующий элемент для итерации.
         */
-         @Override
+        @Override
         public boolean hasNext() {
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
