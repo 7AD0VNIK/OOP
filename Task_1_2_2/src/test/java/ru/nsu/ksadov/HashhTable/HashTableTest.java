@@ -1,14 +1,15 @@
-package ru.nsu.ksadov.Hash_Table;
+package ru.nsu.ksadov.HashhTable;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.ConcurrentModificationException;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.ConcurrentModificationException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class HashTableTest {
 
@@ -84,4 +85,40 @@ class HashTableTest {
         assertTrue(str.contains("two=2"));
         assertTrue(str.contains("three=3"));
     }
+
+    @Test
+    void testResizePreservesElements() {
+        HashTable<Integer, String> bigTable = new HashTable<>();
+        for (int i = 0; i < 100; i++) {
+            bigTable.put(i, "value" + i);
+        }
+
+        // Проверяем, что элементы не потерялись после увеличения ёмкости
+        for (int i = 0; i < 100; i++) {
+            assertEquals("value" + i, bigTable.get(i));
+        }
+
+        assertEquals(100, bigTable.size());
+    }
+
+    @Test
+    void testRemoveFromCollisionChain() {
+        HashTable<Integer, String> t = new HashTable<>();
+        int sameIndexKey1 = 1;
+        int sameIndexKey2 = 1 + 16;
+
+        t.put(sameIndexKey1, "A");
+        t.put(sameIndexKey2, "B");
+
+        assertEquals(2, t.size());
+
+        assertEquals("B", t.remove(sameIndexKey2));
+        assertEquals("A", t.get(sameIndexKey1));
+
+        assertEquals("A", t.remove(sameIndexKey1));
+        assertEquals(0, t.size());
+    }
+
 }
+
+

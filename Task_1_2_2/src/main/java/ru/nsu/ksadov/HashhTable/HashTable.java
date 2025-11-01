@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.Hash_Table;
+package ru.nsu.ksadov.HashhTable;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -34,6 +34,12 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         private V value;
         private Entry<K, V> next;
 
+        /**
+         * Контейнер со следующими полями.
+         * @param key ключ
+         * @param value значение
+         * @param next следующий элемент
+         */
         public Entry(K key, V value, Entry<K, V> next) {
             this.key = key;
             this.value = value;
@@ -161,16 +167,6 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      */
     public int size() {
         return size;
-    }
-
-    /**
-     * Удаляет все элементы из таблицы.
-     */
-    @SuppressWarnings("unchecked")
-    public void clear() {
-        table = (Entry<K, V>[]) new Entry[DEFAULT_CAPACITY];
-        size = 0;
-        modCount++;
     }
 
     private int indexFor(K key) {
