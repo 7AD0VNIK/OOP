@@ -286,6 +286,16 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        for (Entry<K, V> entry : this) {
+            hash += (entry.getKey() == null ? 0 : entry.getKey().hashCode()) ^
+                    (entry.getValue() == null ? 0 : entry.getValue().hashCode());
+        }
+        return hash;
+    }
+
     /**
      * Возвращает строковое представление таблицы в виде списка пар ключ=значение.
      * Формат вывода: <pre>{@code {key1=value1, key2=value2, ...}}</pre>
