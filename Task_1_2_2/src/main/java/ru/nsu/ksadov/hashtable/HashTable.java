@@ -290,8 +290,8 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
     public int hashCode() {
         int hash = 0;
         for (Entry<K, V> entry : this) {
-            hash += (entry.getKey() == null ? 0 : entry.getKey().hashCode()) ^
-                    (entry.getValue() == null ? 0 : entry.getValue().hashCode());
+            hash += (entry.getKey() == null ? 0 : entry.getKey().hashCode())
+                    ^ (entry.getValue() == null ? 0 : entry.getValue().hashCode());
         }
         return hash;
     }
