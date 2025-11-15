@@ -37,14 +37,14 @@ public class SubStringFinder {
 
         List<Integer> res = new ArrayList<>();
 
-        final int BUFFER_CHARS = 1024 * 64; // 64Kb
+        final int bufferChars = 1024 * 64; // 64Kb
         long fileCharOffset = 0L;
         String tail = "";
 
         try (InputStream fis = new FileInputStream(fileName);
              Reader reader = new InputStreamReader(fis, StandardCharsets.UTF_8)) {
 
-            char[] buffer = new char[BUFFER_CHARS];
+            char[] buffer = new char[bufferChars];
             int readChars;
 
             while ((readChars = reader.read(buffer)) != -1) {
