@@ -11,16 +11,16 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 class SubStringFinderTest {
 
-    /** Вспомогательная функция: записать текст во временный файл */
+    /** Вспомогательная функция: записать текст во временный файл. */
     private File createTempFile(String content) throws IOException {
         File file = File.createTempFile("test", ".txt");
         file.deleteOnExit();
-        try (Writer w = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+        try (Writer w = new OutputStreamWriter(new FileOutputStream(file),
+                StandardCharsets.UTF_8)) {
             w.write(content);
         }
         return file;

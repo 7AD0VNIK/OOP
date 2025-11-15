@@ -23,7 +23,7 @@ public class SubStringFinder {
      * @throws IOException если произошла ошибка чтения файла
      * @throws IllegalArgumentException если pattern пустой или null
      */
-    public static List<Integer> find(String fileName, String pattern) throws IOException{
+    public static List<Integer> find(String fileName, String pattern) throws IOException {
         if (pattern == null) {
             throw new IllegalArgumentException("pattern == null");
         }
@@ -62,7 +62,8 @@ public class SubStringFinder {
                     long globalIndex = fileCharOffset - tail.length() + found;
 
                     if (globalIndex < 0) {
-                        throw new IllegalStateException("computed negative global index: " + globalIndex);
+                        throw new IllegalStateException("computed negative global index: "
+                                        + globalIndex);
                     }
 
                     res.add((int) globalIndex);
