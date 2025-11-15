@@ -56,21 +56,5 @@ public interface Graph {
      */
     void readFromFile(Path path) throws IOException;
 
-    /**
-     *Сравнивает данный граф с указанным объектом на равенство.
-     */
-    @Override
-    boolean equals(Object o);
 
-    /**
-     * Возвращает хэш-код графа.
-     */
-    @Override
-    int hashCode();
-
-    /**
-     * Возвращает строковое представление графа.
-     */
-    @Override
-    String toString();
 }
