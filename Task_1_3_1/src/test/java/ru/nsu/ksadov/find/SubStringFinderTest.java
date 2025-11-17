@@ -51,7 +51,7 @@ class SubStringFinderTest {
         File file = createTempFile(content);
         List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "бра");
 
-        assertEquals(List.of((long)(block - 1)), result);
+        assertEquals(List.of((long) (block - 1)), result);
     }
 
     @Test
