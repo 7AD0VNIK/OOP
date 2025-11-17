@@ -23,21 +23,20 @@ public class SubStringFinder {
      * @throws IOException если произошла ошибка чтения файла
      * @throws IllegalArgumentException если pattern пустой или null
      */
-    public static List<Integer> find(String fileName, String pattern) throws IOException {
+    public static List<Long> find(String fileName, String pattern) throws IOException {
         if (pattern == null) {
             throw new IllegalArgumentException("pattern == null");
         }
-
         if (pattern.isEmpty()) {
             throw new IllegalArgumentException("pattern must be non empty");
         }
 
         int patternLen = pattern.length();
-        int tailKeep = patternLen - 1; // хвост который сохраняем
+        int tailKeep = patternLen - 1;
 
-        List<Integer> res = new ArrayList<>();
+        List<Long> res = new ArrayList<>();
 
-        final int bufferChars = 1024 * 64; // 64Kb
+        final int bufferChars = 1024 * 64; // 64K chars (not bytes!)
         long fileCharOffset = 0L;
         String tail = "";
 
@@ -48,8 +47,8 @@ public class SubStringFinder {
             int readChars;
 
             while ((readChars = reader.read(buffer)) != -1) {
-                String chunk = new String(buffer, 0, readChars);
 
+                String chunk = new String(buffer, 0, readChars);
                 String combined = tail.isEmpty() ? chunk : tail + chunk;
 
                 int fromIndex = 0;
@@ -59,16 +58,15 @@ public class SubStringFinder {
                         break;
                     }
 
-                    long globalIndex = fileCharOffset - tail.length() + found;
-
+                    long globalIndex = (fileCharOffset - tail.length()) + found;
                     if (globalIndex < 0) {
-                        throw new IllegalStateException("computed negative global index: "
-                                        + globalIndex);
+                        throw new IllegalStateException(
+                                "computed negative global index: " + globalIndex
+                        );
                     }
 
-                    res.add((int) globalIndex);
-
-                    fromIndex = found + 1;
+                    res.add(globalIndex);
+                    fromIndex = found + 1; // ищем дальше с оверлапами
                 }
 
                 fileCharOffset += readChars;
@@ -83,7 +81,8 @@ public class SubStringFinder {
                     tail = "";
                 }
             }
-            return res;
         }
+
+        return res;
     }
 }

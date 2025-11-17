@@ -29,31 +29,29 @@ class SubStringFinderTest {
     @Test
     void testSimple() throws Exception {
         File file = createTempFile("абракадабра");
-        List<Integer> result = SubStringFinder.find(file.getAbsolutePath(), "бра");
+        List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "бра");
 
-        assertEquals(List.of(1, 8), result);
+        assertEquals(List.of(1L, 8L), result);
     }
 
     @Test
     void testNoMatches() throws Exception {
         File file = createTempFile("hello world");
-        List<Integer> result = SubStringFinder.find(file.getAbsolutePath(), "xyz");
+        List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "xyz");
 
         assertTrue(result.isEmpty());
     }
 
     @Test
     void testBoundaryBetweenBlocks() throws Exception {
-        // Сделаем строку так, чтобы "ра" пересекало границу блока.
-        // BUFFER_CHARS = 64*1024 => делаем длину ровно 64k-1 символ.
         int block = 64 * 1024;
-        String prefix = "а".repeat(block - 1); // много 'а'
-        String content = prefix + "б" + "ра";  // "б" в одном блоке, "ра" в следующем
+        String prefix = "а".repeat(block - 1);
+        String content = prefix + "б" + "ра";
 
         File file = createTempFile(content);
-        List<Integer> result = SubStringFinder.find(file.getAbsolutePath(), "бра");
+        List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "бра");
 
-        assertEquals(List.of(block - 1), result); // позиция "б"
+        assertEquals(List.of((long)(block - 1)), result);
     }
 
     @Test
@@ -68,5 +66,22 @@ class SubStringFinderTest {
         assertThrows(IllegalArgumentException.class, () ->
                 SubStringFinder.find("any.txt", null)
         );
+    }
+
+    @Test
+    void testHugeUnicodeFile() throws Exception {
+        int size = 1_000_000;
+        String big = "界".repeat(size) + "你好" + "界".repeat(size);
+        File file = createTempFile(big);
+        List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "你好");
+        assertEquals(List.of((long) size), result);
+    }
+
+    @Test
+    void testOverlappingMatches() throws Exception {
+        String content = "a".repeat(10);
+        File file = createTempFile(content);
+        List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "aaaa");
+        assertEquals(List.of(0L, 1L, 2L, 3L, 4L, 5L, 6L), result);
     }
 }
