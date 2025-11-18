@@ -85,6 +85,7 @@ class SubStringFinderTest {
         List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "aaaa");
         assertEquals(List.of(0L, 1L, 2L, 3L, 4L, 5L, 6L), result);
     }
+
     @Test
     void test16GBFileSparse() throws Exception {
         long fileSize = 16L * 1024 * 1024 * 1024;
@@ -98,7 +99,6 @@ class SubStringFinderTest {
             raf.seek(fileSize - pattern.length());
             raf.write(pattern.getBytes(StandardCharsets.UTF_8));
         }
-
         try {
             List<Long> result = SubStringFinder.find(file.getAbsolutePath(), pattern);
             long expectedPos = fileSize - pattern.length();
