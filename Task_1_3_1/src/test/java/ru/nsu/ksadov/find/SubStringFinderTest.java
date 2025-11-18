@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -84,4 +85,27 @@ class SubStringFinderTest {
         List<Long> result = SubStringFinder.find(file.getAbsolutePath(), "aaaa");
         assertEquals(List.of(0L, 1L, 2L, 3L, 4L, 5L, 6L), result);
     }
+    @Test
+    void test16GBFileSparse() throws Exception {
+        long fileSize = 16L * 1024 * 1024 * 1024;
+        String pattern = "XYZ";
+
+        File file = File.createTempFile("16gb_sparse", ".dat");
+
+        try (RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+            raf.setLength(fileSize);
+
+            raf.seek(fileSize - pattern.length());
+            raf.write(pattern.getBytes(StandardCharsets.UTF_8));
+        }
+
+        try {
+            List<Long> result = SubStringFinder.find(file.getAbsolutePath(), pattern);
+            long expectedPos = fileSize - pattern.length();
+            assertEquals(List.of(expectedPos), result);
+        } finally {
+            file.delete();
+        }
+    }
+
 }
