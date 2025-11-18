@@ -87,7 +87,7 @@ class SubStringFinderTest {
     }
 
     @Test
-    void test16GBFileSparse() throws Exception {
+    void bigTestFile() throws Exception {
         long fileSize = 16L * 1024 * 1024 * 1024;
         String pattern = "XYZ";
 
