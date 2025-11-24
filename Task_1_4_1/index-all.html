@@ -53,22 +53,24 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html#addGrade(ru.nsu.ksadov.recbook.Grade)" class="member-name-link">addGrade(Grade)</a> - Method in class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/RecordBook.html" title="class in ru.nsu.ksadov.recbook">RecordBook</a></dt>
 <dd>
-<div class="block">Добавляет итоговую оценку.</div>
+<div class="block">Добавляет новую итоговую оценку.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html#avarageMark()" class="member-name-link">avarageMark()</a> - Method in class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/RecordBook.html" title="class in ru.nsu.ksadov.recbook">RecordBook</a></dt>
 <dd>
-<div class="block">Вычисляет текущий средний балл по всем числовым оценкам.</div>
+<div class="block">Вычисляет средний балл по всем числовым оценкам:
+ экзамены + дифференцированные зачёты.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html#canGetIncreaseScholarship(int)" class="member-name-link">canGetIncreaseScholarship(int)</a> - Method in class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/RecordBook.html" title="class in ru.nsu.ksadov.recbook">RecordBook</a></dt>
 <dd>
-<div class="block">Проверяет возможность получения повышенной стипендии за семестр.</div>
+<div class="block">Проверяет возможность получения повышенной стипендии
+ за указанный семестр.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html#canGetRedDiploma()" class="member-name-link">canGetRedDiploma()</a> - Method in class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/RecordBook.html" title="class in ru.nsu.ksadov.recbook">RecordBook</a></dt>
 <dd>
-<div class="block">Проверяет возможность получения красного диплома.</div>
+<div class="block">Проверяет, может ли студент получить красный диплом.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/GradeType.html#COURSEWORK" class="member-name-link">COURSEWORK</a> - Enum constant in enum class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/GradeType.html" title="enum class in ru.nsu.ksadov.recbook">GradeType</a></dt>
 <dd>&nbsp;</dd>
@@ -101,11 +103,11 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/recbook/Grade.html" class="type-name-link" title="class in ru.nsu.ksadov.recbook">Grade</a> - Class in <a href="ru/nsu/ksadov/recbook/package-summary.html">ru.nsu.ksadov.recbook</a></dt>
 <dd>
-<div class="block">Класс, представляющий одну итоговую оценку по дисциплине.</div>
+<div class="block">Класс, представляющий итоговую оценку по дисциплине.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/Grade.html#%3Cinit%3E(java.lang.String,int,ru.nsu.ksadov.recbook.GradeType,int)" class="member-name-link">Grade(String, int, GradeType, int)</a> - Constructor for class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/Grade.html" title="class in ru.nsu.ksadov.recbook">Grade</a></dt>
 <dd>
-<div class="block">Объект класса Grade.</div>
+<div class="block">Создаёт новую запись об итоговой оценке.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/GradeType.html" class="type-name-link" title="enum class in ru.nsu.ksadov.recbook">GradeType</a> - Enum Class in <a href="ru/nsu/ksadov/recbook/package-summary.html">ru.nsu.ksadov.recbook</a></dt>
 <dd>
@@ -129,18 +131,18 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html#printAllGrades()" class="member-name-link">printAllGrades()</a> - Method in class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/RecordBook.html" title="class in ru.nsu.ksadov.recbook">RecordBook</a></dt>
 <dd>
-<div class="block">Выводит все оценки в порядке семестров.</div>
+<div class="block">Печатает все оценки, отсортированные по семестрам.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html" class="type-name-link" title="class in ru.nsu.ksadov.recbook">RecordBook</a> - Class in <a href="ru/nsu/ksadov/recbook/package-summary.html">ru.nsu.ksadov.recbook</a></dt>
 <dd>
-<div class="block">Электронная зачётная книжка студента ФИТ.</div>
+<div class="block">Электронная зачётная книжка студента.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/RecordBook.html#%3Cinit%3E(boolean)" class="member-name-link">RecordBook(boolean)</a> - Constructor for class ru.nsu.ksadov.recbook.<a href="ru/nsu/ksadov/recbook/RecordBook.html" title="class in ru.nsu.ksadov.recbook">RecordBook</a></dt>
 <dd>
-<div class="block">Создаёт зачётную книжку.</div>
+<div class="block">Создаёт новую зачётную книжку.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/recbook/package-summary.html">ru.nsu.ksadov.recbook</a> - package ru.nsu.ksadov.recbook</dt>
 <dd>&nbsp;</dd>
