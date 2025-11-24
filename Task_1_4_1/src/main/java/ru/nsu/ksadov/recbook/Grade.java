@@ -1,16 +1,22 @@
 package ru.nsu.ksadov.recbook;
 
 /**
- * Класс, представляющий одну итоговую оценку по дисциплине.
+ * Класс, представляющий итоговую оценку по дисциплине.
  */
 public class Grade {
+
     private final String subjectName;
     private final int semester;
     private final GradeType type;
     private final int mark;
 
     /**
-     * Объект класса Grade.
+     * Создаёт новую запись об итоговой оценке.
+     *
+     * @param subjectName название предмета
+     * @param semester    номер семестра
+     * @param type        тип итогового контроля
+     * @param mark        оценка (для зачёта 0 означает «зачтено»)
      */
     public Grade(String subjectName, int semester, GradeType type, int mark) {
         this.subjectName = subjectName;
@@ -24,7 +30,7 @@ public class Grade {
         return subjectName;
     }
 
-    /** @return семестр */
+    /** @return номер семестра */
     public int getSemester() {
         return semester;
     }
@@ -34,23 +40,23 @@ public class Grade {
         return type;
     }
 
-    /** @return оценка */
+    /** @return оценку (числовую или 0 для зачёта) */
     public int getMark() {
         return mark;
     }
 
     /**
-     * @return true — если оценка числовая (экзамен или дифф. зачёт)
+     * @return true — если оценка числовая (экзамен или диффзачёт)
      */
     public boolean isNumMark() {
-        return  (type == GradeType.EXAM || type == GradeType.DIFF_CREDIT);
+        return type == GradeType.EXAM || type == GradeType.DIFF_CREDIT;
     }
 
-    /**
-     * @return строковое представление.
-     */
     @Override
     public String toString() {
-        return (subjectName + ": семестр " + semester + ", " + type + " - " + mark);
+        return subjectName
+                + ": семестр " + semester
+                + ", " + type
+                + " — " + mark;
     }
 }
