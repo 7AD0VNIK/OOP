@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.ksadov.recbook","l":"Grade"},{"p":"ru.nsu.ksadov.recbook","l":"GradeType"},{"p":"ru.nsu.ksadov.recbook","l":"RecordBook"}];updateSearchResults();
