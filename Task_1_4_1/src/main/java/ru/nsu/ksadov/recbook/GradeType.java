@@ -1,8 +1,13 @@
 package ru.nsu.ksadov.recbook;
 
 /**
- * Типы итогового контроля.
+ * Перечисление типов итогового контроля.
  */
 public enum GradeType {
-    EXAM, DIFF_CREDIT, CREDIT, COURSEWORK, PRACTICE, DIPLOMA_WORK
+    EXAM,
+    DIFF_CREDIT,
+    CREDIT,
+    COURSEWORK,
+    PRACTICE,
+    DIPLOMA_WORK
 }

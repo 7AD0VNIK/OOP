@@ -1,7 +1,10 @@
 package ru.nsu.ksadov.recbook;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.OptionalInt;
 
 /**
  * Электронная зачётная книжка студента.
@@ -9,14 +12,19 @@ import java.util.stream.Collectors;
  */
 public class RecordBook {
 
+    /** Список всех итоговых оценок. */
     private final List<Grade> grades = new ArrayList<>();
+
+    /** Признак платной формы обучения. */
     private final boolean isPaid;
+
+    /** Итоговая оценка за дипломную работу (если есть). */
     private Integer diplomaMark;
 
     /**
      * Создаёт новую зачётную книжку.
      *
-     * @param isPaid true — если студент учится на платной основе
+     * @param isPaid true, если студент учится на платной основе
      */
     public RecordBook(boolean isPaid) {
         this.isPaid = isPaid;
@@ -34,29 +42,33 @@ public class RecordBook {
     /**
      * Устанавливает оценку за дипломную работу.
      *
-     * @param mark оценка за диплом (обычно 4 или 5)
+     * @param mark оценка (обычно 4 или 5)
      */
     public void setDiplomaMark(Integer mark) {
         this.diplomaMark = mark;
     }
 
     /**
-     * @return оценку за дипломную работу или null
+     * Возвращает оценку за дипломную работу.
+     *
+     * @return оценка или null
      */
     public Integer getDiplomaMark() {
         return diplomaMark;
     }
 
     /**
-     * @return true — если студент учится на платной основе
+     * Проверяет, учится ли студент на платной основе.
+     *
+     * @return true, если форма обучения платная
      */
     public boolean isPaid() {
         return isPaid;
     }
 
     /**
-     * Вычисляет средний балл по всем числовым оценкам:
-     * экзамены + дифференцированные зачёты.
+     * Вычисляет средний балл по всем числовым оценкам
+     * (экзамены + дифференцированные зачёты).
      *
      * @return средний балл или NaN, если числовых оценок нет
      */
@@ -70,15 +82,14 @@ public class RecordBook {
         if (stats.getCount() == 0) {
             return Double.NaN;
         }
-
         return (double) stats.getSum() / stats.getCount();
     }
 
     /**
-     * Проверяет возможность перевода с платной формы на бюджет.
-     * Требование: в двух последних сессиях нет оценок «3» по экзаменам.
+     * Проверяет возможность перевода на бюджет.
+     * Условие: в двух последних сессиях нет «3» по экзаменам.
      *
-     * @return true — перевод возможен
+     * @return true, если студент может перейти на бюджет
      */
     public boolean isRealSwapToBudget() {
         if (!isPaid) {
@@ -93,37 +104,38 @@ public class RecordBook {
             return false;
         }
 
-        int maxSem = maxSemOpt.getAsInt();
-        int prevSem = Math.max(1, maxSem - 1);
+        int last = maxSemOpt.getAsInt();
+        int prev = Math.max(1, last - 1);
 
         return grades.stream()
-                .filter(g -> g.getSemester() == maxSem || g.getSemester() == prevSem)
+                .filter(g -> g.getSemester() == last || g.getSemester() == prev)
                 .filter(g -> g.getType() == GradeType.EXAM)
                 .noneMatch(g -> g.getMark() == 3);
     }
 
     /**
-     * Проверяет, может ли студент получить красный диплом.
-     * Условия:
-     *  • не менее 75% оценок — «5»
-     *  • нет оценок «3»
-     *  • дипломная работа — «5»
+     * Проверяет возможность получения красного диплома.
+     * Требования:
+     *  • не менее 75% оценок — «5»;
+     *  • отсутствие оценок «3»;
+     *  • диплом — «5».
      *
-     * @return true — красный диплом возможен
+     * @return true, если красный диплом возможен
      */
     public boolean canGetRedDiploma() {
-        List<Grade> finals = grades.stream()
-                .filter(g -> g.getType() == GradeType.EXAM
-                        || g.getType() == GradeType.DIFF_CREDIT)
-                .collect(Collectors.toList());
+        List<Grade> finals = new ArrayList<>();
+        for (Grade g : grades) {
+            if (g.getType() == GradeType.EXAM
+                    || g.getType() == GradeType.DIFF_CREDIT) {
+                finals.add(g);
+            }
+        }
 
         if (diplomaMark != null) {
-            finals.add(new Grade(
-                    "Diploma",
-                    Integer.MAX_VALUE,
-                    GradeType.DIPLOMA_WORK,
-                    diplomaMark
-            ));
+            finals.add(
+                    new Grade("Diploma", Integer.MAX_VALUE,
+                            GradeType.DIPLOMA_WORK, diplomaMark)
+            );
         }
 
         if (finals.isEmpty()) {
@@ -133,50 +145,55 @@ public class RecordBook {
         long total = finals.size();
         long fives = finals.stream().filter(g -> g.getMark() == 5).count();
 
-        boolean ratioOk = ((double) fives) / total >= 0.75;
-
-        // Оценка «3» недопустима. 0 — зачёт, 4 и 5 — норм.
-        boolean noThrees = finals.stream().noneMatch(g -> g.getMark() == 3);
-
+        boolean ratioOk = (double) fives / total >= 0.75;
+        boolean hasNoThree = finals.stream().noneMatch(g -> g.getMark() == 3);
         boolean diplomaOk = diplomaMark == null || diplomaMark == 5;
 
-        return ratioOk && noThrees && diplomaOk;
+        return ratioOk && hasNoThree && diplomaOk;
     }
 
     /**
      * Проверяет возможность получения повышенной стипендии
-     * за указанный семестр.
-     *
-     * Требования:
-     *  • экзамены и диффзачёты — не ниже 4
-     *  • зачёты: либо «зачтено» (0), либо 4 или 5
+     * в указанном семестре.
      *
      * @param semester номер семестра
-     * @return true — если студент подходит под критерии
+     * @return true, если студент удовлетворяет условиям
      */
     public boolean canGetIncreaseScholarship(int semester) {
-        List<Grade> semGrades = grades.stream()
-                .filter(g -> g.getSemester() == semester)
-                .collect(Collectors.toList());
+        List<Grade> sem = new ArrayList<>();
+        for (Grade g : grades) {
+            if (g.getSemester() == semester) {
+                sem.add(g);
+            }
+        }
 
-        if (semGrades.isEmpty()) {
+        if (sem.isEmpty()) {
             return false;
         }
 
-        return semGrades.stream().allMatch(g -> {
-            if (g.getType() == GradeType.EXAM
-                    || g.getType() == GradeType.DIFF_CREDIT) {
-                return g.getMark() >= 4;
+        for (Grade g : sem) {
+            switch (g.getType()) {
+                case EXAM:
+                case DIFF_CREDIT:
+                    if (g.getMark() < 4) {
+                        return false;
+                    }
+                    break;
+                case CREDIT:
+                    if (g.getMark() != 0 && g.getMark() < 4) {
+                        return false;
+                    }
+                    break;
+                default:
+                    break;
             }
-            if (g.getType() == GradeType.CREDIT) {
-                return g.getMark() == 0 || g.getMark() >= 4;
-            }
-            return true; // прочие типы контроля (курсовая, практика)
-        });
+        }
+
+        return true;
     }
 
     /**
-     * Печатает все оценки, отсортированные по семестрам.
+     * Печатает все оценки, сортируя по семестрам.
      */
     public void printAllGrades() {
         grades.stream()

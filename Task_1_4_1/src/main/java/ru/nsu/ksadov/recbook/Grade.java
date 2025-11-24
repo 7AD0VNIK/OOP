@@ -5,18 +5,25 @@ package ru.nsu.ksadov.recbook;
  */
 public class Grade {
 
+    /** Название дисциплины. */
     private final String subjectName;
+
+    /** Номер семестра. */
     private final int semester;
+
+    /** Тип итогового контроля. */
     private final GradeType type;
+
+    /** Числовая оценка (0 — зачёт). */
     private final int mark;
 
     /**
      * Создаёт новую запись об итоговой оценке.
      *
-     * @param subjectName название предмета
+     * @param subjectName название дисциплины
      * @param semester    номер семестра
-     * @param type        тип итогового контроля
-     * @param mark        оценка (для зачёта 0 означает «зачтено»)
+     * @param type        тип контроля
+     * @param mark        числовая оценка или 0
      */
     public Grade(String subjectName, int semester, GradeType type, int mark) {
         this.subjectName = subjectName;
@@ -25,28 +32,26 @@ public class Grade {
         this.mark = mark;
     }
 
-    /** @return название дисциплины */
     public String getSubjectName() {
         return subjectName;
     }
 
-    /** @return номер семестра */
     public int getSemester() {
         return semester;
     }
 
-    /** @return тип контроля */
     public GradeType getType() {
         return type;
     }
 
-    /** @return оценку (числовую или 0 для зачёта) */
     public int getMark() {
         return mark;
     }
 
     /**
-     * @return true — если оценка числовая (экзамен или диффзачёт)
+     * Проверяет, является ли оценка числовой (экзамен или диффзачёт).
+     *
+     * @return true, если оценка числовая
      */
     public boolean isNumMark() {
         return type == GradeType.EXAM || type == GradeType.DIFF_CREDIT;
@@ -54,9 +59,7 @@ public class Grade {
 
     @Override
     public String toString() {
-        return subjectName
-                + ": семестр " + semester
-                + ", " + type
-                + " — " + mark;
+        return subjectName + ": семестр "
+                + semester + ", " + type + " — " + mark;
     }
 }
