@@ -115,35 +115,39 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#avarageMark()" class="member-name-link">avarageMark</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Вычисляет средний балл по всем числовым оценкам:
- экзамены + дифференцированные зачёты.</div>
+<div class="block">Вычисляет средний балл по всем числовым оценкам
+ (экзамены + дифференцированные зачёты).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetIncreaseScholarship(int)" class="member-name-link">canGetIncreaseScholarship</a><wbr>(int&nbsp;semester)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Проверяет возможность получения повышенной стипендии
- за указанный семестр.</div>
+ в указанном семестре.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#canGetRedDiploma()" class="member-name-link">canGetRedDiploma</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет, может ли студент получить красный диплом.</div>
+<div class="block">Проверяет возможность получения красного диплома.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDiplomaMark()" class="member-name-link">getDiplomaMark</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает оценку за дипломную работу.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPaid()" class="member-name-link">isPaid</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, учится ли студент на платной основе.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRealSwapToBudget()" class="member-name-link">isRealSwapToBudget</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет возможность перевода с платной формы на бюджет.</div>
+<div class="block">Проверяет возможность перевода на бюджет.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#printAllGrades()" class="member-name-link">printAllGrades</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Печатает все оценки, отсортированные по семестрам.</div>
+<div class="block">Печатает все оценки, сортируя по семестрам.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDiplomaMark(java.lang.Integer)" class="member-name-link">setDiplomaMark</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;mark)</code></div>
@@ -174,7 +178,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Создаёт новую зачётную книжку.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>isPaid</code> - true — если студент учится на платной основе</dd>
+<dd><code>isPaid</code> - true, если студент учится на платной основе</dd>
 </dl>
 </section>
 </li>
@@ -204,7 +208,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Устанавливает оценку за дипломную работу.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>mark</code> - оценка за диплом (обычно 4 или 5)</dd>
+<dd><code>mark</code> - оценка (обычно 4 или 5)</dd>
 </dl>
 </section>
 </li>
@@ -212,9 +216,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getDiplomaMark()">
 <h3>getDiplomaMark</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">getDiplomaMark</span>()</div>
+<div class="block">Возвращает оценку за дипломную работу.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>оценку за дипломную работу или null</dd>
+<dd>оценка или null</dd>
 </dl>
 </section>
 </li>
@@ -222,9 +227,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isPaid()">
 <h3>isPaid</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPaid</span>()</div>
+<div class="block">Проверяет, учится ли студент на платной основе.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true — если студент учится на платной основе</dd>
+<dd>true, если форма обучения платная</dd>
 </dl>
 </section>
 </li>
@@ -232,8 +238,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="avarageMark()">
 <h3>avarageMark</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">avarageMark</span>()</div>
-<div class="block">Вычисляет средний балл по всем числовым оценкам:
- экзамены + дифференцированные зачёты.</div>
+<div class="block">Вычисляет средний балл по всем числовым оценкам
+ (экзамены + дифференцированные зачёты).</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>средний балл или NaN, если числовых оценок нет</dd>
@@ -244,11 +250,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isRealSwapToBudget()">
 <h3>isRealSwapToBudget</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isRealSwapToBudget</span>()</div>
-<div class="block">Проверяет возможность перевода с платной формы на бюджет.
- Требование: в двух последних сессиях нет оценок «3» по экзаменам.</div>
+<div class="block">Проверяет возможность перевода на бюджет.
+ Условие: в двух последних сессиях нет «3» по экзаменам.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true — перевод возможен</dd>
+<dd>true, если студент может перейти на бюджет</dd>
 </dl>
 </section>
 </li>
@@ -256,14 +262,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="canGetRedDiploma()">
 <h3>canGetRedDiploma</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetRedDiploma</span>()</div>
-<div class="block">Проверяет, может ли студент получить красный диплом.
- Условия:
-  • не менее 75% оценок — «5»
-  • нет оценок «3»
-  • дипломная работа — «5»</div>
+<div class="block">Проверяет возможность получения красного диплома.
+ Требования:
+  • не менее 75% оценок — «5»;
+  • отсутствие оценок «3»;
+  • диплом — «5».</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true — красный диплом возможен</dd>
+<dd>true, если красный диплом возможен</dd>
 </dl>
 </section>
 </li>
@@ -272,16 +278,12 @@ loadScripts(document, 'script');</script>
 <h3>canGetIncreaseScholarship</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">canGetIncreaseScholarship</span><wbr><span class="parameters">(int&nbsp;semester)</span></div>
 <div class="block">Проверяет возможность получения повышенной стипендии
- за указанный семестр.
-
- Требования:
-  • экзамены и диффзачёты — не ниже 4
-  • зачёты: либо «зачтено» (0), либо 4 или 5</div>
+ в указанном семестре.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>semester</code> - номер семестра</dd>
 <dt>Returns:</dt>
-<dd>true — если студент подходит под критерии</dd>
+<dd>true, если студент удовлетворяет условиям</dd>
 </dl>
 </section>
 </li>
@@ -289,7 +291,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="printAllGrades()">
 <h3>printAllGrades</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">printAllGrades</span>()</div>
-<div class="block">Печатает все оценки, отсортированные по семестрам.</div>
+<div class="block">Печатает все оценки, сортируя по семестрам.</div>
 </section>
 </li>
 </ul>

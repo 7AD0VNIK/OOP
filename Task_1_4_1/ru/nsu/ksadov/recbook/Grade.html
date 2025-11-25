@@ -123,7 +123,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isNumMark()" class="member-name-link">isNumMark</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, является ли оценка числовой (экзамен или диффзачёт).</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -154,10 +156,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Создаёт новую запись об итоговой оценке.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>subjectName</code> - название предмета</dd>
+<dd><code>subjectName</code> - название дисциплины</dd>
 <dd><code>semester</code> - номер семестра</dd>
-<dd><code>type</code> - тип итогового контроля</dd>
-<dd><code>mark</code> - оценка (для зачёта 0 означает «зачтено»)</dd>
+<dd><code>type</code> - тип контроля</dd>
+<dd><code>mark</code> - числовая оценка или 0</dd>
 </dl>
 </section>
 </li>
@@ -173,49 +175,34 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getSubjectName()">
 <h3>getSubjectName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSubjectName</span>()</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>название дисциплины</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSemester()">
 <h3>getSemester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSemester</span>()</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>номер семестра</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getType()">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GradeType.html" title="enum class in ru.nsu.ksadov.recbook">GradeType</a></span>&nbsp;<span class="element-name">getType</span>()</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>тип контроля</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMark()">
 <h3>getMark</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMark</span>()</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>оценку (числовую или 0 для зачёта)</dd>
-</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isNumMark()">
 <h3>isNumMark</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isNumMark</span>()</div>
+<div class="block">Проверяет, является ли оценка числовой (экзамен или диффзачёт).</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>true — если оценка числовая (экзамен или диффзачёт)</dd>
+<dd>true, если оценка числовая</dd>
 </dl>
 </section>
 </li>
