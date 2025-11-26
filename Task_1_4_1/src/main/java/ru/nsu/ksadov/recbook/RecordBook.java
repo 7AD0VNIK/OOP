@@ -123,19 +123,21 @@ public class RecordBook {
      * @return true, если красный диплом возможен
      */
     public boolean canGetRedDiploma() {
-        List<Grade> finals = new ArrayList<>();
-        for (Grade g : grades) {
-            if (g.getType() == GradeType.EXAM
-                    || g.getType() == GradeType.DIFF_CREDIT) {
-                finals.add(g);
-            }
-        }
 
+        List<Grade> finals = grades.stream()
+                .filter(g -> g.getType() == GradeType.EXAM
+                        || g.getType() == GradeType.DIFF_CREDIT)
+                .toList();
+
+        // Добавляем диплом, если указан
         if (diplomaMark != null) {
-            finals.add(
-                    new Grade("Diploma", Integer.MAX_VALUE,
-                            GradeType.DIPLOMA_WORK, diplomaMark)
-            );
+            finals = new ArrayList<>(finals);
+            finals.add(new Grade(
+                    "Diploma",
+                    Integer.MAX_VALUE,
+                    GradeType.DIPLOMA_WORK,
+                    diplomaMark
+            ));
         }
 
         if (finals.isEmpty()) {
