@@ -29,7 +29,8 @@ public class Grade {
         if (type == GradeType.CREDIT && mark != 0) {
             throw new IllegalArgumentException("Для зачёта оценка должна быть 0");
         }
-        if ((type == GradeType.EXAM || type == GradeType.DIFF_CREDIT || type == GradeType.DIPLOMA_WORK)
+        if ((type == GradeType.EXAM || type == GradeType.DIFF_CREDIT
+                || type == GradeType.DIPLOMA_WORK)
                 && (mark < 2 || mark > 5)) {
             throw new IllegalArgumentException("Оценка должна быть от 2 до 5");
         }
