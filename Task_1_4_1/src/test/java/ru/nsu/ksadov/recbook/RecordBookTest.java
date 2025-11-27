@@ -69,8 +69,8 @@ public class RecordBookTest {
         rb.addGrade(new Grade("Physics", 1, GradeType.EXAM, 4));
 
         assertTrue(rb.canGetRedDiploma(),
-                "Студент должен иметь возможность получить красный диплом," +
-                        " если в будущем всё сдаст на 5");
+                "Студент должен иметь возможность получить красный диплом,"
+                        + " если в будущем всё сдаст на 5");
     }
 
     @Test
