@@ -21,13 +21,17 @@ public class RecordBook {
     /** Итоговая оценка за дипломную работу (если есть). */
     private Integer diplomaMark;
 
+    /** Общее количество итоговых оценок, которое студент должен получить за всё обучение */
+    private final int expectedTotalFinalGrades;
+
     /**
      * Создаёт новую зачётную книжку.
      *
      * @param isPaid true, если студент учится на платной основе
      */
-    public RecordBook(boolean isPaid) {
+    public RecordBook(boolean isPaid, int expectedTotalFinalGrades) {
         this.isPaid = isPaid;
+        this.expectedTotalFinalGrades = expectedTotalFinalGrades;
     }
 
     /**
@@ -114,13 +118,12 @@ public class RecordBook {
     }
 
     /**
-     * Проверяет возможность получения красного диплома.
+     * Проверяет возможность получения красного диплома с учётом того,
+     * что ВСЕ будущие оценки могут быть «5».
      * Требования:
-     *  • не менее 75% оценок — «5»;
-     *  • отсутствие оценок «3»;
+     *  • не менее 75% оценок — «5» (включая будущие);
+     *  • отсутствие «3»;
      *  • диплом — «5».
-     *
-     * @return true, если красный диплом возможен
      */
     public boolean canGetRedDiploma() {
 
@@ -129,29 +132,38 @@ public class RecordBook {
                         || g.getType() == GradeType.DIFF_CREDIT)
                 .toList();
 
-        // Добавляем диплом, если указан
-        if (diplomaMark != null) {
-            finals = new ArrayList<>(finals);
-            finals.add(new Grade(
-                    "Diploma",
-                    Integer.MAX_VALUE,
-                    GradeType.DIPLOMA_WORK,
-                    diplomaMark
-            ));
-        }
+        long currentTotal = finals.size();
+        long currentFives = finals.stream().filter(g -> g.getMark() == 5).count();
 
-        if (finals.isEmpty()) {
+        // нет троек
+        boolean hasThree = finals.stream().anyMatch(g -> g.getMark() == 3);
+        if (hasThree) {
             return false;
         }
 
-        long total = finals.size();
-        long fives = finals.stream().filter(g -> g.getMark() == 5).count();
+        // диплом
+        if (diplomaMark != null && diplomaMark != 5) {
+            return false;
+        }
 
-        boolean ratioOk = (double) fives / total >= 0.75;
-        boolean hasNoThree = finals.stream().noneMatch(g -> g.getMark() == 3);
-        boolean diplomaOk = diplomaMark == null || diplomaMark == 5;
+        // Если диплом уже стоит, учитываем его как оценку
+        long diplomaAdd = (diplomaMark != null ? 1 : 0);
+        long totalWithDiploma = currentTotal + diplomaAdd;
 
-        return ratioOk && hasNoThree && diplomaOk;
+        long fivesWithDiploma = currentFives + (diplomaMark != null && diplomaMark == 5 ? 1 : 0);
+
+        // ожидаемое кол-во оценок
+        long remaining = expectedTotalFinalGrades - totalWithDiploma;
+
+        if (remaining < 0) {
+            remaining = 0;
+        }
+
+        long maxPossibleFives = fivesWithDiploma + remaining;
+
+        double maxPossibleRatio = (double) maxPossibleFives / expectedTotalFinalGrades;
+
+        return maxPossibleRatio >= 0.75;
     }
 
     /**
