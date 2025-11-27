@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Тесты для класса RecordBook.
+ */
 public class RecordBookTest {
 
     @Test
@@ -36,10 +39,8 @@ public class RecordBookTest {
 
     @Test
     void testRedDiplomaOk() {
-        // Всего будет, например, 4 итоговые оценки
         RecordBook rb = new RecordBook(false, 4);
 
-        // 3 пятерки, диплом — 5 → 4 оценки, все пятёрки → 100%
         rb.addGrade(new Grade("Math", 1, GradeType.EXAM, 5));
         rb.addGrade(new Grade("Algo", 1, GradeType.DIFF_CREDIT, 5));
         rb.addGrade(new Grade("OOP", 2, GradeType.EXAM, 5));
@@ -68,7 +69,8 @@ public class RecordBookTest {
         rb.addGrade(new Grade("Physics", 1, GradeType.EXAM, 4));
 
         assertTrue(rb.canGetRedDiploma(),
-                "Студент должен иметь возможность получить красный диплом, если в будущем всё сдаст на 5");
+                "Студент должен иметь возможность получить красный диплом," +
+                        " если в будущем всё сдаст на 5");
     }
 
     @Test
