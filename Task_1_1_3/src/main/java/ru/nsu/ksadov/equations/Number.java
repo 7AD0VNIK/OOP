@@ -29,4 +29,9 @@ public class Number extends Expression {
     public Expression derivative(String var) {
         return new Number(0);
     }
+
+    @Override
+    public Expression simplify() {
+        return this;
+    }
 }

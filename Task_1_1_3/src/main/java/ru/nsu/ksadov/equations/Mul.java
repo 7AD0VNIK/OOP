@@ -26,4 +26,30 @@ public class Mul extends BinaryOperation {
                 new Mul(left, right.derivative(var))
         );
     }
+
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
+            double leftVal = ((Number) simplifiedLeft).evaluate();
+            double rightVal = ((Number) simplifiedRight).evaluate();
+            return new Number(leftVal * rightVal);
+        }
+
+        if ((simplifiedLeft instanceof Number && ((Number) simplifiedLeft).evaluate() == 0) ||
+                (simplifiedRight instanceof Number && ((Number) simplifiedRight).evaluate() == 0)) {
+            return new Number(0);
+        }
+
+        if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).evaluate() == 1) {
+            return simplifiedRight;
+        }
+        if (simplifiedRight instanceof Number && ((Number) simplifiedRight).evaluate() == 1) {
+            return simplifiedLeft;
+        }
+
+        return new Mul(simplifiedLeft, simplifiedRight);
+    }
 }

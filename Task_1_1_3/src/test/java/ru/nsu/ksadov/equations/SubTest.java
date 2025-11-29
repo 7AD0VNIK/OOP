@@ -1,6 +1,7 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,5 +16,13 @@ class SubTest {
     void testDerivative() {
         Expression e = new Sub(new Variable("x"), new Number(2));
         assertEquals("(1-0)", e.derivative("x").toString());
+    }
+
+    @Test
+    void testSimplifySameExpressions() {
+        Expression e = new Sub(new Variable("x"), new Variable("x"));
+        Expression simplified = e.simplify();
+        assertTrue(simplified instanceof Number);
+        assertEquals(0.0, simplified.evaluate());
     }
 }
