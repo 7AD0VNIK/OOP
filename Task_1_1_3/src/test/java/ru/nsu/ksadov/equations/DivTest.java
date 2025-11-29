@@ -23,4 +23,11 @@ class DivTest {
         Expression e = new Div(new Variable("x"), new Number(2));
         assertEquals("(((1*2)-(x*0))/(2*2))", e.derivative("x").toString());
     }
+
+    @Test
+    void testSimplify() {
+        Expression e = new Div(new Variable("x"), new Number(1));
+        Expression simplified = e.simplify();
+        assertEquals("x", simplified.toString());
+    }
 }

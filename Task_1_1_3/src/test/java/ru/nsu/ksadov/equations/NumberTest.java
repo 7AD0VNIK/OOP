@@ -16,4 +16,12 @@ class NumberTest {
         Number n = new Number(7);
         assertEquals("0", n.derivative("x").toString());
     }
+
+    @Test
+    void testSimplify() {
+        Number n = new Number(42);
+        Expression simplified = n.simplify();
+        assertEquals("42", simplified.toString());
+        assertEquals(n, simplified);
+    }
 }
