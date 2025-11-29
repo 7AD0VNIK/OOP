@@ -16,4 +16,11 @@ class MulTest {
         Expression e = new Mul(new Variable("x"), new Number(3));
         assertEquals("((1*3)+(x*0))", e.derivative("x").toString());
     }
+
+    @Test
+    void testSimplify() {
+        Expression e = new Mul(new Number(0), new Variable("x"));
+        Expression simplified = e.simplify();
+        assertEquals("0", simplified.toString());
+    }
 }

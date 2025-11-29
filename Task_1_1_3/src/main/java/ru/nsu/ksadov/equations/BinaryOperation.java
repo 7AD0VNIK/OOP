@@ -33,4 +33,6 @@ public abstract class BinaryOperation extends Expression {
     public String toString() {
         return "(" + left.toString() + getOperator() + right.toString() + ")";
     }
+
+    public abstract Expression simplify();
 }

@@ -29,4 +29,9 @@ public class Variable extends Expression {
     public Expression derivative(String var) {
         return new Number(name.equals(var) ? 1 : 0);
     }
+
+    @Override
+    public Expression simplify() {
+        return this;
+    }
 }

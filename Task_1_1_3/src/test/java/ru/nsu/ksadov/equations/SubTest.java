@@ -16,4 +16,11 @@ class SubTest {
         Expression e = new Sub(new Variable("x"), new Number(2));
         assertEquals("(1-0)", e.derivative("x").toString());
     }
+
+    @Test
+    void testSimplify() {
+        Expression e = new Sub(new Variable("x"), new Variable("x"));
+        Expression simplified = e.simplify();
+        assertEquals("0", simplified.toString());
+    }
 }
