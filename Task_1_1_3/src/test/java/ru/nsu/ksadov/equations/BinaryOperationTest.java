@@ -1,5 +1,6 @@
 package ru.nsu.ksadov.equations;
 
+import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -110,5 +111,31 @@ class BinaryOperationTest {
         // деление с нулем в числителе
         Expression divZeroNumerator = new Div(new Number(0), new Number(5));
         assertEquals(0.0, divZeroNumerator.evaluate());
+    }
+
+    @Test
+    void testEvaluateWithExplicitMap() {
+        Expression expr = new Add(
+                new Mul(new Variable("x"), new Variable("y")),
+                new Number(5)
+        );
+
+        Map<String, Double> vars = Map.of("x", 2.0, "y", 3.0);
+
+        // 2 * 3 + 5 = 11
+        assertEquals(11.0, expr.evaluate(vars));
+    }
+
+    @Test
+    void testDeepNestedSimplify() {
+        Expression expr = new Add(
+                new Variable("x"),
+                new Add(new Number(0), new Number(0))
+        );
+
+        Expression simplified = expr.simplify();
+
+        // x + (0 + 0) → x
+        assertEquals("x", simplified.toString());
     }
 }
