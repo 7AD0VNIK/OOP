@@ -61,4 +61,15 @@ class SubTest {
         assertEquals("0", simplified.toString());
         assertEquals(0.0, simplified.evaluate("x=3"));
     }
+
+    @Test
+    void testSimplifySubtractionWithZeroRight() {
+        // Упрощение: (x + 1) - 0 = x + 1
+        Expression left = new Add(new Variable("x"), new Number(1));
+        Expression right = new Number(0);
+        Expression e = new Sub(left, right);
+        Expression simplified = e.simplify();
+        assertEquals("(x+1)", simplified.toString());
+        assertEquals(6.0, simplified.evaluate("x=5"));
+    }
 }

@@ -1,6 +1,7 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -73,5 +74,19 @@ class BinaryOperationTest {
         Expression simplified = expr.simplify();
         assertEquals("((2*x)+2)", simplified.toString());
         assertEquals(12.0, simplified.evaluate("x=5"));
+    }
+    @Test
+    void testBinaryOperationToString() {
+        Expression add = new Add(new Variable("x"), new Number(1));
+        assertEquals("(x+1)", add.toString());
+
+        Expression sub = new Sub(new Variable("x"), new Number(1));
+        assertEquals("(x-1)", sub.toString());
+
+        Expression mul = new Mul(new Variable("x"), new Number(2));
+        assertEquals("(x*2)", mul.toString());
+
+        Expression div = new Div(new Variable("x"), new Number(2));
+        assertEquals("(x/2)", div.toString());
     }
 }
