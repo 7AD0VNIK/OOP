@@ -144,4 +144,34 @@ class BinaryOperationTest {
         Expression e = new Mul(new Number(3), new Number(4));
         assertEquals("(3*4)", e.toString());
     }
+
+    @Test
+    void testBinaryOperationConstructorDirectly() {
+        BinaryOperation op = new BinaryOperation(new Number(2), new Number(3)) {
+
+            @Override
+            protected String getOperator() {
+                return "?";
+            }
+
+            @Override
+            protected double applyOperation(double left, double right) {
+                return left + right;
+            }
+
+            @Override
+            public Expression simplify() {
+                return this;
+            }
+
+            @Override
+            public Expression derivative(String variable) {
+                return new Number(0);
+            }
+        };
+
+        assertEquals("(2?3)", op.toString());
+        assertEquals(5.0, op.evaluate());
+    }
+
 }
