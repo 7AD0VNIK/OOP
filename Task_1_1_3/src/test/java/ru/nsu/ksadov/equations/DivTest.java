@@ -50,4 +50,23 @@ class DivTest {
         double result = e.evaluate("a=10; b=5; c=3");
         assertEquals(5.0, result); // (10 + 5) / 3 = 5
     }
+
+    @Test
+    void testSimplifyDivisionByZeroThrowsException() {
+        Expression e = new Div(new Number(5), new Number(0));
+        assertThrows(ArithmeticException.class, () -> {
+            e.simplify();
+        });
+    }
+
+    @Test
+    void testSimplifyDivisionZeroByExpression() {
+        // Упрощение: 0 / (x + 1) = 0
+        Expression left = new Number(0);
+        Expression right = new Add(new Variable("x"), new Number(1));
+        Expression e = new Div(left, right);
+        Expression simplified = e.simplify();
+        assertEquals("0", simplified.toString());
+        assertEquals(0.0, simplified.evaluate("x=5"));
+    }
 }

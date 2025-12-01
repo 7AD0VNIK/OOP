@@ -48,4 +48,24 @@ class MulTest {
         assertEquals("0", simplified.toString());
         assertEquals(0.0, simplified.evaluate());
     }
+
+    @Test
+    void testSimplifyMultiplicationByOne() {
+        // Упрощение: 1 * (x + 1) = x + 1
+        Expression left = new Number(1);
+        Expression right = new Add(new Variable("x"), new Number(1));
+        Expression e = new Mul(left, right);
+        Expression simplified = e.simplify();
+        assertEquals("(x+1)", simplified.toString());
+        assertEquals(6.0, simplified.evaluate("x=5"));
+    }
+
+    @Test
+    void testSimplifyMultiplicationWithNumbers() {
+        // Упрощение: 3 * 4 = 12
+        Expression e = new Mul(new Number(3), new Number(4));
+        Expression simplified = e.simplify();
+        assertEquals("12", simplified.toString());
+        assertEquals(12.0, simplified.evaluate());
+    }
 }

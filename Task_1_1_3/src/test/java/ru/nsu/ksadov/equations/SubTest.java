@@ -50,4 +50,15 @@ class SubTest {
         double result = derivative.evaluate("x=5; y=3");
         assertEquals(1.0, result);
     }
+
+    @Test
+    void testSimplifySubtractionOfSameExpression() {
+        // (x + 2) - (x + 2) = 0
+        Expression left = new Add(new Variable("x"), new Number(2));
+        Expression right = new Add(new Variable("x"), new Number(2));
+        Expression e = new Sub(left, right);
+        Expression simplified = e.simplify();
+        assertEquals("0", simplified.toString());
+        assertEquals(0.0, simplified.evaluate("x=3"));
+    }
 }

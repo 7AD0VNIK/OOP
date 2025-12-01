@@ -52,4 +52,26 @@ class BinaryOperationTest {
         String expected = "((2*x)+(10/(y-1)))";
         assertEquals(expected, complex.toString());
     }
+
+    @Test
+    void testBinaryOperationNestedSimplify() {
+        Expression expr = new Div(
+                new Add(new Variable("x"), new Number(0)),  // x + 0 = x
+                new Mul(new Number(1), new Variable("x"))   // 1 * x = x
+        );
+        Expression simplified = expr.simplify();
+        assertEquals("1", simplified.toString());
+        assertEquals(1.0, simplified.evaluate("x=5"));
+    }
+
+    @Test
+    void testBinaryOperationComplexExpression() {
+        Expression expr = new Add(
+                new Mul(new Number(2), new Variable("x")),
+                new Div(new Number(4), new Number(2))
+        );
+        Expression simplified = expr.simplify();
+        assertEquals("((2*x)+2)", simplified.toString());
+        assertEquals(12.0, simplified.evaluate("x=5"));
+    }
 }
