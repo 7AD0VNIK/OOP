@@ -39,7 +39,8 @@ public class Mul extends BinaryOperation {
         }
 
         if ((simplifiedLeft instanceof Number && ((Number) simplifiedLeft).evaluate() == 0)
-                || (simplifiedRight instanceof Number && ((Number) simplifiedRight).evaluate() == 0)) {
+                || (simplifiedRight instanceof Number
+                    && ((Number) simplifiedRight).evaluate() == 0)) {
             return new Number(0);
         }
 
