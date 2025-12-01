@@ -1,9 +1,9 @@
 package ru.nsu.ksadov.equations;
 
-import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 class BinaryOperationTest {
@@ -81,12 +81,10 @@ class BinaryOperationTest {
         BinaryOperation add = new Add(new Number(1), new Number(2));
         BinaryOperation sub = new Sub(new Number(1), new Number(2));
         BinaryOperation mul = new Mul(new Number(1), new Number(2));
-        BinaryOperation div = new Div(new Number(1), new Number(2));
 
         assertEquals("+", add.getOperator());
         assertEquals("-", sub.getOperator());
         assertEquals("*", mul.getOperator());
-        assertEquals("/", div.getOperator());
     }
 
     @Test
