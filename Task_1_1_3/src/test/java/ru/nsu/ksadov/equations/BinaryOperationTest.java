@@ -1,7 +1,6 @@
 package ru.nsu.ksadov.equations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -75,18 +74,41 @@ class BinaryOperationTest {
         assertEquals("((2*x)+2)", simplified.toString());
         assertEquals(12.0, simplified.evaluate("x=5"));
     }
+
     @Test
-    void testBinaryOperationToString() {
-        Expression add = new Add(new Variable("x"), new Number(1));
-        assertEquals("(x+1)", add.toString());
+    void testDifferentBinaryOperators() {
+        BinaryOperation add = new Add(new Number(1), new Number(2));
+        BinaryOperation sub = new Sub(new Number(1), new Number(2));
+        BinaryOperation mul = new Mul(new Number(1), new Number(2));
+        BinaryOperation div = new Div(new Number(1), new Number(2));
 
-        Expression sub = new Sub(new Variable("x"), new Number(1));
-        assertEquals("(x-1)", sub.toString());
+        assertEquals("+", add.getOperator());
+        assertEquals("-", sub.getOperator());
+        assertEquals("*", mul.getOperator());
+        assertEquals("/", div.getOperator());
+    }
 
-        Expression mul = new Mul(new Variable("x"), new Number(2));
-        assertEquals("(x*2)", mul.toString());
+    @Test
+    void testApplyOperationForDifferentBinaryOperations() {
 
-        Expression div = new Div(new Variable("x"), new Number(2));
-        assertEquals("(x/2)", div.toString());
+        // сложение
+        Expression add = new Add(new Number(3), new Number(4));
+        assertEquals(7.0, add.evaluate());
+
+        // вычитание
+        Expression sub = new Sub(new Number(10), new Number(3));
+        assertEquals(7.0, sub.evaluate());
+
+        // умножение
+        Expression mul = new Mul(new Number(3), new Number(4));
+        assertEquals(12.0, mul.evaluate());
+
+        // деление
+        Expression div = new Div(new Number(12), new Number(3));
+        assertEquals(4.0, div.evaluate());
+
+        // деление с нулем в числителе
+        Expression divZeroNumerator = new Div(new Number(0), new Number(5));
+        assertEquals(0.0, divZeroNumerator.evaluate());
     }
 }
