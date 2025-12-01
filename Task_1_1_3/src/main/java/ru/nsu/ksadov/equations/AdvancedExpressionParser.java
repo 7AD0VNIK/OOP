@@ -155,8 +155,12 @@ public class AdvancedExpressionParser {
 
             while (endIndex < tokens.size() && depth > 0) {
                 String subToken = tokens.get(endIndex);
-                if (subToken.equals("(")) depth++;
-                if (subToken.equals(")")) depth--;
+                if (subToken.equals("(")) {
+                    depth++;
+                }
+                if (subToken.equals(")")) {
+                    depth--;
+                }
 
                 if (depth > 0) {
                     subTokens.add(subToken);
