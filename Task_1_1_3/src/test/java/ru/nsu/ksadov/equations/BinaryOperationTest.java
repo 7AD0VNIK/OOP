@@ -138,4 +138,10 @@ class BinaryOperationTest {
         // x + (0 + 0) → x
         assertEquals("x", simplified.toString());
     }
+
+    @Test
+    void testToStringMul() {
+        Expression e = new Mul(new Number(3), new Number(4));
+        assertEquals("(3*4)", e.toString());
+    }
 }
