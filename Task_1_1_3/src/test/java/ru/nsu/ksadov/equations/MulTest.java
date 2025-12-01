@@ -23,4 +23,29 @@ class MulTest {
         Expression simplified = e.simplify();
         assertEquals("0", simplified.toString());
     }
+
+    @Test
+    void testEvaluateWithVariables() {
+        Expression e = new Mul(new Variable("x"), new Variable("y"));
+        double result = e.evaluate("x=3; y=4");
+        assertEquals(12.0, result);
+    }
+
+    @Test
+    void testSimplifyBothSidesOne() {
+        Expression e = new Mul(new Number(1), new Number(1));
+        Expression simplified = e.simplify();
+        assertEquals("1", simplified.toString());
+        assertEquals(1.0, simplified.evaluate());
+    }
+
+    @Test
+    void testSimplifyNestedMultiplication() {
+        // (2 * 0) * x = 0
+        Expression inner = new Mul(new Number(2), new Number(0));
+        Expression e = new Mul(inner, new Variable("x"));
+        Expression simplified = e.simplify();
+        assertEquals("0", simplified.toString());
+        assertEquals(0.0, simplified.evaluate());
+    }
 }

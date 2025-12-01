@@ -38,6 +38,7 @@ public class Div extends BinaryOperation {
         Expression simplifiedLeft = left.simplify();
         Expression simplifiedRight = right.simplify();
 
+        // оба выражения - числа
         if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
             double leftVal = ((Number) simplifiedLeft).evaluate();
             double rightVal = ((Number) simplifiedRight).evaluate();
@@ -47,12 +48,19 @@ public class Div extends BinaryOperation {
             return new Number(leftVal / rightVal);
         }
 
+        // числитель равен 0
         if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).evaluate() == 0) {
             return new Number(0);
         }
 
+        // знаменатель равен 1
         if (simplifiedRight instanceof Number && ((Number) simplifiedRight).evaluate() == 1) {
             return simplifiedLeft;
+        }
+
+        // числитель и знаменатель одинаковы
+        if (simplifiedLeft.equals(simplifiedRight)) {
+            return new Number(1);
         }
 
         return new Div(simplifiedLeft, simplifiedRight);

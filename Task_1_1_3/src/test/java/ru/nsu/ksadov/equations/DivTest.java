@@ -30,4 +30,24 @@ class DivTest {
         Expression simplified = e.simplify();
         assertEquals("x", simplified.toString());
     }
+
+    @Test
+    void testSimplifyDivisionBySameExpression() {
+        // упрощение: (x + 1) / (x + 1) = 1
+        Expression numerator = new Add(new Variable("x"), new Number(1));
+        Expression denominator = new Add(new Variable("x"), new Number(1));
+        Expression e = new Div(numerator, denominator);
+        Expression simplified = e.simplify();
+        assertEquals("1", simplified.toString());
+        assertEquals(1.0, simplified.evaluate("x=5"));
+    }
+
+    @Test
+    void testEvaluateComplexDivision() {
+        // Проверяем вычисление сложного деления: ((a + b) / c)
+        Expression numerator = new Add(new Variable("a"), new Variable("b"));
+        Expression e = new Div(numerator, new Variable("c"));
+        double result = e.evaluate("a=10; b=5; c=3");
+        assertEquals(5.0, result); // (10 + 5) / 3 = 5
+    }
 }
