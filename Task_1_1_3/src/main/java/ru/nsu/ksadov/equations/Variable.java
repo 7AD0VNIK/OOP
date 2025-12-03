@@ -29,4 +29,21 @@ public class Variable extends Expression {
     public Expression derivative(String var) {
         return new Number(name.equals(var) ? 1 : 0);
     }
+
+    @Override
+    public Expression simplify() {
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Variable other = (Variable) obj;
+        return name.equals(other.name);
+    }
 }

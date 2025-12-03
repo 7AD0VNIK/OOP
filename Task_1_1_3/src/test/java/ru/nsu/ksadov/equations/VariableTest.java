@@ -26,4 +26,12 @@ class VariableTest {
         assertEquals("1", x.derivative("x").toString());
         assertEquals("0", y.derivative("x").toString());
     }
+
+    @Test
+    void testSimplify() {
+        Variable x = new Variable("x");
+        Expression simplified = x.simplify();
+        assertEquals("x", simplified.toString());
+        assertEquals(x, simplified);
+    }
 }

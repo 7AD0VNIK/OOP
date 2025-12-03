@@ -22,4 +22,43 @@ public class Add extends BinaryOperation {
     public Expression derivative(String var) {
         return new Add(left.derivative(var), right.derivative(var));
     }
+
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
+            double leftVal = ((Number) simplifiedLeft).evaluate();
+            double rightVal = ((Number) simplifiedRight).evaluate();
+            return new Number(leftVal + rightVal);
+        }
+
+        if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).evaluate() == 0) {
+            return simplifiedRight;
+        }
+
+        if (simplifiedRight instanceof Number && ((Number) simplifiedRight).evaluate() == 0) {
+            return simplifiedLeft;
+        }
+
+        return new Add(simplifiedLeft, simplifiedRight);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + left.toString() + "+" + right.toString() + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Add other = (Add) obj;
+        return left.equals(other.left) && right.equals(other.right);
+    }
 }

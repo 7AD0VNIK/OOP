@@ -32,4 +32,43 @@ public class Div extends BinaryOperation {
                 new Mul(right, right)
         );
     }
+
+    @Override
+    public Expression simplify() {
+        Expression simplifiedLeft = left.simplify();
+        Expression simplifiedRight = right.simplify();
+
+        // оба выражения - числа
+        if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
+            double leftVal = ((Number) simplifiedLeft).evaluate();
+            double rightVal = ((Number) simplifiedRight).evaluate();
+            if (rightVal == 0) {
+                throw new ArithmeticException("Division by zero");
+            }
+            return new Number(leftVal / rightVal);
+        }
+
+        // числитель равен 0
+        if (simplifiedLeft.equals(new Number(0))) {
+            return new Number(0);
+        }
+
+        // знаменатель равен 1
+        if (simplifiedRight instanceof Number && ((Number) simplifiedRight).evaluate() == 1) {
+            return simplifiedLeft;
+        }
+
+        // числитель и знаменатель одинаковы
+        if (simplifiedLeft.equals(simplifiedRight)) {
+            return new Number(1);
+        }
+
+        return new Div(simplifiedLeft, simplifiedRight);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + left.toString() + "/" + right.toString() + ")";
+    }
+
 }
