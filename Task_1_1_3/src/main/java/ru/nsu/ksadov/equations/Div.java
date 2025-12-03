@@ -49,7 +49,7 @@ public class Div extends BinaryOperation {
         }
 
         // числитель равен 0
-        if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).evaluate() == 0) {
+        if (simplifiedLeft.equals(new Number(0))) {
             return new Number(0);
         }
 
