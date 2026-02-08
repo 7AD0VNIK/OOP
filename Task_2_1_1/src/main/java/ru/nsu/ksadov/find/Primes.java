@@ -14,9 +14,13 @@ public class Primes {
      * Checks whether a given number is prime.
      */
     public static boolean isPrime(long n) {
-        if (n < 2) return false;
+        if (n < 2) {
+            return false;
+        }
         for (long i = 2; i * i <= n; i++) {
-            if (n % i == 0) return false;
+            if (n % i == 0) {
+                return false;
+            }
         }
         return true;
     }
@@ -26,8 +30,10 @@ public class Primes {
      * at least one composite number.
      */
     public static boolean isAnyCompositeSequential(long[] nums) {
-        for(long n : nums) {
-            if (!isPrime(n)) return true;
+        for (long n : nums) {
+            if (!isPrime(n)) {
+                return true;
+            }
         }
         return false;
     }
@@ -36,7 +42,6 @@ public class Primes {
     /**
      * Checks whether the given array contains at least one
      * composite number using multiple threads.
-     * <p>
      * The array is divided into equal chunks processed
      * by separate threads. The computation stops early
      * if a composite number is found.
@@ -52,8 +57,10 @@ public class Primes {
             final int end = Math.min(start + chunkSize, nums.length);
 
             threads[i] = new Thread(() -> {
-                for(int j = start; j < end; j++) {
-                    if (foundComposite.get()) return;
+                for (int j = start; j < end; j++) {
+                    if (foundComposite.get()) {
+                        return;
+                    }
                     if (!isPrime(nums[j])) {
                         foundComposite.set(true);
                         return;

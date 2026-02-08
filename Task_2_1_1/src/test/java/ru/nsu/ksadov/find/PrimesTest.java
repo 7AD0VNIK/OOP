@@ -22,9 +22,9 @@ class PrimesTest {
     @Test
     void testExampleAllPrime() throws InterruptedException {
         long[] data = {
-                20319251L, 6997901L, 6997927L, 6997937L,
-                17858849L, 6997967L, 6998009L, 6998029L,
-                6998039L, 20165149L, 6998051L, 6998053L
+            20319251L, 6997901L, 6997927L, 6997937L,
+            17858849L, 6997967L, 6998009L, 6998029L,
+            6998039L, 20165149L, 6998051L, 6998053L
         };
 
         assertFalse(Primes.isAnyCompositeSequential(data));
