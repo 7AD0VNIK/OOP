@@ -64,7 +64,7 @@ public class Primes {
                     if (!isPrime(nums[j])) {
                         foundComposite.set(true);
                         return;
-                    };
+                    }
                 }
             });
             threads[i].start();
