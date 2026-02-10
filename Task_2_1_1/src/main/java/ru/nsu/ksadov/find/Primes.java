@@ -48,6 +48,11 @@ public class Primes {
      */
     public static boolean isAnyCompositeThreads(long[] nums, int threadCount)
             throws InterruptedException {
+        if (nums.length == 0) {
+            return false;
+        }
+
+        threadCount = Math.min(threadCount, nums.length);
         AtomicBoolean foundComposite = new AtomicBoolean(false);
         Thread[] threads = new Thread[threadCount];
         int chunkSize = (int) Math.ceil((double) nums.length / threadCount);

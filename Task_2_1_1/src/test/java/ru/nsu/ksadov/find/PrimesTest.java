@@ -55,4 +55,22 @@ class PrimesTest {
         assertFalse(Primes.isAnyCompositeThreads(data, 2));
         assertFalse(Primes.isAnyCompositeStream(data));
     }
+
+    @Test
+    void lenArrayLessThenCountOfThreds() throws InterruptedException {
+        long[] data = {3, 5, 6};
+
+        assertTrue(Primes.isAnyCompositeSequential(data));
+        assertTrue(Primes.isAnyCompositeThreads(data, 4));
+        assertTrue(Primes.isAnyCompositeStream(data));
+    }
+
+    @Test
+    void testThreadsMoreThanArraySize() throws InterruptedException {
+        long[] smallArray = {17, 19}; // оба простые
+
+        assertFalse(Primes.isAnyCompositeThreads(smallArray, 4));
+        assertFalse(Primes.isAnyCompositeThreads(smallArray, 2));
+        assertFalse(Primes.isAnyCompositeThreads(smallArray, 1));
+    }
 }
