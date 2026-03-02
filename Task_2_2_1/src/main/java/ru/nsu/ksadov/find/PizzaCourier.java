@@ -13,11 +13,7 @@ public class PizzaCourier implements Courier {
     private volatile boolean isRunning = true;
 
     /**
-     *
-     * @param id
-     * @param trunkCap
-     * @param delivTime
-     * @param storage
+     * Конструктор для создания курьера.
      */
     public PizzaCourier(int id, int trunkCap, int delivTime, PizzaBuffer<Order> storage) {
         this.id = id;
@@ -49,5 +45,6 @@ public class PizzaCourier implements Courier {
 
     @Override
     public void stop() {
-        this.isRunning = false; }
+        this.isRunning = false;
+    }
 }

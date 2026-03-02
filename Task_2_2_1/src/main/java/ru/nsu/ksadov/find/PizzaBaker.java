@@ -10,7 +10,11 @@ public class PizzaBaker implements Baker {
     private final PizzaBuffer<Order> storage;
     private volatile boolean isRunning = true;
 
-    public PizzaBaker(int id, int cookingSpeed, PizzaBuffer<Order> orderQueue, PizzaBuffer<Order> storage) {
+    /**
+     * Конструктор для создания пекаря.
+     */
+    public PizzaBaker(int id, int cookingSpeed, PizzaBuffer<Order> orderQueue,
+                      PizzaBuffer<Order> storage) {
         this.id = id;
         this.cookingSpeed = cookingSpeed;
         this.orderQueue = orderQueue;
@@ -31,7 +35,7 @@ public class PizzaBaker implements Baker {
 
                 order.setStatus("is on the storage (Baker #" + id + ")");
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println("[Baker #" + id + "] was interrupted and stopped.");
         }
     }
