@@ -28,7 +28,6 @@ class PizzeriaTest {
         Thread.sleep(500);
 
         pizzeria.stopAndSave();
-
         File savedState = new File("unfinished_orders.ser");
         assertTrue(savedState.exists(), "файл unfinished_orders.ser должен быть создан после остановки");
 
