@@ -1,6 +1,9 @@
 package ru.nsu.ksadov.find;
 
-public class PizzaBaker implements Baker{
+/**
+ * Пицца мэйкер.
+ */
+public class PizzaBaker implements Baker {
     private final int id;
     private final int cookingSpeed;
     private final PizzaBuffer<Order> orderQueue;
