@@ -4,14 +4,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * Буфер.
+ */
 public class PizzaBuffer<T> {
     private final Queue<T> items = new LinkedList<>();
     private final int cap;
 
+    /**
+     * Конструктор буфера.
+     */
     public PizzaBuffer(int cap) {
         this.cap = cap;
     }
 
+    /**
+     * Положить в буфер.
+     */
     public synchronized void put(T item) throws InterruptedException {
         while(cap > 0 && items.size() >= cap) {
             wait();
@@ -20,6 +29,9 @@ public class PizzaBuffer<T> {
         notifyAll();
     }
 
+    /**
+     * Взять один из буфера.
+     */
     public synchronized T take() throws InterruptedException {
         while (items.isEmpty()) {
             wait();
@@ -29,6 +41,9 @@ public class PizzaBuffer<T> {
         return item;
     }
 
+    /**
+     * Взять несколько из буфера.
+     */
     public synchronized List<T> takeMultiple(int maxCount) throws InterruptedException {
         while(items.isEmpty()) {
             wait();
@@ -43,10 +58,16 @@ public class PizzaBuffer<T> {
         return batch;
     }
 
+    /**
+     * Размер буфера.
+     */
     public synchronized int size() {
         return items.size();
     }
 
+    /**
+     * Взять всё из буфера.
+     */
     public synchronized List<T> getAllAndClear() {
         List<T> remaining = new LinkedList<>(items);
         items.clear();
