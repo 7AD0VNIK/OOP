@@ -29,7 +29,8 @@ class PizzeriaTest {
 
         pizzeria.stopAndSave();
         File savedState = new File("unfinished_orders.ser");
-        assertTrue(savedState.exists(), "файл unfinished_orders.ser должен быть создан после остановки");
+        assertTrue(savedState.exists(),
+                "файл unfinished_orders.ser должен быть создан после остановки");
 
         savedState.delete();
     }
