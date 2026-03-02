@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Пиццерия.
+ */
 public class Pizzeria {
     private final PizzaBuffer<Order> storage;
     private final PizzaBuffer<Order> orderQueue;
@@ -19,10 +22,15 @@ public class Pizzeria {
     private final AtomicInteger orderIdGenerator = new AtomicInteger(1);
     private volatile boolean isOpen = false;
 
+    /**
+     * Конструктор пиццерии.
+     */
     public Pizzeria(String configPath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         InputStream is = getClass().getClassLoader().getResourceAsStream(configPath);
-        if (is == null) throw new FileNotFoundException("Config not found: " + configPath);
+        if (is == null) {
+            throw new FileNotFoundException("Config not found: " + configPath);
+        }
 
         PizzaConfig config = mapper.readValue(is, PizzaConfig.class);
 
@@ -36,12 +44,16 @@ public class Pizzeria {
         }
 
         for (PizzaConfig.CourierConfig data : config.couriers) {
-            PizzaCourier courier = new PizzaCourier(data.id, data.trunkCapacity, data.deliverySpeed, storage);
+            PizzaCourier courier = new PizzaCourier(data.id, data.trunkCapacity,
+                    data.deliverySpeed, storage);
             couriers.add(courier);
             workerThreads.add(new Thread(courier));
         }
     }
 
+    /**
+     * Старт.
+     */
     public void start() {
         isOpen = true;
         System.out.println("--- Pizzeria is now OPEN ---");
@@ -50,8 +62,13 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Создание заказа.
+     */
     public void createOrder() {
-        if (!isOpen) return;
+        if (!isOpen) {
+            return;
+        }
         try {
             Order order = new Order(orderIdGenerator.getAndIncrement());
             order.setStatus("Received (in queue)");
@@ -66,7 +83,8 @@ public class Pizzeria {
         unfinished.addAll(orderQueue.getAllAndClear());
         unfinished.addAll(storage.getAllAndClear());
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("unfinished_orders.ser"))) {
+        try (ObjectOutputStream oos = new
+                ObjectOutputStream(new FileOutputStream("unfinished_orders.ser"))) {
             oos.writeObject(unfinished);
             System.out.println("Saved " + unfinished.size() + " unfinished orders to file.");
         } catch (IOException e) {
@@ -74,6 +92,9 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Остановка и сохранение.
+     */
     public void stopAndSave() {
         isOpen = false;
         System.out.println("--- Pizzeria is CLOSING. Saving state... ---");

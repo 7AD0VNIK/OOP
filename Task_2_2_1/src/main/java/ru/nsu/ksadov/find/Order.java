@@ -2,7 +2,7 @@ package ru.nsu.ksadov.find;
 
 import java.io.Serializable;
 
-public class Order implements Serializable{
+public class Order implements Serializable {
     private final int id;
     private String status;
 
