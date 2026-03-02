@@ -1,0 +1,30 @@
+{
+  "storageCapacity": 10,
+  "bakers": [
+    {
+      "id": 1,
+      "cookingSpeed": 1000
+    },
+    {
+      "id": 2,
+      "cookingSpeed": 3000
+    },
+    {
+      "id": 3,
+      "cookingSpeed": 5000
+
+    }
+  ],
+  "couriers": [
+    {
+      "id": 1,
+      "trunkCapacity": 2,
+      "deliverySpeed": 4000
+    },
+    {
+      "id": 2,
+      "trunkCapacity": 5,
+      "deliverySpeed": 7000
+    }
+  ]
+}
