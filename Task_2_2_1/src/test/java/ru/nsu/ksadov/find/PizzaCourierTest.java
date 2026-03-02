@@ -26,7 +26,7 @@ class PizzaCourierTest {
 
     @Test
     void testCourierStopsWhenStorageEmpty() throws InterruptedException {
-        PizzaBuffer<Order> storage = new PizzaBuffer<>(5); // empty storage
+        PizzaBuffer<Order> storage = new PizzaBuffer<>(5);
         PizzaCourier courier = new PizzaCourier(2, 3, 100, storage);
         Thread courierThread = new Thread(courier);
         courierThread.start();
