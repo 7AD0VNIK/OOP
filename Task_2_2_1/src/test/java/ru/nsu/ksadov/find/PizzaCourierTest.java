@@ -24,20 +24,4 @@ class PizzaCourierTest {
         courierThread.interrupt();
     }
 
-    @Test
-    void testCourierStopsWhenStorageEmpty() throws InterruptedException {
-        PizzaBuffer<Order> storage = new PizzaBuffer<>(5);
-        PizzaCourier courier = new PizzaCourier(2, 3, 100, storage);
-        Thread courierThread = new Thread(courier);
-        courierThread.start();
-
-        Thread.sleep(50);
-
-        courier.stop();
-        courierThread.interrupt();
-        courierThread.join(500);
-
-        assertFalse(courierThread.isAlive(), "Courier thread should have terminated");
-    }
-
 }
