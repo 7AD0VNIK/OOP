@@ -29,7 +29,7 @@ class PizzaBufferTest {
     @Test
     void takeAll() throws InterruptedException {
         PizzaBuffer<Integer> buff = new PizzaBuffer<>(6);
-        for(int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
             buff.put(i);
         }
         List<Integer> batch = buff.getAllAndClear();
