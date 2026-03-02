@@ -22,7 +22,7 @@ public class PizzaBuffer<T> {
      * Положить в буфер.
      */
     public synchronized void put(T item) throws InterruptedException {
-        while(cap > 0 && items.size() >= cap) {
+        while (cap > 0 && items.size() >= cap) {
             wait();
         }
         items.add(item);
@@ -45,13 +45,13 @@ public class PizzaBuffer<T> {
      * Взять несколько из буфера.
      */
     public synchronized List<T> takeMultiple(int maxCount) throws InterruptedException {
-        while(items.isEmpty()) {
+        while (items.isEmpty()) {
             wait();
         }
 
         List<T> batch = new LinkedList<>();
         int toTake = Math.min(maxCount, items.size());
-        for(int i = 0; i < toTake; i++) {
+        for (int i = 0; i < toTake; i++) {
             batch.add(items.poll());
         }
         notifyAll();
