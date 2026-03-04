@@ -72,7 +72,9 @@ public class Pizzeria {
         try {
             Order order = new Order(orderIdGenerator.getAndIncrement());
             order.setStatus("Received (in queue)");
-            orderQueue.put(order);
+            orderQueue.put(order, () -> {
+                order.setStatus("Received (in queue)");
+            });
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

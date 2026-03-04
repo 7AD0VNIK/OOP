@@ -1,7 +1,6 @@
 package ru.nsu.ksadov.find;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,10 @@ class PizzaCourierTest {
     void testCourierBatchDelivery() throws InterruptedException {
         SynchronizedQueue<Order> storage = new SynchronizedQueue<>(5);
         for (int i = 0; i < 3; i++) {
-            storage.put(new Order(i));
+            Order order = new Order(i);
+            storage.put(order, () -> {
+                order.setStatus("is on the storage (Initial)");
+            });
         }
         PizzaCourier courier = new PizzaCourier(1, 2, 100, storage);
         Thread courierThread = new Thread(courier);

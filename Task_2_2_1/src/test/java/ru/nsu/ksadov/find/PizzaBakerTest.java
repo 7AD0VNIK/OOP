@@ -12,8 +12,12 @@ class PizzaBakerTest {
         Order order1 = new Order(2);
         Order order2 = new Order(3);
 
-        queue.put(order1);
-        queue.put(order2);
+        queue.put(order1, () -> {
+            order2.setStatus("Received (in queue)");
+        });
+        queue.put(order2, () -> {
+            order2.setStatus("Received (in queue)");
+        });
         PizzaBaker baker = new PizzaBaker(2, 100, queue, storage);
         Thread bakerThread = new Thread(baker);
         bakerThread.start();
