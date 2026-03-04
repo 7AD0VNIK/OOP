@@ -13,6 +13,7 @@ public class SynchronizedQueue<T> {
 
     /**
      * Конструктор буфера.
+     *
      * @param cap максимальный размер. Если cap <= 0, размер неограничен.
      */
     public SynchronizedQueue(int cap) {
