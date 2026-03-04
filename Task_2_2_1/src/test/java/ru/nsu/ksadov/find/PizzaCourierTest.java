@@ -42,4 +42,20 @@ class PizzaCourierTest {
 
         assertFalse(courierThread.isAlive());
     }
+
+    @Test
+    void testCourierStopCoverage() throws InterruptedException {
+        SynchronizedQueue<Order> storage = new SynchronizedQueue<>(5);
+        PizzaCourier courier = new PizzaCourier(1, 2, 10, storage);
+        Thread courierThread = new Thread(courier);
+        courierThread.start();
+
+        courier.stop();
+
+        storage.put(new Order(99), () -> {});
+
+        courierThread.join(1000);
+
+        assertFalse(courierThread.isAlive());
+    }
 }
