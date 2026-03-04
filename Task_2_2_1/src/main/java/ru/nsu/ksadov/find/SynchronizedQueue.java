@@ -13,14 +13,14 @@ public class SynchronizedQueue<T> {
 
     /**
      * Конструктор буфера.
-     * Cap - максимальный размер. Если cap <= 0, размер неограничен.
+     * Cap - максимальный размер. Если cap меньше или равно 0, размер неограничен.
      */
     public SynchronizedQueue(int cap) {
         this.cap = cap;
     }
 
     /**
-     * Положить в буфер. Если буфер полон (cap > 0), поток блокируется.
+     * Положить в буфер. Если буфер полон (cap больше 0), поток блокируется.
      */
     public synchronized void put(T item, Runnable onPutAction) throws InterruptedException {
         while (cap > 0 && items.size() >= cap) {
