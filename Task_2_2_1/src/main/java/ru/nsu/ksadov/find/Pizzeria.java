@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Пиццерия.
  */
 public class Pizzeria {
-    private final PizzaBuffer<Order> storage;
-    private final PizzaBuffer<Order> orderQueue;
+    private final SynchronizedQueue<Order> storage;
+    private final SynchronizedQueue<Order> orderQueue;
     private final List<Thread> workerThreads = new ArrayList<>();
     private final List<Baker> bakers = new ArrayList<>();
     private final List<Courier> couriers = new ArrayList<>();
@@ -32,18 +32,18 @@ public class Pizzeria {
             throw new FileNotFoundException("Config not found: " + configPath);
         }
 
-        PizzaConfig config = mapper.readValue(is, PizzaConfig.class);
+        PizzeriaConfig config = mapper.readValue(is, PizzeriaConfig.class);
 
-        this.orderQueue = new PizzaBuffer<>(0);
-        this.storage = new PizzaBuffer<>(config.storageCapacity);
+        this.orderQueue = new SynchronizedQueue<>(0);
+        this.storage = new SynchronizedQueue<>(config.storageCapacity);
 
-        for (PizzaConfig.BakerConfig data : config.bakers) {
+        for (PizzeriaConfig.BakerConfig data : config.bakers) {
             PizzaBaker baker = new PizzaBaker(data.id, data.cookingSpeed, orderQueue, storage);
             bakers.add(baker);
             workerThreads.add(new Thread(baker));
         }
 
-        for (PizzaConfig.CourierConfig data : config.couriers) {
+        for (PizzeriaConfig.CourierConfig data : config.couriers) {
             PizzaCourier courier = new PizzaCourier(data.id, data.trunkCapacity,
                     data.deliverySpeed, storage);
             couriers.add(courier);
@@ -100,7 +100,7 @@ public class Pizzeria {
         System.out.println("--- Pizzeria is CLOSING. Saving state... ---");
 
         bakers.forEach(Baker::stop);
-        couriers.forEach(Courier::stop); // Каст не нужен, у интерфейса Courier есть stop()
+        couriers.forEach(Courier::stop);
         workerThreads.forEach(Thread::interrupt);
 
         saveUnfinishedOrders();

@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class PizzaBufferTest {
+class SynchronizedQueueTest {
     @Test
     void putAndTake() throws InterruptedException {
-        PizzaBuffer<String> buff = new PizzaBuffer<>(2);
+        SynchronizedQueue<String> buff = new SynchronizedQueue<>(2);
         buff.put("Pizza");
         assertEquals(1, buff.size());
         assertEquals("Pizza", buff.take());
@@ -17,7 +17,7 @@ class PizzaBufferTest {
 
     @Test
     void takeMul() throws InterruptedException {
-        PizzaBuffer<Integer> buff = new PizzaBuffer<>(5);
+        SynchronizedQueue<Integer> buff = new SynchronizedQueue<>(5);
         for (int i = 0; i < 4; i++) {
             buff.put(i);
         }
@@ -28,7 +28,7 @@ class PizzaBufferTest {
 
     @Test
     void takeAll() throws InterruptedException {
-        PizzaBuffer<Integer> buff = new PizzaBuffer<>(6);
+        SynchronizedQueue<Integer> buff = new SynchronizedQueue<>(6);
         for (int i = 0; i < 6; i++) {
             buff.put(i);
         }

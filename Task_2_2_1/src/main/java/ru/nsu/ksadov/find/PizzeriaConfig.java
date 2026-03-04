@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Конфиг.
  */
-public class PizzaConfig {
+public class PizzeriaConfig {
     public int storageCapacity;
     public List<BakerConfig> bakers;
     public List<CourierConfig> couriers;

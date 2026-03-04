@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Order implements Serializable {
     private final int id;
-    private String status;
+    private volatile String status;
 
     public Order(int id) {
         this.id = id;
@@ -18,7 +18,7 @@ public class Order implements Serializable {
         return id;
     }
 
-    public synchronized void setStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
         System.out.println("[" + id + "] [" + status + "]");
     }

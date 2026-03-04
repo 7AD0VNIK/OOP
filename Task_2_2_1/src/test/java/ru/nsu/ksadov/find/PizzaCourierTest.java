@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class PizzaCourierTest {
     @Test
     void testCourierBatchDelivery() throws InterruptedException {
-        PizzaBuffer<Order> storage = new PizzaBuffer<>(5);
+        SynchronizedQueue<Order> storage = new SynchronizedQueue<>(5);
         for (int i = 0; i < 3; i++) {
             storage.put(new Order(i));
         }

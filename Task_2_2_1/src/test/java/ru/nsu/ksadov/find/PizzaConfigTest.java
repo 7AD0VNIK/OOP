@@ -15,7 +15,7 @@ class PizzaConfigTest {
         InputStream is = getClass().getClassLoader().getResourceAsStream("config.json");
         assertNotNull(is, "файл config.json должен существовать в src/main/resources");
 
-        PizzaConfig config = mapper.readValue(is, PizzaConfig.class);
+        PizzeriaConfig config = mapper.readValue(is, PizzeriaConfig.class);
 
         assertTrue(config.storageCapacity > 0, "емкость склада должна быть больше 0");
         assertNotNull(config.bakers, "список пекарей не должен быть пустым");

@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 class PizzaBakerTest {
     @Test
     void toBakeCycle() throws InterruptedException {
-        PizzaBuffer<Order> storage = new PizzaBuffer<>(4);
-        PizzaBuffer<Order> queue = new PizzaBuffer<>(0);
+        SynchronizedQueue<Order> storage = new SynchronizedQueue<>(4);
+        SynchronizedQueue<Order> queue = new SynchronizedQueue<>(0);
         Order order1 = new Order(2);
         Order order2 = new Order(3);
 

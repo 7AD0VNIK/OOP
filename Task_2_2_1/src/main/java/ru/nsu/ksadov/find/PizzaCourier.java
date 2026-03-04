@@ -9,13 +9,13 @@ public class PizzaCourier implements Courier {
     private final int id;
     private final int trunkCap;
     private final int delivTime;
-    private final PizzaBuffer<Order> storage;
+    private final SynchronizedQueue<Order> storage;
     private volatile boolean isRunning = true;
 
     /**
      * Конструктор для создания курьера.
      */
-    public PizzaCourier(int id, int trunkCap, int delivTime, PizzaBuffer<Order> storage) {
+    public PizzaCourier(int id, int trunkCap, int delivTime, SynchronizedQueue<Order> storage) {
         this.id = id;
         this.trunkCap = trunkCap;
         this.delivTime = delivTime;

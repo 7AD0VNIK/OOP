@@ -7,25 +7,29 @@ import java.util.Queue;
 /**
  * Буфер.
  */
-public class PizzaBuffer<T> {
+public class SynchronizedQueue<T> {
     private final Queue<T> items = new LinkedList<>();
     private final int cap;
 
     /**
      * Конструктор буфера.
+     * @param cap максимальный размер. Если cap <= 0, размер неограничен.
      */
-    public PizzaBuffer(int cap) {
+    public SynchronizedQueue(int cap) {
         this.cap = cap;
     }
 
     /**
-     * Положить в буфер.
+     * Положить в буфер. Если буфер полон (cap > 0), поток блокируется.
      */
-    public synchronized void put(T item) throws InterruptedException {
+    public synchronized void put(T item, Runnable onPutAction) throws InterruptedException {
         while (cap > 0 && items.size() >= cap) {
             wait();
         }
         items.add(item);
+        if (onPutAction != null) {
+            onPutAction.run();
+        }
         notifyAll();
     }
 
