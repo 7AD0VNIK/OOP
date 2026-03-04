@@ -93,10 +93,10 @@ implements <a href="Baker.html" title="interface in ru.nsu.ksadov.find">Baker</a
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,ru.nsu.ksadov.find.PizzaBuffer,ru.nsu.ksadov.find.PizzaBuffer)" class="member-name-link">PizzaBaker</a><wbr>(int&nbsp;id,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,ru.nsu.ksadov.find.SynchronizedQueue,ru.nsu.ksadov.find.SynchronizedQueue)" class="member-name-link">PizzaBaker</a><wbr>(int&nbsp;id,
  int&nbsp;cookingSpeed,
- <a href="PizzaBuffer.html" title="class in ru.nsu.ksadov.find">PizzaBuffer</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;orderQueue,
- <a href="PizzaBuffer.html" title="class in ru.nsu.ksadov.find">PizzaBuffer</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;storage)</code></div>
+ <a href="SynchronizedQueue.html" title="class in ru.nsu.ksadov.find">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;orderQueue,
+ <a href="SynchronizedQueue.html" title="class in ru.nsu.ksadov.find">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;storage)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор для создания пекаря.</div>
 </div>
@@ -138,12 +138,12 @@ implements <a href="Baker.html" title="interface in ru.nsu.ksadov.find">Baker</a
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,int,ru.nsu.ksadov.find.PizzaBuffer,ru.nsu.ksadov.find.PizzaBuffer)">
+<section class="detail" id="&lt;init&gt;(int,int,ru.nsu.ksadov.find.SynchronizedQueue,ru.nsu.ksadov.find.SynchronizedQueue)">
 <h3>PizzaBaker</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PizzaBaker</span><wbr><span class="parameters">(int&nbsp;id,
  int&nbsp;cookingSpeed,
- <a href="PizzaBuffer.html" title="class in ru.nsu.ksadov.find">PizzaBuffer</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;orderQueue,
- <a href="PizzaBuffer.html" title="class in ru.nsu.ksadov.find">PizzaBuffer</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;storage)</span></div>
+ <a href="SynchronizedQueue.html" title="class in ru.nsu.ksadov.find">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;orderQueue,
+ <a href="SynchronizedQueue.html" title="class in ru.nsu.ksadov.find">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in ru.nsu.ksadov.find">Order</a>&gt;&nbsp;storage)</span></div>
 <div class="block">Конструктор для создания пекаря.</div>
 </section>
 </li>
@@ -160,8 +160,6 @@ implements <a href="Baker.html" title="interface in ru.nsu.ksadov.find">Baker</a
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
 <dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="Baker.html#run()">run</a></code>&nbsp;in interface&nbsp;<code><a href="Baker.html" title="interface in ru.nsu.ksadov.find">Baker</a></code></dd>
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>
 </dl>
