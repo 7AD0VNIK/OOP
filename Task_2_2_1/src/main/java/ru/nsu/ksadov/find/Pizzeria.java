@@ -2,8 +2,8 @@ package ru.nsu.ksadov.find;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.FileNotFoundException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -129,12 +129,18 @@ public class Pizzeria {
         saveUnfinishedOrders();
     }
 
+    /**
+     * Возвращене в очередь.
+     */
     public void returnToOrderQueue(Order order) {
         if (order != null) {
             orderQueue.addFirst(order);
         }
     }
 
+    /**
+     * Возвращение на склад.
+     */
     public void returnToStorage(Order order) {
         if (order != null) {
             storage.addFirst(order);

@@ -15,7 +15,8 @@ public class PizzaCourier implements Courier {
     /**
      * Конструктор для создания курьера.
      */
-    public PizzaCourier(int id, int trunkCap, int delivTime, SynchronizedQueue<Order> storage, Pizzeria pizzeria) {
+    public PizzaCourier(int id, int trunkCap, int delivTime,
+                        SynchronizedQueue<Order> storage, Pizzeria pizzeria) {
         this.id = id;
         this.trunkCap = trunkCap;
         this.delivTime = delivTime;
