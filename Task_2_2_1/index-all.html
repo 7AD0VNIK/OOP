@@ -48,7 +48,14 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
+<h2 class="title" id="I:A">A</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ksadov/find/SynchronizedQueue.html#addFirst(T)" class="member-name-link">addFirst(T)</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/SynchronizedQueue.html" title="class in ru.nsu.ksadov.find">SynchronizedQueue</a></dt>
+<dd>
+<div class="block">Добавляет элемент в начало очереди, игнорируя лимит cap.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
 <dt><a href="ru/nsu/ksadov/find/Baker.html" class="type-name-link" title="interface in ru.nsu.ksadov.find">Baker</a> - Interface in <a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a></dt>
@@ -113,7 +120,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Пицца мэйкер.</div>
 </dd>
-<dt><a href="ru/nsu/ksadov/find/PizzaBaker.html#%3Cinit%3E(int,int,ru.nsu.ksadov.find.SynchronizedQueue,ru.nsu.ksadov.find.SynchronizedQueue)" class="member-name-link">PizzaBaker(int, int, SynchronizedQueue&lt;Order&gt;, SynchronizedQueue&lt;Order&gt;)</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaBaker.html" title="class in ru.nsu.ksadov.find">PizzaBaker</a></dt>
+<dt><a href="ru/nsu/ksadov/find/PizzaBaker.html#%3Cinit%3E(int,int,ru.nsu.ksadov.find.SynchronizedQueue,ru.nsu.ksadov.find.SynchronizedQueue,ru.nsu.ksadov.find.Pizzeria)" class="member-name-link">PizzaBaker(int, int, SynchronizedQueue&lt;Order&gt;, SynchronizedQueue&lt;Order&gt;, Pizzeria)</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaBaker.html" title="class in ru.nsu.ksadov.find">PizzaBaker</a></dt>
 <dd>
 <div class="block">Конструктор для создания пекаря.</div>
 </dd>
@@ -121,7 +128,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Доставщик пиццы.</div>
 </dd>
-<dt><a href="ru/nsu/ksadov/find/PizzaCourier.html#%3Cinit%3E(int,int,int,ru.nsu.ksadov.find.SynchronizedQueue)" class="member-name-link">PizzaCourier(int, int, int, SynchronizedQueue&lt;Order&gt;)</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaCourier.html" title="class in ru.nsu.ksadov.find">PizzaCourier</a></dt>
+<dt><a href="ru/nsu/ksadov/find/PizzaCourier.html#%3Cinit%3E(int,int,int,ru.nsu.ksadov.find.SynchronizedQueue,ru.nsu.ksadov.find.Pizzeria)" class="member-name-link">PizzaCourier(int, int, int, SynchronizedQueue&lt;Order&gt;, Pizzeria)</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaCourier.html" title="class in ru.nsu.ksadov.find">PizzaCourier</a></dt>
 <dd>
 <div class="block">Конструктор для создания курьера.</div>
 </dd>
@@ -154,6 +161,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ksadov/find/Pizzeria.html#returnToOrderQueue(ru.nsu.ksadov.find.Order)" class="member-name-link">returnToOrderQueue(Order)</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Pizzeria.html" title="class in ru.nsu.ksadov.find">Pizzeria</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/find/Pizzeria.html#returnToStorage(ru.nsu.ksadov.find.Order)" class="member-name-link">returnToStorage(Order)</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Pizzeria.html" title="class in ru.nsu.ksadov.find">Pizzeria</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a> - package ru.nsu.ksadov.find</dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/PizzaBaker.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaBaker.html" title="class in ru.nsu.ksadov.find">PizzaBaker</a></dt>
@@ -173,14 +184,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Старт.</div>
 </dd>
-<dt><a href="ru/nsu/ksadov/find/Baker.html#stop()" class="member-name-link">stop()</a> - Method in interface ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Baker.html" title="interface in ru.nsu.ksadov.find">Baker</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/ksadov/find/Courier.html#stop()" class="member-name-link">stop()</a> - Method in interface ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Courier.html" title="interface in ru.nsu.ksadov.find">Courier</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/ksadov/find/PizzaBaker.html#stop()" class="member-name-link">stop()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaBaker.html" title="class in ru.nsu.ksadov.find">PizzaBaker</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="ru/nsu/ksadov/find/PizzaCourier.html#stop()" class="member-name-link">stop()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzaCourier.html" title="class in ru.nsu.ksadov.find">PizzaCourier</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/Pizzeria.html#stopAndSave()" class="member-name-link">stopAndSave()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Pizzeria.html" title="class in ru.nsu.ksadov.find">Pizzeria</a></dt>
 <dd>
 <div class="block">Остановка и сохранение.</div>
@@ -209,7 +212,7 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/ksadov/find/PizzeriaConfig.CourierConfig.html#trunkCapacity" class="member-name-link">trunkCapacity</a> - Variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.ksadov.find">PizzeriaConfig.CourierConfig</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
 </div>
 </div>
 </body>
