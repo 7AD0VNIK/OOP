@@ -77,4 +77,13 @@ public class SynchronizedQueue<T> {
         items.clear();
         return remaining;
     }
+
+    /**
+     * Добавляет элемент в начало очереди, игнорируя лимит cap.
+     * Нужен для возврата недоделанных заказов при остановке.
+     */
+    public synchronized void addFirst(T item) {
+        ((LinkedList<T>) items).addFirst(item);
+        notifyAll();
+    }
 }

@@ -1,11 +1,11 @@
 package ru.nsu.ksadov.find;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -27,7 +27,15 @@ public class Pizzeria {
      */
     public Pizzeria(String configPath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        InputStream is = getClass().getClassLoader().getResourceAsStream(configPath);
+        InputStream is;
+
+        File externalConfig = new File(configPath);
+        if (externalConfig.exists() && externalConfig.isFile()) {
+            is = new java.io.FileInputStream(externalConfig);
+        } else {
+            is = getClass().getClassLoader().getResourceAsStream(configPath);
+        }
+
         if (is == null) {
             throw new FileNotFoundException("Config not found: " + configPath);
         }
@@ -37,16 +45,24 @@ public class Pizzeria {
         this.orderQueue = new SynchronizedQueue<>(0);
         this.storage = new SynchronizedQueue<>(config.storageCapacity);
 
+        File savedFile = new File("unfinished_orders.json");
+        if (savedFile.exists()) {
+            List<Order> restored = mapper.readValue(savedFile, new TypeReference<List<Order>>(){});
+            for (Order o : restored) {
+                orderQueue.addFirst(o);
+            }
+            savedFile.delete();
+        }
+
         for (PizzeriaConfig.BakerConfig data : config.bakers) {
-            PizzaBaker baker = new PizzaBaker(data.id, data.cookingSpeed, orderQueue, storage);
-            bakers.add(baker);
+            PizzaBaker baker = new PizzaBaker(data.id, data.cookingSpeed, orderQueue,
+                    storage, this);
             workerThreads.add(new Thread(baker));
         }
 
         for (PizzeriaConfig.CourierConfig data : config.couriers) {
             PizzaCourier courier = new PizzaCourier(data.id, data.trunkCapacity,
-                    data.deliverySpeed, storage);
-            couriers.add(courier);
+                    data.deliverySpeed, storage, this);
             workerThreads.add(new Thread(courier));
         }
     }
@@ -85,10 +101,10 @@ public class Pizzeria {
         unfinished.addAll(orderQueue.getAllAndClear());
         unfinished.addAll(storage.getAllAndClear());
 
-        try (ObjectOutputStream oos = new
-                ObjectOutputStream(new FileOutputStream("unfinished_orders.ser"))) {
-            oos.writeObject(unfinished);
-            System.out.println("Saved " + unfinished.size() + " unfinished orders to file.");
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(new File("unfinished_orders.json"), unfinished);
+            System.out.println("Saved " + unfinished.size() + " orders to JSON.");
         } catch (IOException e) {
             System.err.println("Failed to save orders: " + e.getMessage());
         }
@@ -101,10 +117,27 @@ public class Pizzeria {
         isOpen = false;
         System.out.println("--- Pizzeria is CLOSING. Saving state... ---");
 
-        bakers.forEach(Baker::stop);
-        couriers.forEach(Courier::stop);
         workerThreads.forEach(Thread::interrupt);
+        for (Thread t : workerThreads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
 
         saveUnfinishedOrders();
+    }
+
+    public void returnToOrderQueue(Order order) {
+        if (order != null) {
+            orderQueue.addFirst(order);
+        }
+    }
+
+    public void returnToStorage(Order order) {
+        if (order != null) {
+            storage.addFirst(order);
+        }
     }
 }

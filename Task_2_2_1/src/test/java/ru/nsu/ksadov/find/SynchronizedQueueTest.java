@@ -36,4 +36,14 @@ class SynchronizedQueueTest {
         assertEquals(6, batch.size());
         assertEquals(0, buff.size());
     }
+
+    @Test
+    void testAddFirst() throws InterruptedException {
+        SynchronizedQueue<String> queue = new SynchronizedQueue<>(2);
+        queue.put("Second", null);
+        queue.addFirst("First"); // Должен встать в начало
+
+        assertEquals(2, queue.size());
+        assertEquals("First", queue.take());
+    }
 }

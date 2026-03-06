@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Заказ.
  */
 public class Order implements Serializable {
-    private final int id;
+    private int id;
     private volatile String status;
 
     public Order(int id) {

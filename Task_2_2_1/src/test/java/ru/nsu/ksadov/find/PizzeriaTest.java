@@ -28,9 +28,9 @@ class PizzeriaTest {
         Thread.sleep(500);
 
         pizzeria.stopAndSave();
-        File savedState = new File("unfinished_orders.ser");
+        File savedState = new File("unfinished_orders.json");
         assertTrue(savedState.exists(),
-                "файл unfinished_orders.ser должен быть создан после остановки");
+                "файл unfinished_orders.json должен быть создан после остановки");
 
         savedState.delete();
     }
