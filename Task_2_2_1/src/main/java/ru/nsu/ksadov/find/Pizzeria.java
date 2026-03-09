@@ -21,6 +21,8 @@ public class Pizzeria {
     private final List<Courier> couriers = new ArrayList<>();
     private final AtomicInteger orderIdGenerator = new AtomicInteger(1);
     private volatile boolean isOpen = false;
+    private static final String DEFAULT_SAVE_PATH = "unfinished_orders.json";
+    private final String saveFilePath;
 
     /**
      * Конструктор пиццерии.
@@ -42,10 +44,12 @@ public class Pizzeria {
 
         PizzeriaConfig config = mapper.readValue(is, PizzeriaConfig.class);
 
+        this.saveFilePath = (config.saveFilePath != null) ? config.saveFilePath : DEFAULT_SAVE_PATH;
+
         this.orderQueue = new SynchronizedQueue<>(0);
         this.storage = new SynchronizedQueue<>(config.storageCapacity);
 
-        File savedFile = new File("unfinished_orders.json");
+        File savedFile = new File(saveFilePath);
         if (savedFile.exists()) {
             List<Order> restored = mapper.readValue(savedFile, new TypeReference<List<Order>>(){});
             for (Order o : restored) {
@@ -103,7 +107,7 @@ public class Pizzeria {
 
         try {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(new File("unfinished_orders.json"), unfinished);
+            mapper.writeValue(new File(saveFilePath), unfinished);
             System.out.println("Saved " + unfinished.size() + " orders to JSON.");
         } catch (IOException e) {
             System.err.println("Failed to save orders: " + e.getMessage());

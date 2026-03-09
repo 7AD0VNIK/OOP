@@ -40,6 +40,7 @@ public class PizzaBaker implements Baker {
             }
         } catch (InterruptedException e) {
             if (currOrd != null) {
+                currOrd.setStatus("received (in queue)");
                 pizzeria.returnToOrderQueue(currOrd);
             }
             System.out.println("[Baker #" + id + "] was interrupted and stopped.");

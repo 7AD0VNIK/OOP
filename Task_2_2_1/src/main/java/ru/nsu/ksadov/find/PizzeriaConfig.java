@@ -9,6 +9,7 @@ public class PizzeriaConfig {
     public int storageCapacity;
     public List<BakerConfig> bakers;
     public List<CourierConfig> couriers;
+    public String saveFilePath;
 
     /**
      * Конструктор конфига пекарей.
