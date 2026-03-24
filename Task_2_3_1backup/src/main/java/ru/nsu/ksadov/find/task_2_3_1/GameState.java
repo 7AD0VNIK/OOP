@@ -104,19 +104,6 @@ public class GameState {
             return false;
         }
 
-        for (Snake other : bots) {
-            if (other.getBody().contains(nextPoint)) {
-                if (currentSnake == snake) {
-                    gameOver = true;
-                }
-                return false;
-            }
-        }
-
-        if (currentSnake != snake && snake.getBody().contains(nextPoint)) {
-            return false;
-        }
-
         if (foods.contains(nextPoint)) {
             foods.remove(nextPoint);
             currentSnake.eat();
@@ -133,31 +120,11 @@ public class GameState {
         return true;
     }
 
-    public Snake getSnake() {
-        return snake;
-    }
-
-    public List<Point> getFoods() {
-        return foods;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public boolean isGameOver() {
-        return gameOver;
-    }
-
-    public boolean isGameWon() {
-        return gameWon;
-    }
-
-    public List<Point> getObstacles() {
-        return obstacles;
-    }
-
-    public List<Snake> getBots() {
-        return bots;
-    }
+    public Snake getSnake() { return snake; }
+    public List<Point> getFoods() { return foods; }
+    public int getScore() { return score; }
+    public boolean isGameOver() { return gameOver; }
+    public boolean isGameWon() { return gameWon; }
+    public List<Point> getObstacles() { return obstacles; }
+    public List<Snake> getBots() { return bots; }
 }

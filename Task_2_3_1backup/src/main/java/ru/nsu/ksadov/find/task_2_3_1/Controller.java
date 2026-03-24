@@ -12,9 +12,9 @@ import javafx.scene.paint.Color;
 public class Controller {
     private static final int CELL_SIZE = 20;
     private static final int GAME_GRID_SIZE = 20;
-    private static final long BASE_DELAY = 150_000_000L;
-    private static final long SPEED_MULTIPLIER = 2_000_000L;
-    private static final long MIN_DELAY = 50_000_000L;
+    private static final long BASE_DELAY_NS = 150_000_000L;
+    private static final long SPEED_MULTIPLIER_NS = 2_000_000L;
+    private static final long MIN_DELAY_NS = 50_000_000L;
     private static final int TEXT_X_POS = 150;
     private static final int TEXT_Y_POS = 200;
 
@@ -28,9 +28,9 @@ public class Controller {
     private final AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long now) {
-            long delay = BASE_DELAY - (gameState.getScore() * SPEED_MULTIPLIER);
-            if (delay < MIN_DELAY) {
-                delay = MIN_DELAY;
+            long delay = BASE_DELAY_NS - (gameState.getScore() * SPEED_MULTIPLIER_NS);
+            if (delay < MIN_DELAY_NS) {
+                delay = MIN_DELAY_NS;
             }
 
             if (now - lastUpdate >= delay) {
@@ -60,12 +60,12 @@ public class Controller {
             gc.fillRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
 
-        gc.setFill(Color.ORANGERED);
+        gc.setFill(Color.RED);
         for (Point food : gameState.getFoods()) {
             gc.fillOval(food.x() * CELL_SIZE, food.y() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
 
-        drawSnake(gameState.getSnake(), Color.GOLD);
+        drawSnake(gameState.getSnake(), Color.LIME);
         for (Snake bot : gameState.getBots()) {
             drawSnake(bot, Color.DARKORCHID);
         }
@@ -90,7 +90,7 @@ public class Controller {
             if (i == 0) {
                 gc.setFill(bodyColor.darker());
                 gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1, CELL_SIZE - 1, 8, 8);
-                gc.setFill(Color.GREEN);
+                gc.setFill(Color.WHITE);
                 gc.fillOval(p.x() * CELL_SIZE + 4, p.y() * CELL_SIZE + 4, 4, 4);
                 gc.fillOval(p.x() * CELL_SIZE + 12, p.y() * CELL_SIZE + 4, 4, 4);
             } else {
