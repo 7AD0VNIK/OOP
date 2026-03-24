@@ -1,3 +1,7 @@
+# Gradle wrapper scripts - MUST be tracked
+!gradlew
+!gradlew.bat
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
