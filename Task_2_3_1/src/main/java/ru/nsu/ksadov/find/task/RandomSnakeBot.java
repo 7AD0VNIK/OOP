@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
 import java.util.Random;
 

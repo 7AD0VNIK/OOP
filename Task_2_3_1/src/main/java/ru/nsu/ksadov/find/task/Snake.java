@@ -1,10 +1,12 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 /** Represents a snake entity with a body and movement direction. */
 public class Snake {
-    private final LinkedList<Point> body = new LinkedList<>();
+    private final Deque<Point> body = new ConcurrentLinkedDeque<>();
     private Direction direction = Direction.RIGHT;
 
     public Snake(Point startPos) {
@@ -18,6 +20,7 @@ public class Snake {
                 (curr == Direction.RIGHT && next == Direction.LEFT);
     }
 
+    /** Moves the snake one step forward. */
     public void move(boolean mustGrow) {
         Point head = body.getFirst();
         Point newHead = switch (direction) {
@@ -33,10 +36,11 @@ public class Snake {
         }
     }
 
-    public LinkedList<Point> getBody() {
+    public Deque<Point> getBody() {
         return body;
     }
 
+    /** Sets the snake's direction, preventing reversal. */
     public void setDirection(Direction newDir) {
         if (!isOpposite(this.direction, newDir)) {
             this.direction = newDir;
@@ -47,6 +51,7 @@ public class Snake {
         return this.direction;
     }
 
+    /** Grows the snake by one segment at the head in the current direction. */
     public void eat() {
         Point head = body.getFirst();
         Point newHead = switch (direction) {
@@ -58,6 +63,7 @@ public class Snake {
         body.addFirst(newHead);
     }
 
+    /** Checks if the new head position collides with the snake's own body. */
     public boolean checkSelfCollision(Point newHead) {
         return body.contains(newHead);
     }

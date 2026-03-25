@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
 /** Defines the possible movement directions for the snake. */
 public enum Direction {

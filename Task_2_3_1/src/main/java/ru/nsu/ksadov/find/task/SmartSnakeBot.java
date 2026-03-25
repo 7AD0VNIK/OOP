@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
 /** Defines a bot strategy that actively moves towards the first available food. */
 public class SmartSnakeBot implements Bot {

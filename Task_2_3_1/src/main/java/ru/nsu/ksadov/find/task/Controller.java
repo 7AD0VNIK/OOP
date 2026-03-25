@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -43,6 +43,7 @@ public class Controller {
         }
     };
 
+    /** Initializes the game state and starts the animation loop. */
     @FXML
     public void initialize() {
         gameState = new GameState(GAME_GRID_SIZE, GAME_GRID_SIZE);
@@ -83,18 +84,20 @@ public class Controller {
             timer.stop();
         }
     }
-
+    /** Drawing snake method. */
     private void drawSnake(Snake s, Color bodyColor) {
         GraphicsContext gc = gameCanvas.getGraphicsContext2D();
-        for (int i = 0; i < s.getBody().size(); i++) {
-            Point p = s.getBody().get(i);
-            if (i == 0) {
+        boolean isHead = true;
+
+        for (Point p : s.getBody()) {
+            if (isHead) {
                 gc.setFill(bodyColor.darker());
                 gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1,
                         CELL_SIZE - 1, 8, 8);
                 gc.setFill(Color.GREEN);
                 gc.fillOval(p.x() * CELL_SIZE + 4, p.y() * CELL_SIZE + 4, 4, 4);
                 gc.fillOval(p.x() * CELL_SIZE + 12, p.y() * CELL_SIZE + 4, 4, 4);
+                isHead = false;
             } else {
                 gc.setFill(bodyColor);
                 gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1,
@@ -103,6 +106,7 @@ public class Controller {
         }
     }
 
+    /** Resets the game to its initial state. */
     @FXML
     public void handleRestart() {
         gameState = new GameState(GAME_GRID_SIZE, GAME_GRID_SIZE);
@@ -112,6 +116,8 @@ public class Controller {
         gameCanvas.requestFocus();
     }
 
+    /** Handles keyboard input for controlling the player snake. */
+    @FXML
     public void handleButtonsPressed(KeyEvent event) {
         if (movedThisFrame) {
             return;
@@ -133,4 +139,6 @@ public class Controller {
             movedThisFrame = true;
         }
     }
+
+    
 }

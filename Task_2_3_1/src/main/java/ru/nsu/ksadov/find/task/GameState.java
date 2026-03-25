@@ -1,9 +1,13 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /** Manages the core game logic, state, entities, and collision detection. */
 public class GameState {
@@ -14,16 +18,20 @@ public class GameState {
     private final int width;
     private final int height;
     private final Snake snake;
-    private final List<Snake> bots = new ArrayList<>();
-    private final List<Bot> botStrategies = new ArrayList<>();
-    private final List<Point> foods = new ArrayList<>();
-    private final List<Point> obstacles = new ArrayList<>();
+    private final List<Snake> bots = new CopyOnWriteArrayList<>();
+    private final List<Bot> botStrategies = new CopyOnWriteArrayList<>();
+    private final List<Point> foods = new CopyOnWriteArrayList<>();
+    private final List<Point> obstacles = new CopyOnWriteArrayList<>();
+
     private final Random random = new Random();
 
-    private int score = 1;
-    private boolean gameOver = false;
-    private boolean gameWon = false;
+    private final AtomicInteger score = new AtomicInteger(1);
+    private final AtomicBoolean gameOver = new AtomicBoolean(false);
+    private final AtomicBoolean gameWon = new AtomicBoolean(false);
 
+    /**
+     * Constructs a new game state with the specified grid size.
+     */
     public GameState(int width, int height) {
         this.width = width;
         this.height = height;
@@ -39,17 +47,20 @@ public class GameState {
         spawnFood();
     }
 
+    /** Spawns food items until MAX_FOOD is reached. */
     private void spawnFood() {
         while (foods.size() < MAX_FOOD) {
             int x = random.nextInt(width);
             int y = random.nextInt(height);
             Point newFood = new Point(x, y);
-            if (!snake.getBody().contains(newFood) && !foods.contains(newFood) && !obstacles.contains(newFood)) {
+            if (!snake.getBody().contains(newFood) && !foods.contains(newFood)
+                    && !obstacles.contains(newFood)) {
                 foods.add(newFood);
             }
         }
     }
 
+    /** Spawns obstacles until COUNT_OBS is reached. */
     private void spawnObs() {
         while (obstacles.size() < COUNT_OBS) {
             int x = random.nextInt(width);
@@ -61,30 +72,33 @@ public class GameState {
         }
     }
 
+    /** Advances the game by one step: moves all snakes and checks for collisions. */
     public void step() {
-        if (gameOver || gameWon) {
+        if (gameOver.get() || gameWon.get()) {
             return;
         }
 
         moveSnake(snake, snake.getDirection());
 
-        Iterator<Snake> botIterator = bots.iterator();
-        Iterator<Bot> strategyIterator = botStrategies.iterator();
-
-        while (botIterator.hasNext() && strategyIterator.hasNext()) {
-            Snake bot = botIterator.next();
-            Bot strategy = strategyIterator.next();
-
+        IntStream.range(0, bots.size()).parallel().forEach(i -> {
+            Snake bot = bots.get(i);
+            Bot strategy = botStrategies.get(i);
             Direction nextDir = strategy.chooseDirection(bot, this);
             bot.setDirection(nextDir);
+        });
 
-            if (!moveSnake(bot, nextDir)) {
-                botIterator.remove();
-                strategyIterator.remove();
+        for (int i = 0; i < bots.size(); i++) {
+            Snake bot = bots.get(i);
+            if (!moveSnake(bot, bot.getDirection())) {
+                bots.remove(i);
+                botStrategies.remove(i);
+                i--;
             }
         }
     }
 
+
+    /** Moves a snake in the given direction. */
     private boolean moveSnake(Snake currentSnake, Direction direction) {
         Point head = currentSnake.getBody().getFirst();
         Point nextPoint = switch (direction) {
@@ -94,22 +108,21 @@ public class GameState {
             case RIGHT -> new Point(head.x() + 1, head.y());
         };
 
-        if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0 ||
-                nextPoint.y() >= height) {
-            if (currentSnake == snake) gameOver = true;
+        if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0
+                || nextPoint.y() >= height) {
+            if (currentSnake == snake) gameOver.set(true);
             return false;
         }
 
-        if (currentSnake.checkSelfCollision(nextPoint) || obstacles.contains(nextPoint)) {
-            if (currentSnake == snake) gameOver = true;
+        if (currentSnake.checkSelfCollision(nextPoint)
+                || obstacles.contains(nextPoint)) {
+            if (currentSnake == snake) gameOver.set(true);
             return false;
         }
 
         for (Snake other : bots) {
-            if (other.getBody().contains(nextPoint)) {
-                if (currentSnake == snake) {
-                    gameOver = true;
-                }
+            if (other != currentSnake && other.getBody().contains(nextPoint)) {
+                if (currentSnake == snake) gameOver.set(true);
                 return false;
             }
         }
@@ -123,9 +136,9 @@ public class GameState {
             currentSnake.eat();
             spawnFood();
             if (currentSnake == snake) {
-                score++;
-                if (snake.getBody().size() >= TARGET_LENGTH) {
-                    gameWon = true;
+                int newScore = score.incrementAndGet();
+                if (currentSnake.getBody().size() >= TARGET_LENGTH) {
+                    gameWon.set(true);
                 }
             }
         } else {
@@ -143,15 +156,15 @@ public class GameState {
     }
 
     public int getScore() {
-        return score;
+        return score.get();
     }
 
     public boolean isGameOver() {
-        return gameOver;
+        return gameOver.get();
     }
 
     public boolean isGameWon() {
-        return gameWon;
+        return gameWon.get();
     }
 
     public List<Point> getObstacles() {

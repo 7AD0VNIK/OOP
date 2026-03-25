@@ -1,4 +1,4 @@
-package ru.nsu.ksadov.find.task_2_3_1;
+package ru.nsu.ksadov.find.task;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

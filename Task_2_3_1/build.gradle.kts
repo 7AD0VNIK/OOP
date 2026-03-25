@@ -27,8 +27,8 @@ tasks.withType<JavaCompile> {
 }
 
 application {
-    mainModule.set("ru.nsu.ksadov.find.task_2_3_1")
-    mainClass.set("ru.nsu.ksadov.find.task_2_3_1.HelloApplication")
+    mainModule.set("ru.nsu.ksadov.find.task")
+    mainClass.set("ru.nsu.ksadov.find.task.HelloApplication")
 }
 
 javafx {
