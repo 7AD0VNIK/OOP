@@ -132,7 +132,7 @@ public class Controller {
             case DOWN, S -> newDir = Direction.DOWN;
             case LEFT, A -> newDir = Direction.LEFT;
             case RIGHT, D -> newDir = Direction.RIGHT;
-            default -> {}
+            default -> { }
         }
 
         if (newDir != currDir) {

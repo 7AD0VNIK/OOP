@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 class RandomSnakeBotTest {
     @Test
@@ -32,7 +32,9 @@ class RandomSnakeBotTest {
             results.add(bot.chooseDirection(snake, state));
         }
 
-        assertFalse(results.contains(Direction.DOWN), "рандомный бот не должен разворачиваться мгновенно");
-        assertTrue(results.size() > 1, "бот должен уметь менять направление, а не только ехать прямо");
+        assertFalse(results.contains(Direction.DOWN),
+                "рандомный бот не должен разворачиваться мгновенно");
+        assertTrue(results.size() > 1,
+                "бот должен уметь менять направление, а не только ехать прямо");
     }
 }

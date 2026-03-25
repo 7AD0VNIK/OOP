@@ -13,10 +13,10 @@ public class Snake {
     }
 
     private boolean isOpposite(Direction curr, Direction next) {
-        return (curr == Direction.UP && next == Direction.DOWN) ||
-                (curr == Direction.DOWN && next == Direction.UP) ||
-                (curr == Direction.LEFT && next == Direction.RIGHT) ||
-                (curr == Direction.RIGHT && next == Direction.LEFT);
+        return (curr == Direction.UP && next == Direction.DOWN)
+                || (curr == Direction.DOWN && next == Direction.UP)
+                || (curr == Direction.LEFT && next == Direction.RIGHT)
+                || (curr == Direction.RIGHT && next == Direction.LEFT);
     }
 
     /** Moves the snake one step forward. */
