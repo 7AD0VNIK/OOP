@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"ru.nsu.ksadov.find.task_2_3_1"}];updateSearchResults();
