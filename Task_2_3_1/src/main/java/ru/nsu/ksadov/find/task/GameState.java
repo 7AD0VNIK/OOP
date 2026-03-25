@@ -1,12 +1,10 @@
 package ru.nsu.ksadov.find.task;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 /** Manages the core game logic, state, entities, and collision detection. */
@@ -110,19 +108,25 @@ public class GameState {
 
         if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0
                 || nextPoint.y() >= height) {
-            if (currentSnake == snake) gameOver.set(true);
+            if (currentSnake == snake) {
+                gameOver.set(true);
+            }
             return false;
         }
 
         if (currentSnake.checkSelfCollision(nextPoint)
                 || obstacles.contains(nextPoint)) {
-            if (currentSnake == snake) gameOver.set(true);
+            if (currentSnake == snake) {
+                gameOver.set(true);
+            }
             return false;
         }
 
         for (Snake other : bots) {
             if (other != currentSnake && other.getBody().contains(nextPoint)) {
-                if (currentSnake == snake) gameOver.set(true);
+                if (currentSnake == snake) {
+                    gameOver.set(true);
+                }
                 return false;
             }
         }

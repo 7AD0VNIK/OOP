@@ -1,8 +1,8 @@
 package ru.nsu.ksadov.find.task;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,7 +13,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WINDOW_WIDTH, WINDOW_HEIGHT);
         stage.setTitle("Snake Game");
         stage.setScene(scene);

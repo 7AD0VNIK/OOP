@@ -1,7 +1,6 @@
 package ru.nsu.ksadov.find.task;
 
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /** Represents a snake entity with a body and movement direction. */

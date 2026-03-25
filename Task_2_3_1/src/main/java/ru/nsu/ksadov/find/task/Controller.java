@@ -84,6 +84,7 @@ public class Controller {
             timer.stop();
         }
     }
+
     /** Drawing snake method. */
     private void drawSnake(Snake s, Color bodyColor) {
         GraphicsContext gc = gameCanvas.getGraphicsContext2D();
