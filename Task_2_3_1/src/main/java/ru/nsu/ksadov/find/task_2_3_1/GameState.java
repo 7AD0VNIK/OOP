@@ -94,7 +94,8 @@ public class GameState {
             case RIGHT -> new Point(head.x() + 1, head.y());
         };
 
-        if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0 || nextPoint.y() >= height) {
+        if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0 ||
+                nextPoint.y() >= height) {
             if (currentSnake == snake) gameOver = true;
             return false;
         }

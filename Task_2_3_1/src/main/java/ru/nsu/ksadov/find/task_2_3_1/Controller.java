@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
+
 /** Handles JavaFX user interactions, game rendering, and the main animation loop. */
 public class Controller {
     private static final int CELL_SIZE = 20;
@@ -89,13 +90,15 @@ public class Controller {
             Point p = s.getBody().get(i);
             if (i == 0) {
                 gc.setFill(bodyColor.darker());
-                gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1, CELL_SIZE - 1, 8, 8);
+                gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1,
+                        CELL_SIZE - 1, 8, 8);
                 gc.setFill(Color.GREEN);
                 gc.fillOval(p.x() * CELL_SIZE + 4, p.y() * CELL_SIZE + 4, 4, 4);
                 gc.fillOval(p.x() * CELL_SIZE + 12, p.y() * CELL_SIZE + 4, 4, 4);
             } else {
                 gc.setFill(bodyColor);
-                gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1, CELL_SIZE - 1, 8, 8);
+                gc.fillRoundRect(p.x() * CELL_SIZE, p.y() * CELL_SIZE, CELL_SIZE - 1,
+                        CELL_SIZE - 1, 8, 8);
             }
         }
     }
