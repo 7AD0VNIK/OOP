@@ -12,6 +12,7 @@ public class Snake {
         body.add(startPos);
     }
 
+    /** Defines next head position. */
     public Point getNextHeadPosition(Direction dir) {
         Point head = body.getFirst();
         return switch (dir) {

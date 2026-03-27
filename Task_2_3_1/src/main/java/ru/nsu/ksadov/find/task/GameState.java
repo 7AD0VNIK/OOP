@@ -1,12 +1,12 @@
 package ru.nsu.ksadov.find.task;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /** Manages the core game logic, state, entities, and collision detection. */
 public class GameState {
@@ -73,7 +73,7 @@ public class GameState {
 
     /** Spawns obstacles until COUNT_OBS is reached. */
     private void spawnObs() {
-        int maxAttempts = width * height    ;
+        int maxAttempts = width * height;
         int attempts = 0;
         while (obstacles.size() < COUNT_OBS && attempts < maxAttempts) {
             attempts++;
@@ -114,6 +114,7 @@ public class GameState {
 
 
     /** Moves a snake in the given direction.
+     *
      * @return true - if the snake successfully moved, fals - otherwise (collided or die).
      */
     private boolean moveSnake(Snake currentSnake, Direction direction) {
@@ -190,6 +191,7 @@ public class GameState {
     public List<Snake> getBots() {
         return bots;
     }
+
     public IntegerProperty scoreProperty() {
         return score;
     }
