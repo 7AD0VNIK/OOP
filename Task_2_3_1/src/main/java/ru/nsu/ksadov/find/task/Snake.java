@@ -12,22 +12,20 @@ public class Snake {
         body.add(startPos);
     }
 
-    private boolean isOpposite(Direction curr, Direction next) {
-        return (curr == Direction.UP && next == Direction.DOWN)
-                || (curr == Direction.DOWN && next == Direction.UP)
-                || (curr == Direction.LEFT && next == Direction.RIGHT)
-                || (curr == Direction.RIGHT && next == Direction.LEFT);
-    }
-
-    /** Moves the snake one step forward. */
-    public void move(boolean mustGrow) {
+    public Point getNextHeadPosition(Direction dir) {
         Point head = body.getFirst();
-        Point newHead = switch (direction) {
+        return switch (dir) {
             case UP -> new Point(head.x(), head.y() - 1);
             case DOWN -> new Point(head.x(), head.y() + 1);
             case RIGHT -> new Point(head.x() + 1, head.y());
             case LEFT -> new Point(head.x() - 1, head.y());
         };
+    }
+
+    /** Moves the snake one step forward. */
+    public void move(boolean mustGrow) {
+        Point head = body.getFirst();
+        Point newHead = getNextHeadPosition(direction);
 
         body.addFirst(newHead);
         if (!mustGrow) {
@@ -41,9 +39,17 @@ public class Snake {
 
     /** Sets the snake's direction, preventing reversal. */
     public void setDirection(Direction newDir) {
-        if (!isOpposite(this.direction, newDir)) {
+        if (!this.direction.isOpposite(newDir)) {
             this.direction = newDir;
         }
+    }
+
+    public boolean occupies(Point p) {
+        return body.contains(p);
+    }
+
+    public Point getHead() {
+        return body.getFirst();
     }
 
     public Direction getDirection() {
@@ -52,18 +58,15 @@ public class Snake {
 
     /** Grows the snake by one segment at the head in the current direction. */
     public void eat() {
-        Point head = body.getFirst();
-        Point newHead = switch (direction) {
-            case UP -> new Point(head.x(), head.y() - 1);
-            case DOWN -> new Point(head.x(), head.y() + 1);
-            case RIGHT -> new Point(head.x() + 1, head.y());
-            case LEFT -> new Point(head.x() - 1, head.y());
-        };
+        Point newHead = getNextHeadPosition(direction);
         body.addFirst(newHead);
     }
 
     /** Checks if the new head position collides with the snake's own body. */
     public boolean checkSelfCollision(Point newHead) {
+        if (!body.isEmpty() && newHead.equals(body.getLast())) {
+            return false;
+        }
         return body.contains(newHead);
     }
 }

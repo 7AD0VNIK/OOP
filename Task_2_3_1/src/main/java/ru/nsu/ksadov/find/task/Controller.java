@@ -13,14 +13,13 @@ import javafx.scene.paint.Color;
 public class Controller {
     private static final int CELL_SIZE = 20;
     private static final int GAME_GRID_SIZE = 20;
-    private static final long BASE_DELAY = 150_000_000L;
-    private static final long SPEED_MULTIPLIER = 2_000_000L;
-    private static final long MIN_DELAY = 50_000_000L;
     private static final int TEXT_X_POS = 150;
     private static final int TEXT_Y_POS = 200;
 
     @FXML private Canvas gameCanvas;
     @FXML private Label label;
+    @FXML private Label gameOverLabel;
+    @FXML private Label gameWonLabel;
 
     private GameState gameState;
     private long lastUpdate = 0;
@@ -29,17 +28,14 @@ public class Controller {
     private final AnimationTimer timer = new AnimationTimer() {
         @Override
         public void handle(long now) {
-            long delay = BASE_DELAY - (gameState.getScore() * SPEED_MULTIPLIER);
-            if (delay < MIN_DELAY) {
-                delay = MIN_DELAY;
-            }
+            long delay = gameState.getCurrDelay();
 
             if (now - lastUpdate >= delay) {
                 gameState.step();
                 movedThisFrame = false;
                 lastUpdate = now;
+                draw();
             }
-            draw();
         }
     };
 
@@ -47,6 +43,7 @@ public class Controller {
     @FXML
     public void initialize() {
         gameState = new GameState(GAME_GRID_SIZE, GAME_GRID_SIZE);
+        label.textProperty().bind(gameState.scoreProperty().asString("Score: %d"));
         draw();
         timer.start();
     }
@@ -71,8 +68,6 @@ public class Controller {
         for (Snake bot : gameState.getBots()) {
             drawSnake(bot, Color.DARKORCHID);
         }
-
-        label.setText("Score: " + gameState.getScore());
 
         if (gameState.isGameOver()) {
             gc.setFill(Color.WHITE);
@@ -112,6 +107,7 @@ public class Controller {
     public void handleRestart() {
         gameState = new GameState(GAME_GRID_SIZE, GAME_GRID_SIZE);
         movedThisFrame = false;
+        label.textProperty().bind(gameState.scoreProperty().asString("Score: %d"));
         timer.start();
         draw();
         gameCanvas.requestFocus();
@@ -140,6 +136,4 @@ public class Controller {
             movedThisFrame = true;
         }
     }
-
-    
 }

@@ -7,14 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /** Main entry point for the JavaFX Snake Game application. */
-public class HelloApplication extends Application {
+public class Main extends Application {
     private static final int WINDOW_WIDTH = 450;
     private static final int WINDOW_HEIGHT = 500;
 
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+                new FXMLLoader(Main.class.getResource("app.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WINDOW_WIDTH, WINDOW_HEIGHT);
         stage.setTitle("Snake Game");
         stage.setScene(scene);

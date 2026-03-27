@@ -8,7 +8,7 @@ public class SmartSnakeBot implements Bot {
             return bot.getDirection();
         }
 
-        Point head = bot.getBody().getFirst();
+        Point head = bot.getHead();
         Point target = state.getFoods().get(0);
 
         if (target.x() > head.x() && bot.getDirection() != Direction.LEFT) {

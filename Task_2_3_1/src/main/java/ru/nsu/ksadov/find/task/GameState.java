@@ -1,10 +1,11 @@
 package ru.nsu.ksadov.find.task;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 /** Manages the core game logic, state, entities, and collision detection. */
@@ -12,6 +13,9 @@ public class GameState {
     private static final int MAX_FOOD = 3;
     private static final int TARGET_LENGTH = 10;
     private static final int COUNT_OBS = 10;
+    private static final long BASE_DELAY = 150_000_000L;
+    private static final long SPEED_MULTIPLIER = 2_000_000L;
+    private static final long MIN_DELAY = 50_000_000L;
 
     private final int width;
     private final int height;
@@ -23,9 +27,14 @@ public class GameState {
 
     private final Random random = new Random();
 
-    private final AtomicInteger score = new AtomicInteger(1);
+    private final IntegerProperty score = new SimpleIntegerProperty(1);
     private final AtomicBoolean gameOver = new AtomicBoolean(false);
     private final AtomicBoolean gameWon = new AtomicBoolean(false);
+
+    public long getCurrDelay() {
+        long delay = BASE_DELAY - (score.get() * SPEED_MULTIPLIER);
+        return Math.max(delay, MIN_DELAY);
+    }
 
     /**
      * Constructs a new game state with the specified grid size.
@@ -47,12 +56,16 @@ public class GameState {
 
     /** Spawns food items until MAX_FOOD is reached. */
     private void spawnFood() {
-        while (foods.size() < MAX_FOOD) {
+        int maxAttempts = width * height;
+        int attempts = 0;
+        while (foods.size() < MAX_FOOD && attempts < maxAttempts) {
+            attempts++;
             int x = random.nextInt(width);
             int y = random.nextInt(height);
             Point newFood = new Point(x, y);
-            if (!snake.getBody().contains(newFood) && !foods.contains(newFood)
-                    && !obstacles.contains(newFood)) {
+            boolean occupiedByBot = bots.stream().anyMatch(bot -> bot.occupies(newFood));
+            if (!snake.occupies(newFood) && !foods.contains(newFood)
+                    && !obstacles.contains(newFood) && !occupiedByBot) {
                 foods.add(newFood);
             }
         }
@@ -60,11 +73,15 @@ public class GameState {
 
     /** Spawns obstacles until COUNT_OBS is reached. */
     private void spawnObs() {
-        while (obstacles.size() < COUNT_OBS) {
+        int maxAttempts = width * height    ;
+        int attempts = 0;
+        while (obstacles.size() < COUNT_OBS && attempts < maxAttempts) {
+            attempts++;
             int x = random.nextInt(width);
             int y = random.nextInt(height);
             Point newObs = new Point(x, y);
-            if (!snake.getBody().contains(newObs) && !obstacles.contains(newObs)) {
+            boolean occupiedByBot = bots.stream().anyMatch(bot -> bot.occupies(newObs));
+            if (!snake.occupies(newObs) && !obstacles.contains(newObs) && !occupiedByBot) {
                 obstacles.add(newObs);
             }
         }
@@ -96,16 +113,11 @@ public class GameState {
     }
 
 
-    /** Moves a snake in the given direction. */
+    /** Moves a snake in the given direction.
+     * @return true - if the snake successfully moved, fals - otherwise (collided or die).
+     */
     private boolean moveSnake(Snake currentSnake, Direction direction) {
-        Point head = currentSnake.getBody().getFirst();
-        Point nextPoint = switch (direction) {
-            case UP -> new Point(head.x(), head.y() - 1);
-            case DOWN -> new Point(head.x(), head.y() + 1);
-            case LEFT -> new Point(head.x() - 1, head.y());
-            case RIGHT -> new Point(head.x() + 1, head.y());
-        };
-
+        Point nextPoint = currentSnake.getNextHeadPosition(direction);
         if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0
                 || nextPoint.y() >= height) {
             if (currentSnake == snake) {
@@ -123,7 +135,7 @@ public class GameState {
         }
 
         for (Snake other : bots) {
-            if (other != currentSnake && other.getBody().contains(nextPoint)) {
+            if (other != currentSnake && other.occupies(nextPoint)) {
                 if (currentSnake == snake) {
                     gameOver.set(true);
                 }
@@ -131,7 +143,7 @@ public class GameState {
             }
         }
 
-        if (currentSnake != snake && snake.getBody().contains(nextPoint)) {
+        if (currentSnake != snake && snake.occupies(nextPoint)) {
             return false;
         }
 
@@ -140,7 +152,7 @@ public class GameState {
             currentSnake.eat();
             spawnFood();
             if (currentSnake == snake) {
-                int newScore = score.incrementAndGet();
+                score.set(score.get() + 1);
                 if (currentSnake.getBody().size() >= TARGET_LENGTH) {
                     gameWon.set(true);
                 }
@@ -177,5 +189,8 @@ public class GameState {
 
     public List<Snake> getBots() {
         return bots;
+    }
+    public IntegerProperty scoreProperty() {
+        return score;
     }
 }
