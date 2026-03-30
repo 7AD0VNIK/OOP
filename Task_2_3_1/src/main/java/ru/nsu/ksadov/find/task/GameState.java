@@ -121,7 +121,7 @@ public class GameState {
         Point nextPoint = currentSnake.getNextHeadPosition(direction);
         if (nextPoint.x() < 0 || nextPoint.x() >= width || nextPoint.y() < 0
                 || nextPoint.y() >= height) {
-            if (currentSnake == snake) {
+            if (currentSnake == this.snake) {
                 gameOver.set(true);
             }
             return false;
