@@ -1,0 +1,18 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ru.nsu.ksadov.find.task.Controller"
+      onKeyPressed="#handleButtonsPressed"> <Label fx:id="label" text="Score: 0" style="-fx-font-size: 20px;"/>
+    <Button text="Restart Game" onAction="#handleRestart" focusTraversable="false" />
+    <StackPane>
+        <Canvas fx:id="gameCanvas" width="400" height="400" />
+        <Label fx:id="gameOverLabel" text="GAME OVER" visible="false"
+               style="-fx-font-size: 30; -fx-text-fill: red; -fx-font-weight: bold;"/>
+        <Label fx:id="gameWonLabel" text="YOU WIN!" visible="false"
+               style="-fx-font-size: 30; -fx-text-fill: green;"/>
+    </StackPane>
+</VBox>
