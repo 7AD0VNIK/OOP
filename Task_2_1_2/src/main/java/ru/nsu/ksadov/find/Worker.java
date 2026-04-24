@@ -41,12 +41,12 @@ public class Worker {
     /**
      * .
      */
-    private void receiveData(DataInputStream in) throws IOException{
+    private void receiveData(DataInputStream in) throws IOException {
         int siz = in.readInt();
         this.array = new long[siz];
         long calcChSum = 0;
 
-        for(int i = 0; i < siz; i++) {
+        for (int i = 0; i < siz; i++) {
             array[i] = in.readLong();
             calcChSum += array[i];
         }

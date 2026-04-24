@@ -12,6 +12,9 @@ public class Discoverer {
     private static final String mulGroup = "224.0.0.1";
     private static final String magicN = "server prime port here:";
 
+    /**
+     *.
+     */
     public static ServerInfo discover() {
         try (MulticastSocket socket = new MulticastSocket(mulPort)) {
             InetAddress gr = InetAddress.getByName(mulGroup);

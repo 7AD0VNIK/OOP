@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * .
  */
-class MulticastIntegrationTest {
+class DiscovererTest {
 
     @Test
     void testAnnouncerAndDiscoverer() throws InterruptedException {
