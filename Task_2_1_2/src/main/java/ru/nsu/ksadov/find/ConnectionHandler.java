@@ -24,7 +24,7 @@ public class ConnectionHandler implements Runnable {
      */
     public ConnectionHandler(Socket socket, long[] array, ConcurrentLinkedQueue<Task> queue,
                              AtomicBoolean primeFound, ConcurrentHashMap<String, String> activeWorkers,
-                             String workerNamee) {
+                             String workerName) {
         this.socket = socket;
         this.array = array;
         this.queue = queue;

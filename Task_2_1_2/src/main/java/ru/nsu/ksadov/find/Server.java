@@ -25,9 +25,13 @@ public class Server implements Runnable{
         this.array = array;
         this.serverSocket = new ServerSocket(port);
         initQueue(1000);
-        new Thread(new Announcer(port)).start();
+        Thread announcerThread = new Thread(new Announcer(port));
+        announcerThread.setDaemon(true);
+        announcerThread.start();
 
-        new Thread(() -> printer(activeWorkers)).start();
+        Thread printerThread = new Thread(() -> printer(activeWorkers));
+        printerThread.setDaemon(true);
+        printerThread.start();
     }
 
     /**
