@@ -17,19 +17,20 @@ public class ConnectionHandler implements Runnable {
     private final ConcurrentLinkedQueue<Task> queue;
     private final AtomicBoolean primeFound;
     private final ConcurrentHashMap<String, String> activeWorkers;
-    private String wName;
+    private String workerName;
 
     /**
      * .
      */
     public ConnectionHandler(Socket socket, long[] array, ConcurrentLinkedQueue<Task> queue,
-                             AtomicBoolean primeFound, ConcurrentHashMap<String, String> activeWorkers, String wName) {
+                             AtomicBoolean primeFound, ConcurrentHashMap<String, String> activeWorkers,
+                             String workerNamee) {
         this.socket = socket;
         this.array = array;
         this.queue = queue;
         this.primeFound = primeFound;
         this.activeWorkers = activeWorkers;
-        this.wName = wName;
+        this.workerName = workerName;
     }
 
     /**
@@ -37,11 +38,11 @@ public class ConnectionHandler implements Runnable {
      */
     public void handleConversation(Socket socket) {
         Task currTask = null;
-        try(socket) {
+        try (socket) {
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());
             sendInitData(this.array, out);
-            while(!primeFound.get()) {
+            while (!primeFound.get()) {
                 currTask = (Task) queue.poll();
 
                 if (currTask == null) {
@@ -50,7 +51,7 @@ public class ConnectionHandler implements Runnable {
                     break;
                 }
 
-                activeWorkers.put(wName, "Range: [" + currTask.getStart() + " : " + currTask.getEnd() + "]");
+                activeWorkers.put(workerName, "Range: [" + currTask.getStart() + " : " + currTask.getEnd() + "]");
 
                 out.writeInt(currTask.getStart());
                 out.writeInt(currTask.getEnd());
@@ -67,13 +68,13 @@ public class ConnectionHandler implements Runnable {
             }
             out.flush();
         } catch (IOException e) {
-            System.out.println(wName + "Worker disconnected or error happen");
+            System.out.println(workerName + "Worker disconnected or error happen");
             if (currTask != null) {
                 System.out.println("Task returning [" + currTask.getStart() + "] to queue");
                 queue.add(currTask);
             }
         } finally {
-            activeWorkers.remove(wName);
+            activeWorkers.remove(workerName);
         }
     }
 

@@ -74,7 +74,7 @@ public class Worker {
     /**
     * -1 occurs when work done.
      */
-    private void processTask(DataInputStream in, DataOutputStream out) throws IOException{
+    private void processTask(DataInputStream in, DataOutputStream out) throws IOException {
         while (true) {
             int start = in.readInt();
             if (start == -1) {
