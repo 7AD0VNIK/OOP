@@ -22,9 +22,11 @@ public class ConnectionHandler implements Runnable {
     /**
      * Instantiates a new ConnectionHandler.
      */
-    public ConnectionHandler(Socket socket, long[] array, ConcurrentLinkedQueue<Task> queue,
-                             AtomicBoolean primeFound, ConcurrentHashMap<String, String> activeWorkers,
-                             String workerName) {
+    public ConnectionHandler(Socket socket, long[] array,
+                             ConcurrentLinkedQueue<Task> queue,
+                             AtomicBoolean primeFound,
+                             ConcurrentHashMap<String, String> activeWorkers,
+                             String workerName) { 
         this.socket = socket;
         this.array = array;
         this.queue = queue;
@@ -51,7 +53,8 @@ public class ConnectionHandler implements Runnable {
                     break;
                 }
 
-                activeWorkers.put(workerName, "Range: [" + currTask.getStart() + " : " + currTask.getEnd() + "]");
+                activeWorkers.put(workerName,
+                        "Range: [" + currTask.getStart() + " : " + currTask.getEnd() + "]");
 
                 out.writeInt(currTask.getStart());
                 out.writeInt(currTask.getEnd());
@@ -91,7 +94,7 @@ public class ConnectionHandler implements Runnable {
      */
     private long checkSum(long[] arr) {
         long sum = 0;
-        for(long num : arr) {
+        for (long num : arr) {
             sum += num;
         }
         return sum;

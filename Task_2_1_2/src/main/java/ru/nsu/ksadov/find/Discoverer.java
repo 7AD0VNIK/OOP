@@ -32,8 +32,8 @@ public class Discoverer {
                 if (received.startsWith(magicN)) {
                     int tcpPort = Integer.parseInt(received.substring(magicN.length()));
                     InetAddress servAdr = packet.getAddress();
-                    System.out.println("connected!" + servAdr.getHostAddress() +
-                            " TCP port:" + tcpPort);
+                    System.out.println("connected!" + servAdr.getHostAddress()
+                            + " TCP port:" + tcpPort);
                     socket.leaveGroup(gr);
                     return new ServerInfo(servAdr, tcpPort);
                 }

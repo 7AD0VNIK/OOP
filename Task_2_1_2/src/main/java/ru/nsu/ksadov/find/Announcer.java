@@ -34,7 +34,8 @@ public class Announcer implements Runnable {
                 System.out.println("MC started...");
 
                 while (!Thread.currentThread().isInterrupted()) {
-                    DatagramPacket packet = new DatagramPacket(buf, buf.length, group, mulPort);
+                    DatagramPacket packet = new DatagramPacket(buf,
+                            buf.length, group, mulPort);
                     socket.send(packet);
 
                     try {
