@@ -42,4 +42,27 @@ class ServerTest {
 
         workerThread.interrupt();
     }
+
+    @Test
+    void testPrinterPrintsActiveWorkers() throws IOException, InterruptedException {
+        long[] noPrimeArray = new long[1000];
+        Arrays.fill(noPrimeArray, 4L);
+
+        int testPort = 9006;
+        Server server = new Server(noPrimeArray, testPort);
+        Thread serverThread = new Thread(server);
+        serverThread.start();
+
+        Thread.sleep(1000);
+
+        ServerInfo info = new ServerInfo(InetAddress.getByName("127.0.0.1"), testPort);
+        Worker worker = new Worker(info);
+        Thread workerThread = new Thread(worker::start);
+        workerThread.start();
+
+        Thread.sleep(3000);
+
+        serverThread.interrupt();
+        workerThread.interrupt();
+    }
 }
