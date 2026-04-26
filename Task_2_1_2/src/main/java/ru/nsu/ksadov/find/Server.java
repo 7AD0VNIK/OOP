@@ -99,20 +99,4 @@ public class Server implements Runnable {
     public boolean getResult() {
         return primeFound.get();
     }
-
-    /**
-     * Main method to start the Server.
-     */
-    public static void main(String[] args) throws IOException, InterruptedException {
-        long[] testArray = new long[10000];
-        Arrays.fill(testArray, 17);
-        testArray[9999] = 10;
-
-        Server server = new Server(testArray, 9000);
-        Thread serverThread = new Thread(server);
-        serverThread.start();
-
-        serverThread.join();
-        System.out.println("Result: " + server.getResult());
-    }
 }

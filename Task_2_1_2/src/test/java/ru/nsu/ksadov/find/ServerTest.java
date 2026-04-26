@@ -26,8 +26,8 @@ class ServerTest {
 
         Thread.sleep(500);
 
-        ServerInfo mockInfo = new ServerInfo(InetAddress.getByName("127.0.0.1"), testPort);
-        Worker worker = new Worker(mockInfo);
+        ServerInfo info = new ServerInfo(InetAddress.getByName("127.0.0.1"), testPort);
+        Worker worker = new Worker(info);
 
         Thread workerThread = new Thread(worker::start);
         workerThread.start();

@@ -97,25 +97,4 @@ public class Worker {
             out.flush();
         }
     }
-
-    /**
-     * Main method to run the Worker.
-     */
-    public static void main(String[] args) {
-        while (true) {
-            System.out.println("Try to find server...");
-            ServerInfo info = Discoverer.discover();
-
-            if (info != null) {
-                Worker worker = new Worker(info);
-                worker.start();
-            }
-
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                break;
-            }
-        }
-    }
 }
