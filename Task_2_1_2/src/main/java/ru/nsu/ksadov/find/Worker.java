@@ -13,14 +13,14 @@ public class Worker {
     private long[] array;
 
     /**
-     * .
+     * Instantiates a new Worker.
      */
     public Worker(ServerInfo info) {
         this.serverInfo = info;
     }
 
     /**
-     * .
+     * Starts the worker process.
      */
     public void start() {
         try (Socket socket = new Socket(serverInfo.addr, serverInfo.tcpPort);
@@ -39,7 +39,7 @@ public class Worker {
     }
 
     /**
-     * .
+     * Receives data from the server.
      */
     private void receiveData(DataInputStream in) throws IOException {
         int siz = in.readInt();
@@ -57,7 +57,7 @@ public class Worker {
     }
 
     /**
-     * .
+     * Checks if a number is prime.
      */
     public static boolean isPrime(long n) {
         if (n < 2) {
@@ -72,7 +72,7 @@ public class Worker {
     }
 
     /**
-    * -1 occurs when work done.
+     * Processes tasks from the server, -1 occurs when work is done.
      */
     private void processTask(DataInputStream in, DataOutputStream out) throws IOException {
         while (true) {
@@ -99,7 +99,7 @@ public class Worker {
     }
 
     /**
-     * .
+     * Main method to run the Worker.
      */
     public static void main(String[] args) {
         while (true) {

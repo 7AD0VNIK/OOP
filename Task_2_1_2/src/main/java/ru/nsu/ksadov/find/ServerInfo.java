@@ -10,7 +10,7 @@ public class ServerInfo {
     public final int tcpPort;
 
     /**
-     * .
+     * Instantiates a new ServerInfo.
      */
     public ServerInfo(InetAddress inet, int tcpPort) {
         this.addr = inet;

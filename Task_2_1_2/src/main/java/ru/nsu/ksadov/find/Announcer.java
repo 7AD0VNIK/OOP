@@ -15,18 +15,18 @@ public class Announcer implements Runnable {
         private final String magicN = "server prime port here:";
 
         /**
-         * .
+         * Instantiates a new Announcer.
          */
         public Announcer(int tcpPort) {
             this.tcpPort = tcpPort;
         }
 
         /**
-         * .
+         * Runs the announcer loop to broadcast server presence.
          */
         @Override
         public void run() {
-            try(DatagramSocket socket = new DatagramSocket()) {
+            try (DatagramSocket socket = new DatagramSocket()) {
                 InetAddress group = InetAddress.getByName(mulGroup);
                 String msg = magicN + tcpPort;
                 byte[] buf = msg.getBytes();

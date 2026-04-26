@@ -13,7 +13,7 @@ public class Discoverer {
     private static final String magicN = "server prime port here:";
 
     /**
-     *.
+     * Discovers the server via multicast.
      */
     public static ServerInfo discover() {
         try (MulticastSocket socket = new MulticastSocket(mulPort)) {

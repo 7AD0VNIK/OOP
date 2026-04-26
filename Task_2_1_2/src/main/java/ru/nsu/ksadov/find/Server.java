@@ -9,9 +9,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Implementation of Server that gaves some tasks to the Workers
+ * Implementation of Server that gives some tasks to the Workers.
  */
-public class Server implements Runnable{
+public class Server implements Runnable {
     private final ConcurrentLinkedQueue<Task> queue = new ConcurrentLinkedQueue<>();
     private final ServerSocket serverSocket;
     private final long[] array;
@@ -19,7 +19,7 @@ public class Server implements Runnable{
     private final ConcurrentHashMap<String, String> activeWorkers = new ConcurrentHashMap<>();
 
     /**
-     * .
+     * Instantiates a new Server.
      */
     public Server(long[] array, int port) throws IOException {
         this.array = array;
@@ -35,7 +35,7 @@ public class Server implements Runnable{
     }
 
     /**
-     * .
+     * Initializes the task queue with chunks.
      */
     private void initQueue(int chunkSize) {
         for (int i = 0; i < array.length; i += chunkSize) {
@@ -45,7 +45,7 @@ public class Server implements Runnable{
     }
 
     /**
-     * Daemon thread that shows info about current state for evaery 2 seconds.
+     * Daemon thread that shows info about current state for every 2 seconds.
      */
     private void printer(ConcurrentHashMap<String, String> activeWorkers) {
         while (!primeFound.get()) {
@@ -68,7 +68,7 @@ public class Server implements Runnable{
     }
 
     /**
-     * .
+     * Runs the server logic.
      */
     @Override
     public void run() {
@@ -76,12 +76,12 @@ public class Server implements Runnable{
         int count = 0;
         try {
             while (!primeFound.get()) {
-                String wName = "worker" + count;
+                String workerName = "worker" + count;
                 Socket socket = serverSocket.accept();
-                System.out.println("New worker connected: " + wName);
+                System.out.println("New worker connected: " + workerName);
 
-                ConnectionHandler handler = new ConnectionHandler(socket, array, queue, primeFound, activeWorkers
-                        , wName);
+                ConnectionHandler handler = new ConnectionHandler(socket, array, queue, primeFound, activeWorkers,
+                        workerName);
                 new Thread(handler).start();
                 count++;
             }
@@ -93,14 +93,14 @@ public class Server implements Runnable{
     }
 
     /**
-     *.
+     * Gets the result indicating if a prime was found.
      */
     public boolean getResult() {
         return primeFound.get();
     }
 
     /**
-     *.
+     * Main method to start the Server.
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         long[] testArray = new long[10000];

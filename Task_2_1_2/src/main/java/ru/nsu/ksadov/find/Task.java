@@ -8,7 +8,7 @@ public class Task {
     private final int end;
 
     /**
-     * .
+     * Instantiates a new Task.
      */
     public Task(int start, int end) {
         this.end = end;
@@ -16,14 +16,14 @@ public class Task {
     }
 
     /**
-     * .
+     * Gets the start index.
      */
     public int getStart() {
         return start;
     }
 
     /**
-     * .
+     * Gets the end index.
      */
     public int getEnd() {
         return end;

@@ -20,7 +20,7 @@ public class ConnectionHandler implements Runnable {
     private String workerName;
 
     /**
-     * .
+     * Instantiates a new ConnectionHandler.
      */
     public ConnectionHandler(Socket socket, long[] array, ConcurrentLinkedQueue<Task> queue,
                              AtomicBoolean primeFound, ConcurrentHashMap<String, String> activeWorkers,
@@ -34,7 +34,7 @@ public class ConnectionHandler implements Runnable {
     }
 
     /**
-     * .
+     * Handles conversation with the connected worker.
      */
     public void handleConversation(Socket socket) {
         Task currTask = null;
@@ -79,7 +79,7 @@ public class ConnectionHandler implements Runnable {
     }
 
     /**
-     * .
+     * Runs the connection handler thread.
      */
     @Override
     public void run() {
@@ -87,7 +87,7 @@ public class ConnectionHandler implements Runnable {
     }
 
     /**
-     * .
+     * Calculates the checksum of the given array.
      */
     private long checkSum(long[] arr) {
         long sum = 0;
@@ -98,7 +98,7 @@ public class ConnectionHandler implements Runnable {
     }
 
     /**
-     * .
+     * Sends initial data to the worker.
      */
     public void sendInitData(long[] arr, DataOutputStream out) throws IOException {
         out.writeInt(arr.length);
