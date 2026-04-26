@@ -80,7 +80,8 @@ public class Server implements Runnable {
                 Socket socket = serverSocket.accept();
                 System.out.println("New worker connected: " + workerName);
 
-                ConnectionHandler handler = new ConnectionHandler(socket, array, queue, primeFound, activeWorkers,
+                ConnectionHandler handler = new ConnectionHandler(socket, array,
+                        queue, primeFound, activeWorkers,
                         workerName);
                 new Thread(handler).start();
                 count++;
