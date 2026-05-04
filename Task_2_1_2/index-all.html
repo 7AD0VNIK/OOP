@@ -48,7 +48,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/ksadov/find/ServerInfo.html#addr" class="member-name-link">addr</a> - Variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ServerInfo.html" title="class in ru.nsu.ksadov.find">ServerInfo</a></dt>
@@ -64,6 +64,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#CHECKSUM_ERROR" class="member-name-link">CHECKSUM_ERROR</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#CHUNK_SIZE" class="member-name-link">CHUNK_SIZE</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/ConnectionHandler.html" class="type-name-link" title="class in ru.nsu.ksadov.find">ConnectionHandler</a> - Class in <a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a></dt>
 <dd>
 <div class="block">Class that implements mechanism of interaction Server with Workers.</div>
@@ -88,6 +92,12 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ksadov/find/Server.html#getActiveWorkers()" class="member-name-link">getActiveWorkers()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Server.html" title="class in ru.nsu.ksadov.find">Server</a></dt>
+<dd>
+<div class="block">Gets the map of active workers (useful for testing/monitoring).</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/find/TaskChunk.html#getChunk()" class="member-name-link">getChunk()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/TaskChunk.html" title="class in ru.nsu.ksadov.find">TaskChunk</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/Task.html#getEnd()" class="member-name-link">getEnd()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Task.html" title="class in ru.nsu.ksadov.find">Task</a></dt>
 <dd>
 <div class="block">Gets the end index.</div>
@@ -100,13 +110,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Gets the start index.</div>
 </dd>
-</dl>
-<h2 class="title" id="I:H">H</h2>
-<dl class="index">
-<dt><a href="ru/nsu/ksadov/find/ConnectionHandler.html#handleConversation(java.net.Socket)" class="member-name-link">handleConversation(Socket)</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ConnectionHandler.html" title="class in ru.nsu.ksadov.find">ConnectionHandler</a></dt>
-<dd>
-<div class="block">Handles conversation with the connected worker.</div>
-</dd>
+<dt><a href="ru/nsu/ksadov/find/TaskChunk.html#getTask()" class="member-name-link">getTask()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/TaskChunk.html" title="class in ru.nsu.ksadov.find">TaskChunk</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -115,8 +120,41 @@ loadScripts(document, 'script');</script>
 <div class="block">Checks if a number is prime.</div>
 </dd>
 </dl>
+<h2 class="title" id="I:M">M</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#MAGIC_NUMBER" class="member-name-link">MAGIC_NUMBER</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/find/MessageSerializer.html" class="type-name-link" title="class in ru.nsu.ksadov.find">MessageSerializer</a> - Class in <a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a></dt>
+<dd>
+<div class="block">Utility class for message serialization/deserialization.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/find/MessageSerializer.html#%3Cinit%3E()" class="member-name-link">MessageSerializer()</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/MessageSerializer.html" title="class in ru.nsu.ksadov.find">MessageSerializer</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#MULTICAST_GROUP" class="member-name-link">MULTICAST_GROUP</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#MULTICAST_PORT" class="member-name-link">MULTICAST_PORT</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:N">N</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#NO_MORE_TASKS" class="member-name-link">NO_MORE_TASKS</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:P">P</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html" class="type-name-link" title="class in ru.nsu.ksadov.find">ProtocolConstants</a> - Class in <a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a></dt>
+<dd>
+<div class="block">Protocol constants for client-server communication.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#%3Cinit%3E()" class="member-name-link">ProtocolConstants()</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+</dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ksadov/find/MessageSerializer.html#receiveTaskChunk(java.io.DataInputStream)" class="member-name-link">receiveTaskChunk(DataInputStream)</a> - Static method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/MessageSerializer.html" title="class in ru.nsu.ksadov.find">MessageSerializer</a></dt>
+<dd>
+<div class="block">Receives task chunk from server.</div>
+</dd>
 <dt><a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a> - package ru.nsu.ksadov.find</dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/Announcer.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Announcer.html" title="class in ru.nsu.ksadov.find">Announcer</a></dt>
@@ -125,7 +163,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/ksadov/find/ConnectionHandler.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ConnectionHandler.html" title="class in ru.nsu.ksadov.find">ConnectionHandler</a></dt>
 <dd>
-<div class="block">Runs the connection handler thread.</div>
+<div class="block">.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/find/Server.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Server.html" title="class in ru.nsu.ksadov.find">Server</a></dt>
 <dd>
@@ -134,9 +172,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
-<dt><a href="ru/nsu/ksadov/find/ConnectionHandler.html#sendInitData(long%5B%5D,java.io.DataOutputStream)" class="member-name-link">sendInitData(long[], DataOutputStream)</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ConnectionHandler.html" title="class in ru.nsu.ksadov.find">ConnectionHandler</a></dt>
+<dt><a href="ru/nsu/ksadov/find/MessageSerializer.html#sendEndOfWork(java.io.DataOutputStream)" class="member-name-link">sendEndOfWork(DataOutputStream)</a> - Static method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/MessageSerializer.html" title="class in ru.nsu.ksadov.find">MessageSerializer</a></dt>
 <dd>
-<div class="block">Sends initial data to the worker.</div>
+<div class="block">Sends end of work signal.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/find/MessageSerializer.html#sendTaskChunk(java.io.DataOutputStream,ru.nsu.ksadov.find.Task,long%5B%5D)" class="member-name-link">sendTaskChunk(DataOutputStream, Task, long[])</a> - Static method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/MessageSerializer.html" title="class in ru.nsu.ksadov.find">MessageSerializer</a></dt>
+<dd>
+<div class="block">Sends a task chunk to the worker.</div>
 </dd>
 <dt><a href="ru/nsu/ksadov/find/Server.html" class="type-name-link" title="class in ru.nsu.ksadov.find">Server</a> - Class in <a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a></dt>
 <dd>
@@ -158,6 +200,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Starts the worker process.</div>
 </dd>
+<dt><a href="ru/nsu/ksadov/find/ProtocolConstants.html#STATUS_PRINT_INTERVAL_MS" class="member-name-link">STATUS_PRINT_INTERVAL_MS</a> - Static variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ProtocolConstants.html" title="class in ru.nsu.ksadov.find">ProtocolConstants</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ksadov/find/Announcer.html#stop()" class="member-name-link">stop()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Announcer.html" title="class in ru.nsu.ksadov.find">Announcer</a></dt>
+<dd>
+<div class="block">.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/find/Server.html#stop()" class="member-name-link">stop()</a> - Method in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/Server.html" title="class in ru.nsu.ksadov.find">Server</a></dt>
+<dd>
+<div class="block">Stops the server gracefully.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
@@ -169,6 +221,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Instantiates a new Task.</div>
 </dd>
+<dt><a href="ru/nsu/ksadov/find/TaskChunk.html" class="type-name-link" title="class in ru.nsu.ksadov.find">TaskChunk</a> - Class in <a href="ru/nsu/ksadov/find/package-summary.html">ru.nsu.ksadov.find</a></dt>
+<dd>
+<div class="block">Class that holds a task with its corresponding data chunk.</div>
+</dd>
+<dt><a href="ru/nsu/ksadov/find/TaskChunk.html#%3Cinit%3E(ru.nsu.ksadov.find.Task,long%5B%5D)" class="member-name-link">TaskChunk(Task, long[])</a> - Constructor for class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/TaskChunk.html" title="class in ru.nsu.ksadov.find">TaskChunk</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ksadov/find/ServerInfo.html#tcpPort" class="member-name-link">tcpPort</a> - Variable in class ru.nsu.ksadov.find.<a href="ru/nsu/ksadov/find/ServerInfo.html" title="class in ru.nsu.ksadov.find">ServerInfo</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -183,7 +241,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Instantiates a new Worker.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
 </div>
 </div>
 </body>
