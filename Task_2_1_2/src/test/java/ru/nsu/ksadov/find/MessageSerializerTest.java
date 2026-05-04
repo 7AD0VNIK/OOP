@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 class MessageSerializerTest {
