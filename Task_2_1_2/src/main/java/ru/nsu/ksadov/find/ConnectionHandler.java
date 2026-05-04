@@ -26,7 +26,7 @@ public class ConnectionHandler implements Runnable {
                              ConcurrentLinkedQueue<Task> queue,
                              AtomicBoolean primeFound,
                              ConcurrentHashMap<String, String> activeWorkers,
-                             String workerName) { 
+                             String workerName) {
         this.socket = socket;
         this.array = array;
         this.queue = queue;
@@ -36,80 +36,78 @@ public class ConnectionHandler implements Runnable {
     }
 
     /**
+     * .
+     */
+    @Override
+    public void run() {
+        try {
+            handleConversation(socket);
+        } catch (IOException e) {
+            System.out.println("Error handling worker " + workerName + ": " + e.getMessage());
+        } finally {
+            activeWorkers.remove(workerName);
+            try {
+                socket.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+
+    /**
      * Handles conversation with the connected worker.
      */
-    public void handleConversation(Socket socket) {
+    private void handleConversation(Socket socket) throws IOException {
         Task currTask = null;
-        try (socket) {
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            sendInitData(this.array, out);
+        try (DataInputStream in = new DataInputStream(socket.getInputStream());
+             DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+
+            activeWorkers.put(workerName, "Working");
+
             while (!primeFound.get()) {
-                currTask = (Task) queue.poll();
+                currTask = queue.poll();
 
                 if (currTask == null) {
-                    out.writeInt(-1);
-                    out.flush();
+                    MessageSerializer.sendEndOfWork(out);
                     break;
                 }
 
-                activeWorkers.put(workerName,
-                        "Range: [" + currTask.getStart() + " : " + currTask.getEnd() + "]");
+                long[] chunk = getChunkForTask(currTask);
+                MessageSerializer.sendTaskChunk(out, currTask, chunk);
 
-                out.writeInt(currTask.getStart());
-                out.writeInt(currTask.getEnd());
-                out.flush();
+                boolean foundNonPrime = in.readBoolean();
 
-                boolean found = in.readBoolean();
-                if (found) {
+                if (foundNonPrime) {
                     primeFound.set(true);
-                    System.out.println("Worker found prime! Stopping");
+                    activeWorkers.put(workerName, "Found non-prime in ["
+                            + currTask.getStart() + ", " + currTask.getEnd() + "]");
                     break;
                 }
+
+                activeWorkers.put(workerName, "Completed ["
+                        + currTask.getStart() + ", " + currTask.getEnd() + "]");
 
                 currTask = null;
             }
-            out.flush();
+
         } catch (IOException e) {
-            System.out.println(workerName + "Worker disconnected or error happen");
             if (currTask != null) {
-                System.out.println("Task returning [" + currTask.getStart() + "] to queue");
+                System.out.println("Worker disconnected. Returning task to queue: ["
+                        + currTask.getStart() + ", " + currTask.getEnd() + "]");
                 queue.add(currTask);
             }
+            throw e;
         } finally {
             activeWorkers.remove(workerName);
         }
     }
 
     /**
-     * Runs the connection handler thread.
+     * Gets the chunk of array for the given task.
      */
-    @Override
-    public void run() {
-        handleConversation(socket);
-    }
-
-    /**
-     * Calculates the checksum of the given array.
-     */
-    private long checkSum(long[] arr) {
-        long sum = 0;
-        for (long num : arr) {
-            sum += num;
-        }
-        return sum;
-    }
-
-    /**
-     * Sends initial data to the worker.
-     */
-    public void sendInitData(long[] arr, DataOutputStream out) throws IOException {
-        out.writeInt(arr.length);
-        for (long num : arr) {
-            out.writeLong(num);
-        }
-        out.writeLong(checkSum(arr));
-        out.flush();
-        System.out.println("Arr sent to worker. Which size:" + arr.length);
+    private long[] getChunkForTask(Task task) {
+        int size = task.getEnd() - task.getStart();
+        long[] chunk = new long[size];
+        System.arraycopy(array, task.getStart(), chunk, 0, size);
+        return chunk;
     }
 }

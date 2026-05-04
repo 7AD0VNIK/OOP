@@ -10,7 +10,6 @@ import java.net.Socket;
  */
 public class Worker {
     private final ServerInfo serverInfo;
-    private long[] array;
 
     /**
      * Instantiates a new Worker.
@@ -28,31 +27,11 @@ public class Worker {
              DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
 
             System.out.println("Successful connect. Data waiting..");
+            processTasks(in, out);
+            System.out.println("All tasks completed");
 
-            receiveData(in);
-
-            System.out.println("Data loaded and correct");
-            processTask(in, out);
         } catch (IOException e) {
             System.out.println("Error. Could not connect to server : " + e.getMessage());
-        }
-    }
-
-    /**
-     * Receives data from the server.
-     */
-    private void receiveData(DataInputStream in) throws IOException {
-        int siz = in.readInt();
-        this.array = new long[siz];
-        long calcChSum = 0;
-
-        for (int i = 0; i < siz; i++) {
-            array[i] = in.readLong();
-            calcChSum += array[i];
-        }
-        long realChSum = in.readLong();
-        if (calcChSum != realChSum) {
-            throw new IOException("Error: data integrity is compromised. Checksums are different");
         }
     }
 
@@ -72,22 +51,25 @@ public class Worker {
     }
 
     /**
-     * Processes tasks from the server, -1 occurs when work is done.
+     * Processes tasks from the server.
      */
-    private void processTask(DataInputStream in, DataOutputStream out) throws IOException {
+    private void processTasks(DataInputStream in, DataOutputStream out) throws IOException {
         while (true) {
-            int start = in.readInt();
-            if (start == -1) {
+            TaskChunk taskChunk = MessageSerializer.receiveTaskChunk(in);
+
+            if (taskChunk == null) {
                 break;
             }
 
-            int end = in.readInt();
+            Task task = taskChunk.getTask();
+            long[] chunk = taskChunk.getChunk();
 
-            System.out.println("work with range [" + start + ", " + end + "]");
+            System.out.println("Working with range [" + task.getStart() + ", " + task.getEnd()
+                    + "], chunk size: " + chunk.length);
 
             boolean found = false;
-            for (int i = start; i < end; i++) {
-                if (!isPrime(array[i])) {
+            for (long value : chunk) {
+                if (!isPrime(value)) {
                     found = true;
                     break;
                 }
@@ -95,6 +77,11 @@ public class Worker {
 
             out.writeBoolean(found);
             out.flush();
+
+            if (found) {
+                System.out.println("Non-prime number found in range ["
+                        + task.getStart() + ", " + task.getEnd() + "]");
+            }
         }
     }
 }

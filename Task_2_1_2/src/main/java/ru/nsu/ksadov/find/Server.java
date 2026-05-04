@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -17,6 +19,8 @@ public class Server implements Runnable {
     private final long[] array;
     private final AtomicBoolean primeFound = new AtomicBoolean(false);
     private final ConcurrentHashMap<String, String> activeWorkers = new ConcurrentHashMap<>();
+    private final ExecutorService threadPool;
+    private volatile boolean serverRunning = true;
 
     /**
      * Instantiates a new Server.
@@ -24,7 +28,10 @@ public class Server implements Runnable {
     public Server(long[] array, int port) throws IOException {
         this.array = array;
         this.serverSocket = new ServerSocket(port);
-        initQueue(1000);
+        this.threadPool = Executors.newFixedThreadPool(
+                Runtime.getRuntime().availableProcessors() * 2);
+        initQueue(ProtocolConstants.CHUNK_SIZE);
+
         Thread announcerThread = new Thread(new Announcer(port));
         announcerThread.setDaemon(true);
         announcerThread.start();
@@ -57,14 +64,15 @@ public class Server implements Runnable {
                     System.out.println(key + " -> " + activeWorkers.get(key));
                 }
             }
+            System.out.println("Tasks remaining: " + queue.size());
+
             try {
-                Thread.sleep(2000);
+                Thread.sleep(ProtocolConstants.STATUS_PRINT_INTERVAL_MS);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 return;
             }
         }
-
     }
 
     /**
@@ -74,23 +82,40 @@ public class Server implements Runnable {
     public void run() {
         System.out.println("Server started...");
         int count = 0;
+
         try {
-            while (!primeFound.get()) {
+            while (!primeFound.get() && serverRunning) {
                 String workerName = "worker" + count;
                 Socket socket = serverSocket.accept();
                 System.out.println("New worker connected: " + workerName);
 
-                ConnectionHandler handler = new ConnectionHandler(socket, array,
-                        queue, primeFound, activeWorkers,
-                        workerName);
-                new Thread(handler).start();
+                ConnectionHandler handler = new ConnectionHandler(
+                        socket, array, queue, primeFound, activeWorkers, workerName);
+
+                threadPool.submit(handler);
                 count++;
             }
         } catch (IOException e) {
-            if (!primeFound.get()) {
+            if (serverRunning && !primeFound.get()) {
+                System.err.println("Server error: " + e.getMessage());
                 e.printStackTrace();
             }
+        } finally {
+            serverRunning = false;
+            shutdown();
         }
+    }
+
+    /**
+     * Gracefully shuts down the server.
+     */
+    private void shutdown() {
+        System.out.println("Shutting down server...");
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+        }
+        threadPool.shutdown();
     }
 
     /**
@@ -98,5 +123,26 @@ public class Server implements Runnable {
      */
     public boolean getResult() {
         return primeFound.get();
+    }
+
+    /**
+     * Stops the server gracefully.
+     */
+    public void stop() {
+        serverRunning = false;
+        try {
+            if (serverSocket != null && !serverSocket.isClosed()) {
+                serverSocket.close();
+            }
+        } catch (IOException e) {
+            }
+        threadPool.shutdownNow();
+    }
+
+    /**
+     * Gets the map of active workers (useful for testing/monitoring).
+     */
+    public ConcurrentHashMap<String, String> getActiveWorkers() {
+        return activeWorkers;
     }
 }
