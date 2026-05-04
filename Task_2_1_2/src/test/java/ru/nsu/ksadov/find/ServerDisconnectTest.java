@@ -1,5 +1,8 @@
 package ru.nsu.ksadov.find;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -7,9 +10,9 @@ import java.net.Socket;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+/**
+ * .
+ */
 public class ServerDisconnectTest {
 
     @Test
@@ -33,7 +36,8 @@ public class ServerDisconnectTest {
         }
 
         Thread.sleep(500);
-        Worker goodWorker = new Worker(new ServerInfo(java.net.InetAddress.getByName("localhost"), port));
+        Worker goodWorker = new Worker(new ServerInfo(java.net.InetAddress.getByName("localhost"),
+                port));
         Thread workerThread = new Thread(() -> goodWorker.start());
         workerThread.start();
 
