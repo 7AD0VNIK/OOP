@@ -23,7 +23,9 @@ public class Announcer implements Runnable {
     /**
      * .
      */
-    public void stop() { running = false; }
+    public void stop() {
+        running = false;
+    }
 
     /**
      * Runs the announcer loop to broadcast server presence.

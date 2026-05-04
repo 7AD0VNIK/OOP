@@ -49,6 +49,7 @@ public class ConnectionHandler implements Runnable {
             try {
                 socket.close();
             } catch (IOException e) {
+                //ignore
             }
         }
     }

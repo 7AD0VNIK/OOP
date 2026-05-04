@@ -114,6 +114,7 @@ public class Server implements Runnable {
         try {
             serverSocket.close();
         } catch (IOException e) {
+            //ignore
         }
         threadPool.shutdown();
     }
@@ -135,7 +136,8 @@ public class Server implements Runnable {
                 serverSocket.close();
             }
         } catch (IOException e) {
-            }
+            //ignore
+        }
         threadPool.shutdownNow();
     }
 
